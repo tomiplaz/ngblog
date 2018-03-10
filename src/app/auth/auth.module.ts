@@ -9,6 +9,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CreateAccountFormComponent } from './create-account/create-account-form/create-account-form.component';
 
+import { LoginService } from './login/login.service';
+import { CreateAccountService } from './create-account/create-account.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +23,10 @@ import { CreateAccountFormComponent } from './create-account/create-account-form
     CreateAccountComponent,
     LoginFormComponent,
     CreateAccountFormComponent
+  ],
+  providers: [
+    LoginService,
+    CreateAccountService
   ]
 })
 export class AuthModule { }

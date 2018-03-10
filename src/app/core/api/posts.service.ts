@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { Post } from '../../posts/post.interface';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PostsService {
@@ -12,15 +13,15 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts() {
+  getPosts(): Observable<any> {
     return this.httpClient.get<Post[]>(PostsService.baseUrl);
   }
   
-  getPost(stringId: string) {
+  getPost(stringId: string): Observable<any> {
     return this.httpClient.get<Post>(PostsService.baseUrl + '/' + stringId);
   }
 
-  createPost(post: Post) {
+  createPost(post: Post): Observable<any> {
     return this.httpClient.post<Post>(PostsService.baseUrl, post);
   }
 
