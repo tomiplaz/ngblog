@@ -6,8 +6,8 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { environment } from '../../../environments/environment';
-import { JwtService } from '../jwt.service';
-import { Login } from './login.interface';
+import { JwtService } from './jwt.service';
+import { Login } from '../../login/login.interface';
 
 @Injectable()
 export class LoginService {

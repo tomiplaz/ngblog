@@ -1,9 +1,9 @@
-export interface Post {
+export interface User {
     id?: number,
     string_id?: string,
-    user_id: number,
-    title: string,
-    content: string,
+    name: string,
+    email: string,
+    password?: string
     created_at?: string,
     updated_at?: string
 }

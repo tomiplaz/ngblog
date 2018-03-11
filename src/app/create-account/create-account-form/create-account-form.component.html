@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="createAccountForm" novalidate>
+  <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()" novalidate>
     <div>
       <label for="name">Name</label>
       <input type="text" name="name" formControlName="name">
@@ -12,5 +12,6 @@
       <label for="password">Password</label>
       <input type="password" name="password" formControlName="password">
     </div>
+    <button type="submit" [disabled]="createAccountForm.invalid"></button>
   </form>
 </div>

@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
-import { AuthModule } from './auth/auth.module';
+import { LoginModule } from './login/login.module';
+import { CreateAccountModule } from './create-account/create-account.module';
 import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +19,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     CoreModule,
     HomeModule,
-    AuthModule,
+    LoginModule,
+    CreateAccountModule,
     PostsModule,
     UsersModule,
     AppRoutingModule

@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="loginForm" novalidate>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
     <div>
       <label for="name">Name</label>
       <input type="text"name="name" formControlName="name">
@@ -8,5 +8,6 @@
       <label for="password">Password</label>
       <input type="password"name="password" formControlName="password">
     </div>
+    <button type="submit" [disabled]="loginForm.invalid"></button>
   </form>
 </div>
