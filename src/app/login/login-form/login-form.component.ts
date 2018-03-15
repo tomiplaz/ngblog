@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { LoginService } from '../../core/api/login.service';
 
@@ -14,12 +15,11 @@ export class LoginFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
-  ) {
-    this.createForm();
-  }
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
-  createForm() {
+  ngOnInit() {
     this.loginForm = this.formBuilder.group({
       name: [null, Validators.required],
       password: [null, Validators.required]
@@ -29,10 +29,11 @@ export class LoginFormComponent {
   onSubmit() {
     this.loginService.login(this.loginForm.value)
       .subscribe(response => {
-        // Logged in successfully.
+        this.router.navigate(['/home']);
       }, response => {
-        // Something went wrong.
+        //this.toastrService.error(null, 'Login unsuccessful');
+        this.loginForm.reset();
       });
   }
-
+  
 }

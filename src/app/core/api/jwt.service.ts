@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as JWT from 'jwt-decode';
 
-const JWT_KEY = 'blogeo-jwt';
+const JWT_KEY = 'ngblog-jwt';
 
 @Injectable()
 export class JwtService {

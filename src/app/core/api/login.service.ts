@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/share';
 
 import { environment } from '../../../environments/environment';
 import { JwtService } from './jwt.service';
@@ -22,8 +23,8 @@ export class LoginService {
     this.isLoggedIn.next(Boolean(this.getUserId()));
   }
 
-  login(credentials: Login): Observable<any> {
-    const observable = this.httpClient.post<any>(environment.apiUrl + '/login', credentials);
+  login(credentials: Login): any {
+    const observable = this.httpClient.post<any>(environment.apiUrl + '/login', credentials).share();
 
     observable.subscribe(response => {
       this.jwtService.setJWT(response.token);

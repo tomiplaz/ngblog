@@ -1,4 +1,9 @@
 <div class="header">
-  <span class="item" (click)="onLoginClick()">Login</span>
-  <span class="item" (click)="onCreateAccountClick()">Create Account</span>
+  <div *ngIf="isLoggedIn">
+      <span class="item" (click)="onLogoutClick()">Logout</span>
+  </div>
+  <div *ngIf="!isLoggedIn">
+      <span class="item" (click)="onLoginClick()">Login</span>
+      <span class="item" (click)="onCreateAccountClick()">Create Account</span>
+  </div>
 </div>
