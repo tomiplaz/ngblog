@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UsersService } from '../../core/api/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-account-form',
@@ -14,7 +16,9 @@ export class CreateAccountFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -28,9 +32,20 @@ export class CreateAccountFormComponent implements OnInit {
   onSubmit() {
     this.usersService.createUser(this.createAccountForm.value)
       .subscribe(response => {
-        // Account created successfully.
+        this.router.navigate(['/login']);
+        this.toastrService.success('Account created. Please log in.');
       }, response => {
-        // Something went wrong.
+        if (response.status === 400) {
+          let errors = response.error.response.original;
+          for (let type in errors) {
+            errors[type].forEach(message => {
+              this.toastrService.error(message);
+            });
+          }
+        } else {
+          this.toastrService.error('Something went wrong.');
+        }
+        this.createAccountForm.reset();
       });
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { LoginService } from '../../core/api/login.service';
 
@@ -16,7 +17,8 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -29,9 +31,10 @@ export class LoginFormComponent {
   onSubmit() {
     this.loginService.login(this.loginForm.value)
       .subscribe(response => {
+        this.toastrService.info('Welcome back!');
         this.router.navigate(['/home']);
       }, response => {
-        //this.toastrService.error(null, 'Login unsuccessful');
+        this.toastrService.error('Invalid credentials.');
         this.loginForm.reset();
       });
   }
