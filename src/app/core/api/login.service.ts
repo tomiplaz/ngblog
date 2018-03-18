@@ -29,7 +29,7 @@ export class LoginService {
     observable.subscribe(response => {
       this.jwtService.setJWT(response.token);
       this.isLoggedIn.next(true);
-    });
+    }, response => { });
 
     return observable;
   }

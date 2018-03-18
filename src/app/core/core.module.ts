@@ -8,12 +8,16 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { MessageService } from './message.service';
+
 @NgModule({
   imports: [
     CommonModule,
     ApiModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 2000
+    })
   ],
   declarations: [
     HeaderComponent,
@@ -23,6 +27,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   exports: [
     HeaderComponent,
     FooterComponent
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class CoreModule { }

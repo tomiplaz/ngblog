@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UsersService } from '../../core/api/users.service';
-import { ToastrService } from 'ngx-toastr';
+import { MessageService } from '../../core/message.service';
 
 @Component({
   selector: 'app-create-account-form',
@@ -18,7 +18,7 @@ export class CreateAccountFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private usersService: UsersService,
     private router: Router,
-    private toastrService: ToastrService
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -33,18 +33,9 @@ export class CreateAccountFormComponent implements OnInit {
     this.usersService.createUser(this.createAccountForm.value)
       .subscribe(response => {
         this.router.navigate(['/login']);
-        this.toastrService.success('Account created. Please log in.');
+        this.messageService.createAccountSuccess();
       }, response => {
-        if (response.status === 400) {
-          let errors = response.error.response.original;
-          for (let type in errors) {
-            errors[type].forEach(message => {
-              this.toastrService.error(message);
-            });
-          }
-        } else {
-          this.toastrService.error('Something went wrong.');
-        }
+        this.messageService.error(response);
         this.createAccountForm.reset();
       });
   }
