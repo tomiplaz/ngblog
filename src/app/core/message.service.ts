@@ -14,6 +14,10 @@ export class MessageService {
     this.toastrService.info('Welcome back!');
   }
 
+  createPostSuccess() {
+    this.toastrService.success('Post created.');
+  }
+
   error(response: any) {
     switch (response.status) {
       case 400:
