@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Post } from '../post.interface';
 
 @Component({
   selector: 'app-posts',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  posts: Post[];
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data
+      .subscribe((data: { posts: Post[] }) => {
+        this.posts = data.posts;
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  trackById(index: number, post: Post) {
+    return post.id;
   }
 
 }

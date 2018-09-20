@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PostComponent } from './post/post.component';
 import { PostsComponent } from './posts/posts.component';
 import { CreatePostComponent } from './create-post/create-post.component';
-import { LoggedInGuard } from '../core/logged-in.guard';
+import { LoggedInGuard } from '../core/logged-in-guard.service';
+import { PostsResolverService } from './posts-resolver.service';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'new', component: CreatePostComponent, canActivate: [ LoggedInGuard ] },
       { path: ':id', component: PostComponent },
-      { path: '', component: PostsComponent }
+      { path: '', component: PostsComponent, resolve: { posts: PostsResolverService } }
     ]
   }
 ];
