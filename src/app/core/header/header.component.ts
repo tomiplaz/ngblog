@@ -36,4 +36,8 @@ export class HeaderComponent implements OnInit {
     this.loginService.logout();
   }
 
+  onNewPostClick() {
+    this.router.navigate(['/posts/new']);
+  }
+
 }

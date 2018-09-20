@@ -1,6 +1,7 @@
 <div class="header">
   <div *ngIf="isLoggedIn">
       <span class="item" (click)="onLogoutClick()">Logout</span>
+      <span class="item" (click)="onNewPostClick()">New Post</span>
   </div>
   <div *ngIf="!isLoggedIn">
       <span class="item" (click)="onLoginClick()">Login</span>
