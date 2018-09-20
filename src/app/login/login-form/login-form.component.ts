@@ -10,7 +10,7 @@ import { MessageService } from '../../core/message.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
 
