@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { MessageService } from './message.service';
-import { LoggedInGuard } from './logged-in.guard';
+import { LoggedInGuard } from './logged-in-guard.service';
 
 @NgModule({
   imports: [
