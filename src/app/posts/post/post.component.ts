@@ -9,7 +9,7 @@ import { Post } from '../post.interface';
 })
 export class PostComponent implements OnInit {
 
-  post: Post
+  post: Post;
 
   constructor(private route: ActivatedRoute) { }
 

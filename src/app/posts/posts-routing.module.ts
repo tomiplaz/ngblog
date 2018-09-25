@@ -12,9 +12,25 @@ const routes: Routes = [
   {
     path: 'posts',
     children: [
-      { path: 'new', component: CreatePostComponent, canActivate: [ LoggedInGuard ] },
-      { path: ':stringId', component: PostComponent, resolve: { post: PostResolverService } },
-      { path: '', component: PostsComponent, resolve: { posts: PostsResolverService } }
+      {
+        path: 'new',
+        component: CreatePostComponent,
+        canActivate: [ LoggedInGuard ]
+      },
+      {
+        path: ':stringId',
+        component: PostComponent,
+        resolve: {
+          post: PostResolverService
+        }
+      },
+      {
+        path: '',
+        component: PostsComponent,
+        resolve: {
+          posts: PostsResolverService
+        }
+      }
     ]
   }
 ];
