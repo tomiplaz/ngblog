@@ -1,3 +1,5 @@
-<p>
-  user works!
-</p>
+<div>
+  <h3>{{ user.name }}</h3>
+  <p>Registered At: {{ user.created_at }}</p>
+  <p>Posts Count: {{ user.posts_count || 0 }}</p>
+</div>

@@ -13,15 +13,15 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(): Observable<any> {
+  getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(UsersService.baseUrl);
   }
   
-  getUser(stringId: string): Observable<any> {
+  getUser(stringId: string): Observable<User> {
     return this.httpClient.get<User>(UsersService.baseUrl + '/' + stringId);
   }
 
-  createUser(user: User): Observable<any> {
+  createUser(user: User): Observable<User> {
     return this.httpClient.post<User>(UsersService.baseUrl, user);
   }
 

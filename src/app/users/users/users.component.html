@@ -1,3 +1,9 @@
-<p>
-  users works!
-</p>
+<div>
+  <div *ngFor="let user of users; trackBy: trackById">
+    <h3 (click)="onUserNameClick(user.string_id)">
+      {{ user.name }}
+    </h3>
+    <p>Registered At: {{ user.created_at }}</p>
+    <p>Posts Count: {{ user.posts_count || 0 }}</p>
+  </div>
+</div>
