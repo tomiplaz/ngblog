@@ -24,7 +24,7 @@ export class CreatePostComponent implements PostFormInterface {
     this.postsService.createPost(post)
       .subscribe(response => {
         this.messageService.createPostSuccess();
-        this.router.navigate(['/posts']);
+        this.router.navigate(['posts']);
       }, response => {
         this.messageService.error(response);
       });

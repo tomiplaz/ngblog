@@ -25,11 +25,11 @@ export class HeaderComponent implements OnInit {
   }
 
   onLoginClick() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
   }
 
   onCreateAccountClick() {
-    this.router.navigate(['/create-account']);
+    this.router.navigate(['create-account']);
   }
 
   onLogoutClick() {
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onNewPostClick() {
-    this.router.navigate(['/posts/new']);
+    this.router.navigate(['posts', 'new']);
   }
 
 }

@@ -30,7 +30,7 @@ export class PostsComponent implements OnInit {
   }
 
   onPostTitleClick(stringId: string) {
-    this.router.navigate(['posts', stringId]);
+    this.router.navigate([stringId], { relativeTo: this.route });
   }
 
 }

@@ -32,7 +32,7 @@ export class CreateAccountFormComponent implements OnInit {
   onSubmit() {
     this.usersService.createUser(this.createAccountForm.value)
       .subscribe(response => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['login']);
         this.messageService.createAccountSuccess();
       }, response => {
         this.messageService.error(response);

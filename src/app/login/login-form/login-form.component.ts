@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit {
     this.loginService.login(this.loginForm.value)
       .subscribe(response => {
         this.messageService.loginSuccess();
-        this.router.navigate(['/home']);
+        this.router.navigate(['home']);
       }, response => {
         this.messageService.error(response);
         this.loginForm.reset();
