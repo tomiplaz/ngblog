@@ -6,13 +6,14 @@ import { PostsComponent } from './posts/posts.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { LoggedInGuard } from '../core/logged-in-guard.service';
 import { PostsResolverService } from './posts-resolver.service';
+import { PostResolverService } from './post-resolver.service';
 
 const routes: Routes = [
   {
     path: 'posts',
     children: [
       { path: 'new', component: CreatePostComponent, canActivate: [ LoggedInGuard ] },
-      { path: ':id', component: PostComponent },
+      { path: ':stringId', component: PostComponent, resolve: { post: PostResolverService } },
       { path: '', component: PostsComponent, resolve: { posts: PostsResolverService } }
     ]
   }

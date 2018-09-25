@@ -17,11 +17,11 @@ export class PostsService {
     return this.httpClient.get<Post[]>(PostsService.baseUrl);
   }
   
-  getPost(stringId: string): Observable<any> {
+  getPost(stringId: string): Observable<Post> {
     return this.httpClient.get<Post>(PostsService.baseUrl + '/' + stringId);
   }
 
-  createPost(post: Post): Observable<any> {
+  createPost(post: Post): Observable<Post> {
     return this.httpClient.post<Post>(PostsService.baseUrl, post);
   }
 
