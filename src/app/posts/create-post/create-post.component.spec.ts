@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreatePostComponent } from './create-post.component';
+import { PostsModule } from '../posts.module';
+import { AppRoutingModule } from '../../app-routing.module';
+import { CoreModule } from '../../core/core.module';
 
 describe('CreatePostComponent', () => {
   let component: CreatePostComponent;
@@ -8,7 +11,7 @@ describe('CreatePostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreatePostComponent ]
+      imports: [ PostsModule, CoreModule, AppRoutingModule ],
     })
     .compileComponents();
   }));
