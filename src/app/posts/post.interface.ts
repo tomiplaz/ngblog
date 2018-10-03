@@ -5,5 +5,6 @@ export interface Post {
     title: string,
     content: string,
     created_at?: string,
-    updated_at?: string
+    updated_at?: string,
+    tags?: object[],
 }
