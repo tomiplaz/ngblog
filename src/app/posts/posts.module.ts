@@ -8,6 +8,7 @@ import { PostFormComponent } from './post-form/post-form.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostsResolverService } from './posts-resolver.service';
 import { PostResolverService } from './post-resolver.service';
+import { PostItemComponent } from './post-item/post-item.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { PostResolverService } from './post-resolver.service';
     PostsComponent,
     PostComponent,
     PostFormComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    PostItemComponent
   ],
   providers: [
     PostsResolverService,
