@@ -3,6 +3,7 @@
     <h3 (click)="onPostTitleClick(post.string_id)">
       {{ post.title }}
     </h3>
+    <p>Tags:<span *ngFor="let tag of post.tags"> {{ tag.key }}</span></p>
     <p>Posted By: {{ post.user_id }}</p>
     <p>Posted At: {{ post.created_at }}</p>
     <p>{{ post.content }}</p>
