@@ -10,6 +10,7 @@ import { LoginService } from '../../core/api/login.service';
 export class PostFormComponent implements OnInit {
 
   postForm: FormGroup;
+  tags: String[] = [];
   @Input() submit: any; 
 
   constructor(
@@ -20,14 +21,26 @@ export class PostFormComponent implements OnInit {
   ngOnInit() {
     this.postForm = this.formBuilder.group({
       title: [null, Validators.required],
-      content: [null, Validators.required]
+      content: [null, Validators.required],
+      tag: [null, Validators.pattern(/^[a-zA-Z0-9]+$/)],
     });
   }
 
+  addTag() {
+    this.tags.push(this.postForm.controls.tag.value);
+    this.postForm.controls.tag.reset();
+  }
+
+  onAddTagClick() {
+    this.addTag();
+  }
+
   onSubmit() {
+    delete this.postForm.value.tag;
     this.submit({
       ...this.postForm.value,
-      user_id: this.loginService.getUserId()
+      tags: this.tags,
+      user_id: this.loginService.getUserId(),
     });
   }
 
