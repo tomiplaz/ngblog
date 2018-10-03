@@ -18,6 +18,10 @@ export class MessageService {
     this.toastrService.success('Post created.');
   }
 
+  createPostCommentSuccess() {
+    this.toastrService.success('Comment created.');
+  }
+
   error(response: any) {
     switch (response.status) {
       case 400:

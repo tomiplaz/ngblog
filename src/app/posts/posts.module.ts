@@ -9,6 +9,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { PostsResolverService } from './posts-resolver.service';
 import { PostResolverService } from './post-resolver.service';
 import { PostItemComponent } from './post-item/post-item.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { PostItemComponent } from './post-item/post-item.component';
     PostComponent,
     PostFormComponent,
     CreatePostComponent,
-    PostItemComponent
+    PostItemComponent,
+    CommentFormComponent,
   ],
   providers: [
     PostsResolverService,

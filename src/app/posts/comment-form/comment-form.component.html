@@ -1,0 +1,8 @@
+<div>
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+      <textarea name="text" placeholder="Text" cols="30" rows="10" formControlName="text"></textarea>
+    </div>
+    <button type="submit" [disabled]="commentForm.invalid">Submit</button>
+  </form>
+</div>

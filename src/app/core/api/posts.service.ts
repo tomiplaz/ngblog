@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { Post } from '../../posts/post.interface';
+import { Comment } from '../../posts/comment.interface';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -23,6 +24,11 @@ export class PostsService {
 
   createPost(post: Post): Observable<Post> {
     return this.httpClient.post<Post>(PostsService.baseUrl, post);
+  }
+
+  createPostComment(postId: number, comment: Comment): Observable<Comment> {
+    const url = `${PostsService.baseUrl}/${postId}/comments`;
+    return this.httpClient.post<Comment>(url, comment);
   }
 
 }
