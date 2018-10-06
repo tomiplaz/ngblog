@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.interface';
+import { CommonService } from '../../core/common.service';
 
 @Component({
   selector: 'app-users',
@@ -14,6 +15,7 @@ export class UsersComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private commonService: CommonService
   ) { }
 
   ngOnInit() {
@@ -23,10 +25,6 @@ export class UsersComponent implements OnInit {
       }, error => {
         console.log(error);
       });
-  }
-
-  trackById(index: number, user: User) {
-    return user.id;
   }
 
   onUserNameClick(stringId: string) {

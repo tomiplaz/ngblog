@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from '../post.interface';
+import { CommonService } from '../../core/common.service';
 
 @Component({
   selector: 'app-post',
@@ -11,7 +12,10 @@ export class PostComponent implements OnInit {
 
   post: Post;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private commonService: CommonService
+  ) { }
 
   ngOnInit() {
     this.route.data
@@ -20,10 +24,6 @@ export class PostComponent implements OnInit {
       }, error => {
         console.log(error);
       });
-  }
-
-  trackById(index: number, post: Post) {
-    return post.id;
   }
 
 }

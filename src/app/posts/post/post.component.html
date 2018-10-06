@@ -2,7 +2,7 @@
 <app-comment-form [postId]="post.id"></app-comment-form>
 <div>
     <p>Comments ({{ post.comments.length }}):</p>
-    <div *ngFor="let comment of post.comments; trackBy: trackById">
+    <div *ngFor="let comment of post.comments; trackBy: commonService.trackById">
         <app-comment-item [comment]="comment"></app-comment-item>
     </div>
 </div>

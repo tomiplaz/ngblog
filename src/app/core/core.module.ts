@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { MessageService } from './message.service';
+import { CommonService } from './common.service';
 import { LoggedInGuard } from './logged-in-guard.service';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { LoggedInGuard } from './logged-in-guard.service';
   ],
   providers: [
     MessageService,
+    CommonService,
     LoggedInGuard,
   ]
 })
