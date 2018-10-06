@@ -22,4 +22,8 @@ export class PostComponent implements OnInit {
       });
   }
 
+  trackById(index: number, post: Post) {
+    return post.id;
+  }
+
 }
