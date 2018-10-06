@@ -1,5 +1,8 @@
 <app-post-item [post]="post"></app-post-item>
-<app-comment-form [postId]="post.id"></app-comment-form>
+<app-comment-form
+    [postId]="post.id"
+    (commentAdded)="onCommentAdded($event)">
+</app-comment-form>
 <div>
     <p>Comments ({{ post.comments.length }}):</p>
     <div *ngFor="let comment of post.comments; trackBy: commonService.trackById">

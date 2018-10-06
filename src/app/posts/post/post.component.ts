@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from '../post.interface';
+import { Comment } from '../comment.interface';
 import { CommonService } from '../../core/common.service';
 
 @Component({
@@ -24,6 +25,10 @@ export class PostComponent implements OnInit {
       }, error => {
         console.log(error);
       });
+  }
+
+  onCommentAdded(comment: Comment) {
+    this.post.comments.push(comment);
   }
 
 }

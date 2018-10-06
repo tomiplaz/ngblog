@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PostsService } from '../../core/api/posts.service';
 import { LoginService } from '../../core/api/login.service';
 import { MessageService } from '../../core/message.service';
+import { Comment } from '../comment.interface';
 
 @Component({
   selector: 'app-comment-form',
@@ -13,6 +14,7 @@ export class CommentFormComponent implements OnInit {
 
   commentForm: FormGroup;
   @Input() postId: number;
+  @Output() commentAdded: EventEmitter<Comment> = new EventEmitter<Comment>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class CommentFormComponent implements OnInit {
     this.postsService.createPostComment(this.postId, submitData)
       .subscribe(response => {
         this.messageService.createPostCommentSuccess();
+        this.commentAdded.emit(response);
       }, response => {
         this.messageService.error(response);
         this.commentForm.reset();
