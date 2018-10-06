@@ -28,7 +28,7 @@ export class PostComponent implements OnInit {
   }
 
   onCommentAdded(comment: Comment) {
-    this.post.comments.push(comment);
+    this.post.comments = [ comment, ...this.post.comments ];
   }
 
 }
