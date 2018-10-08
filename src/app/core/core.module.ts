@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ApiModule } from './api/api.module';
 
-import { HeaderComponent } from './header/header.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -22,12 +22,12 @@ import { LoggedInGuard } from './logged-in-guard.service';
     })
   ],
   declarations: [
-    HeaderComponent,
+    NavigationComponent,
     FooterComponent,
     PageNotFoundComponent
   ],
   exports: [
-    HeaderComponent,
+    NavigationComponent,
     FooterComponent
   ],
   providers: [

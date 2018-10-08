@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { LoginService } from '../api/login.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class NavigationComponent implements OnInit {
 
   private isLoggedIn;
 

@@ -1,12 +1,12 @@
-.header {
+.navigation {
     text-align: right;
 }
 
-.header .item {
+.navigation .item {
     margin: 0 20px;
     cursor: pointer;
 }
 
-.header .item:hover {
+.navigation .item:hover {
     text-decoration: underline;
 }
