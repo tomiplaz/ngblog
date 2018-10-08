@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  margin: 20px auto;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.metadata {
+  margin: 5px auto;
+  font-size: 0.8em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.routable {
+  text-decoration: underline;
+}
+
+.routable:hover {
+  cursor: pointer;
+}
