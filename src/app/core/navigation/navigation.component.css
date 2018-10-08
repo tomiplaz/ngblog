@@ -10,5 +10,9 @@
 }
 
 .item:hover {
-    text-decoration: underline;
+    font-weight: bold;
+}
+
+.primary {
+    margin-bottom: 50px;
 }

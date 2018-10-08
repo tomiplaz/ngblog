@@ -1,8 +1,14 @@
-<div *ngIf="isLoggedIn">
-  <div class="item" (click)="onNewPostClick()">NEW POST</div>
-  <div class="item" (click)="onLogoutClick()">LOGOUT</div>
+<div class="primary">
+  <div *ngIf="isLoggedIn">
+    <div class="item" (click)="onRoutableClick(['posts', 'new'])">NEW POST</div>
+    <div class="item" (click)="onLogoutClick()">LOGOUT</div>
+  </div>
+  <div *ngIf="!isLoggedIn">
+    <div class="item" (click)="onRoutableClick(['login'])">LOGIN</div>
+    <div class="item" (click)="onRoutableClick(['create-account'])">NEW ACCOUNT</div>
+  </div>
 </div>
-<div *ngIf="!isLoggedIn">
-  <div class="item" (click)="onLoginClick()">LOGIN</div>
-  <div class="item" (click)="onCreateAccountClick()">NEW ACCOUNT</div>
+<div>
+  <div class="item" (click)="onRoutableClick(['posts'])">POSTS</div>
+  <div class="item" (click)="onRoutableClick(['users'])">USERS</div>
 </div>

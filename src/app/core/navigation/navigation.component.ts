@@ -10,7 +10,7 @@ import { LoginService } from '../api/login.service';
 })
 export class NavigationComponent implements OnInit {
 
-  private isLoggedIn;
+  private isLoggedIn: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,20 +24,12 @@ export class NavigationComponent implements OnInit {
       });
   }
 
-  onLoginClick() {
-    this.router.navigate(['login']);
-  }
-
-  onCreateAccountClick() {
-    this.router.navigate(['create-account']);
+  onRoutableClick(commands) {
+    this.router.navigate(commands);
   }
 
   onLogoutClick() {
     this.loginService.logout();
-  }
-
-  onNewPostClick() {
-    this.router.navigate(['posts', 'new']);
   }
 
 }
