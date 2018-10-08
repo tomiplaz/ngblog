@@ -1,8 +1,8 @@
 <div *ngIf="isLoggedIn">
-  <div class="item" (click)="onNewPostClick()">New Post</div>
-  <div class="item" (click)="onLogoutClick()">Logout</div>
+  <div class="item" (click)="onNewPostClick()">NEW POST</div>
+  <div class="item" (click)="onLogoutClick()">LOGOUT</div>
 </div>
 <div *ngIf="!isLoggedIn">
-  <div class="item" (click)="onLoginClick()">Login</div>
-  <div class="item" (click)="onCreateAccountClick()">Create Account</div>
+  <div class="item" (click)="onLoginClick()">LOGIN</div>
+  <div class="item" (click)="onCreateAccountClick()">NEW ACCOUNT</div>
 </div>
