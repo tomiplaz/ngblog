@@ -1,3 +1,7 @@
+import { User } from '../users/user.interface';
+import { Comment } from './comment.interface'; 
+import { Tag } from './tag.interface';
+
 export interface Post {
     id?: number,
     string_id?: string,
@@ -6,6 +10,7 @@ export interface Post {
     content: string,
     created_at?: string,
     updated_at?: string,
-    comments?: object[],
-    tags?: object[],
+    user?: User,
+    comments?: Comment[],
+    tags?: Tag[],
 }
