@@ -1,12 +1,14 @@
-.navigation {
-    text-align: right;
+:host {
+    position: fixed;
+    top: 50px;
+    left: 10vw;
 }
 
-.navigation .item {
-    margin: 0 20px;
+.item {
+    margin: 5px 10px;
     cursor: pointer;
 }
 
-.navigation .item:hover {
+.item:hover {
     text-decoration: underline;
 }
