@@ -5,7 +5,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { ApiModule } from './api/api.module';
 
 import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { MessageService } from './message.service';
@@ -23,12 +22,10 @@ import { LoggedInGuard } from './logged-in-guard.service';
   ],
   declarations: [
     NavigationComponent,
-    FooterComponent,
     PageNotFoundComponent
   ],
   exports: [
     NavigationComponent,
-    FooterComponent
   ],
   providers: [
     MessageService,
