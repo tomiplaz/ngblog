@@ -5,13 +5,21 @@
     left: 10vw;
 }
 
-.item {
-    margin: 5px 10px;
-    text-decoration: underline;
+ul {
+    list-style: none;
 }
 
-.item:hover {
+ul li {
+    margin: 5px 10px;
+}
+
+ul li span {
+    border-bottom: 1px dashed black;
+}
+
+ul li span:hover {
     cursor: pointer;
+    border-bottom-style: solid;
 }
 
 .primary {
