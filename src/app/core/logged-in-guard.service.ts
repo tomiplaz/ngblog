@@ -10,7 +10,7 @@ export class LoggedInGuard implements CanActivate {
   ) { }
 
   canActivate() {
-    return this.loginService.isLoggedInObservable;
+    return Boolean(this.loginService.loggedInUserObservable);
   }
 
 }
