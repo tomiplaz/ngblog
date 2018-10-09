@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
 
   private loggedInUser: User = null;
+  private loggedInUserSubscription: Subscription;
   private loggedInRoutingItems: RoutingItem[] = [];
   private loggedOutRoutingItems: RoutingItem[] = [];
   private constantRoutingItems: RoutingItem[] = [];
@@ -21,15 +23,16 @@ export class NavigationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loginService.loggedInUserObservable.subscribe(user => {
-      this.loggedInUser = user;
-      if (user) {
-        this.loggedInRoutingItems = [
-          { commands: ['users', user.string_id], text: 'MY PROFILE' },
-          { commands: ['posts', 'new'], text: 'NEW POST' },
-        ];
-      }
-    });
+    this.loggedInUserSubscription = this.loginService.loggedInUserObservable
+      .subscribe(user => {
+        this.loggedInUser = user;
+        if (user) {
+          this.loggedInRoutingItems = [
+            { commands: ['users', user.string_id], text: 'MY PROFILE' },
+            { commands: ['posts', 'new'], text: 'NEW POST' },
+          ];
+        }
+      });
 
     this.loggedOutRoutingItems = [
       { commands: ['login'], text: 'LOGIN' },
@@ -49,6 +52,10 @@ export class NavigationComponent implements OnInit {
 
   onLogoutClick() {
     this.loginService.logout();
+  }
+
+  ngOnDestroy() {
+    this.loggedInUserSubscription.unsubscribe();
   }
 
 }

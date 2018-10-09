@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from '../post.interface';
 import { Comment } from '../comment.interface';
 import { CommonService } from '../../core/common.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
 
-  post: Post;
+  private post: Post;
+  private routeDataSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,7 +21,7 @@ export class PostComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.data
+    this.routeDataSubscription = this.route.data
       .subscribe((data: { post: Post }) => {
         this.post = data.post;
       }, error => {
@@ -29,6 +31,10 @@ export class PostComponent implements OnInit {
 
   onCommentAdded(comment: Comment) {
     this.post.comments = [ comment, ...this.post.comments ];
+  }
+
+  ngOnDestroy() {
+    this.routeDataSubscription.unsubscribe();
   }
 
 }
