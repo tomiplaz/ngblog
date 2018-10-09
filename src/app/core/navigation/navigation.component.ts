@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { LoginService } from '../api/login.service';
+import { User } from '../../users/user.interface';
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +10,10 @@ import { LoginService } from '../api/login.service';
 })
 export class NavigationComponent implements OnInit {
 
-  private isLoggedIn: boolean = false;
+  private loggedInUser: User = null;
+  private loggedInRoutingItems: RoutingItem[] = [];
+  private loggedOutRoutingItems: RoutingItem[] = [];
+  private constantRoutingItems: RoutingItem[] = [];
 
   constructor(
     private router: Router,
@@ -18,10 +21,26 @@ export class NavigationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loginService.isLoggedInObservable
-      .subscribe(isLoggedIn => {
-        this.isLoggedIn = isLoggedIn;
-      });
+    this.loginService.loggedInUserObservable.subscribe(user => {
+      this.loggedInUser = user;
+      if (user) {
+        this.loggedInRoutingItems = [
+          { commands: ['users', user.string_id], text: 'MY PROFILE' },
+          { commands: ['posts', 'new'], text: 'NEW POST' },
+        ];
+      }
+    });
+
+    this.loggedOutRoutingItems = [
+      { commands: ['login'], text: 'LOGIN' },
+      { commands: ['create-account'], text: 'NEW ACCOUNT' },
+    ];
+
+    this.constantRoutingItems = [
+      { commands: ['home'], text: 'HOME' },
+      { commands: ['posts'], text: 'POSTS' },
+      { commands: ['users'], text: 'USERS' },
+    ];
   }
 
   onRoutableClick(commands) {
@@ -32,4 +51,9 @@ export class NavigationComponent implements OnInit {
     this.loginService.logout();
   }
 
+}
+
+interface RoutingItem {
+  commands: string[],
+  text: string,
 }

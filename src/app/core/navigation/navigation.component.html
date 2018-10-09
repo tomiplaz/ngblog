@@ -1,26 +1,20 @@
 <ul class="primary">
-  <ng-container *ngIf="isLoggedIn">
-    <li>
-      <span (click)="onRoutableClick(['posts', 'new'])">NEW POST</span>
+  <ng-container *ngIf="loggedInUser">
+    <li *ngFor="let item of loggedInRoutingItems">
+      <span (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
     </li>
     <li>
       <span (click)="onLogoutClick()">LOGOUT</span>
     </li>
   </ng-container>
-  <ng-container *ngIf="!isLoggedIn">
-    <li>
-      <span (click)="onRoutableClick(['login'])">LOGIN</span>
-    </li>
-    <li>
-      <span (click)="onRoutableClick(['create-account'])">NEW ACCOUNT</span>
+  <ng-container *ngIf="!loggedInUser">
+    <li *ngFor="let item of loggedOutRoutingItems">
+      <span (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
     </li>
   </ng-container>
 </ul>
 <ul>
-  <li>
-    <span (click)="onRoutableClick(['posts'])">POSTS</span>
-  </li>
-  <li>
-    <span (click)="onRoutableClick(['users'])">USERS</span>
+  <li *ngFor="let item of constantRoutingItems">
+    <span (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
   </li>
 </ul>
