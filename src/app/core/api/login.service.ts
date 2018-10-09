@@ -15,13 +15,10 @@ const USER_KEY = 'ngblog-user';
 @Injectable()
 export class LoginService {
 
-  private isLoggedIn: Subject<boolean> = new BehaviorSubject(false);
   private loggedInUser: Subject<User> = new BehaviorSubject(null);
-  isLoggedInObservable = this.isLoggedIn.asObservable();
   loggedInUserObservable = this.loggedInUser.asObservable();
 
   constructor(private httpClient: HttpClient) {
-    this.isLoggedIn.next(Boolean(this.getToken()));
     this.loggedInUser.next(this.getUser());
   }
 
@@ -31,7 +28,6 @@ export class LoginService {
     observable.subscribe(response => {
       localStorage.setItem(USER_KEY, JSON.stringify(response.user));
       localStorage.setItem(JWT_KEY, response.token);
-      this.isLoggedIn.next(true);
       this.loggedInUser.next(response.user);
     }, response => { });
 
@@ -41,7 +37,7 @@ export class LoginService {
   logout() {
     localStorage.removeItem(JWT_KEY);
     localStorage.removeItem(USER_KEY);
-    this.isLoggedIn.next(false);
+    this.loggedInUser.next(null);
   }
 
   getToken(): string {
