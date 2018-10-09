@@ -48,4 +48,9 @@ export class LoginService {
     return JSON.parse(localStorage.getItem(USER_KEY));
   }
 
+  getUserId(): number | null {
+    const user: User = this.getUser();
+    return user ? user.id : null;
+  }
+
 }
