@@ -6,46 +6,50 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/share';
 
 import { environment } from '../../../environments/environment';
-import { JwtService } from './jwt.service';
 import { Login } from '../../login/login.interface';
+import { User } from '../../users/user.interface';
+
+const JWT_KEY = 'ngblog-jwt';
+const USER_KEY = 'ngblog-user';
 
 @Injectable()
 export class LoginService {
 
   private isLoggedIn: Subject<boolean> = new BehaviorSubject(false);
+  private loggedInUser: Subject<User> = new BehaviorSubject(null);
   isLoggedInObservable = this.isLoggedIn.asObservable();
+  loggedInUserObservable = this.loggedInUser.asObservable();
 
-  constructor(
-    private httpClient: HttpClient,
-    private jwtService: JwtService
-  ) {
-    this.isLoggedIn.next(Boolean(this.getUserId()));
+  constructor(private httpClient: HttpClient) {
+    this.isLoggedIn.next(Boolean(this.getToken()));
+    this.loggedInUser.next(this.getUser());
   }
 
   login(credentials: Login): any {
     const observable = this.httpClient.post<any>(environment.apiUrl + '/login', credentials).share();
 
     observable.subscribe(response => {
-      this.jwtService.setJWT(response.token);
+      localStorage.setItem(USER_KEY, JSON.stringify(response.user));
+      localStorage.setItem(JWT_KEY, response.token);
       this.isLoggedIn.next(true);
+      this.loggedInUser.next(response.user);
     }, response => { });
 
     return observable;
   }
 
   logout() {
-    this.jwtService.removeJWT();
+    localStorage.removeItem(JWT_KEY);
+    localStorage.removeItem(USER_KEY);
     this.isLoggedIn.next(false);
   }
 
-  getUserId(): number | null {
-    const token = this.jwtService.getJWT();
-    try {
-      const decoded = this.jwtService.decodeJWT(token);
-      return decoded.sub;
-    } catch (e) {
-      return null;
-    }
+  getToken(): string {
+    return localStorage.getItem(JWT_KEY);
+  }
+
+  getUser(): User | null {
+    return JSON.parse(localStorage.getItem(USER_KEY));
   }
 
 }
