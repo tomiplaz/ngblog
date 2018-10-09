@@ -1,10 +1,5 @@
-<div>
-  <div *ngFor="let user of users; trackBy: commonService.trackById">
-    <h3 (click)="onUserNameClick(user.string_id)">
-      {{ user.name }}
-    </h3>
-    <p>Registered At: {{ user.created_at }}</p>
-    <p>Posts Count: {{ user.posts_count }}</p>
-    <p>Comments Count: {{ user.comments_count }}</p>
-  </div>
-</div>
+<app-user-item
+  *ngFor="let user of users; trackBy: commonService.trackById"
+  [user]="user"
+  [isNameRoutable]="true">
+</app-user-item>

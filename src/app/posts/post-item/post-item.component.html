@@ -1,4 +1,4 @@
-<h2 [ngClass]="{ 'routable': isTitleRoutable }" (click)="onTitleClick()">
+<h2 class="title" [ngClass]="{ 'routable': isTitleRoutable }" (click)="onTitleClick()">
   {{ post.title }}
 </h2>
 <div class="metadata">
@@ -14,6 +14,6 @@
   </ng-container>
   <ng-container *ngIf="!post.tags.length">/</ng-container>
 </div>
-<div class="content">
+<div>
   {{ post.content }}
 </div>

@@ -5,7 +5,10 @@ import { Post } from '../post.interface';
 @Component({
   selector: 'app-post-item',
   templateUrl: './post-item.component.html',
-  styleUrls: ['./post-item.component.css']
+  styleUrls: [
+    './post-item.component.css',
+    './../../shared/shared.css',
+  ]
 })
 export class PostItemComponent implements OnInit {
 
