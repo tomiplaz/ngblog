@@ -13,7 +13,7 @@
     />
     <button
       type="button"
-      [disabled]="!postForm.controls.tag.value || postForm.controls.tag.errors"
+      [disabled]="!postForm.controls.tag.value || postForm.controls.tag.errors || tags.length >= 5"
       (click)="onAddTagClick()">
       Add
     </button>
@@ -24,7 +24,7 @@
       <span class="bold">TAGS</span>
       <ng-container *ngIf="tags.length">
         <ng-container *ngFor="let tag of tags">
-          <span>#{{ tag }}</span>
+          <span (click)="onTagClick(tag)">#{{ tag }}</span>
         </ng-container>
       </ng-container>
       <ng-container *ngIf="!tags.length">/</ng-container>

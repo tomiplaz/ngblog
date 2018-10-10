@@ -32,6 +32,7 @@ export class PostFormComponent implements OnInit {
   addTag() {
     if (this.tags.indexOf(this.postForm.controls.tag.value) === -1) {
       this.tags.push(this.postForm.controls.tag.value);
+      this.handleTagsChange();
     }
     this.postForm.controls.tag.reset();
   }
@@ -44,6 +45,20 @@ export class PostFormComponent implements OnInit {
     if ([' ', ',', 'Enter'].indexOf(event.key) !== -1) {
       event.preventDefault();
       this.addTag();
+    }
+  }
+
+  onTagClick(tag) {
+    this.tags.splice(this.tags.indexOf(tag), 1);
+    this.handleTagsChange();
+  }
+
+  private handleTagsChange() {
+    // Conditionally enable or disable the control
+    if (this.tags.length >= 5 && !this.postForm.controls.tag.disabled) {
+      this.postForm.controls.tag.disable();
+    } else if (this.tags.length < 5 && this.postForm.controls.tag.disabled) {
+      this.postForm.controls.tag.enable();
     }
   }
 
