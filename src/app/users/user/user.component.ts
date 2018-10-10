@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.interface';
 import { Subscription } from 'rxjs/Subscription';
+import { MessageService } from '../../core/message.service';
 
 @Component({
   selector: 'app-user',
@@ -13,14 +14,17 @@ export class UserComponent implements OnInit, OnDestroy {
   private user: User;
   private routeDataSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit() {
     this.routeDataSubscription = this.route.data
       .subscribe((data: { user: User }) => {
         this.user = data.user;
       }, error => {
-        console.log(error);
+        this.messageService.error(error);
       });
   }
 
