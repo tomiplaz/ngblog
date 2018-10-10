@@ -5,12 +5,14 @@
   <span class="bold">BY</span>
   <span class="routable">{{ post.user.name }}</span>
   <span class="bold">ON</span>
-  <span>{{ post.created_at }}</span>
+  <span>{{ post.created_at | date:'medium' }}</span>
 </div>
 <div class="metadata">
   <span class="bold">TAGS</span>
   <ng-container *ngIf="post.tags.length">
-    <span class="routable" *ngFor="let tag of post.tags"> #{{ tag.key }}</span>
+    <ng-container *ngFor="let tag of post.tags">
+      <span class="routable">#{{ tag.key }}</span>
+    </ng-container>
   </ng-container>
   <ng-container *ngIf="!post.tags.length">/</ng-container>
 </div>
