@@ -29,4 +29,8 @@ export class PostItemComponent implements OnInit {
     }
   }
 
+  onUserNameClick() {
+    this.router.navigate(['users', this.post.user.string_id]);
+  }
+
 }

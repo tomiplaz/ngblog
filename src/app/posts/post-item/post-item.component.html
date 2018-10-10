@@ -3,7 +3,7 @@
 </h2>
 <div class="metadata">
   <span class="bold">BY</span>
-  <span class="routable">{{ post.user.name }}</span>
+  <span class="routable" (click)="onUserNameClick()">{{ post.user.name }}</span>
   <span class="bold">ON</span>
   <span>{{ post.created_at | date:'medium' }}</span>
 </div>
