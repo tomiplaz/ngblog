@@ -45,6 +45,7 @@ export class CommentFormComponent implements OnInit {
         this.commentAdded.emit(response);
       }, response => {
         this.messageService.error(response);
+      }, () => {
         this.commentForm.reset();
       });
   }
