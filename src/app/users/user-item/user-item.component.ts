@@ -6,7 +6,6 @@ import { User } from '../user.interface';
   selector: 'app-user-item',
   templateUrl: './user-item.component.html',
   styleUrls: [
-    './../../shared/host.css',
     './../../shared/shared.css',
     './user-item.component.css',
   ]

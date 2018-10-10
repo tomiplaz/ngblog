@@ -8,7 +8,11 @@ import { Comment } from '../comment.interface';
 @Component({
   selector: 'app-comment-form',
   templateUrl: './comment-form.component.html',
-  styleUrls: ['./comment-form.component.css']
+  styleUrls: [
+    '../../shared/shared.css',
+    '../../shared/variables.css',
+    './comment-form.component.css',
+  ]
 })
 export class CommentFormComponent implements OnInit {
 

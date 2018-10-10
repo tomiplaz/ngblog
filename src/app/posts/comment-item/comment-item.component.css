@@ -1,0 +1,6 @@
+@import '../../shared/variables.css';
+
+:host {
+  display: block;
+  margin: var(--margin-s) auto;
+}

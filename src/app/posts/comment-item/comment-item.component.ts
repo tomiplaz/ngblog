@@ -5,7 +5,6 @@ import { Comment } from '../comment.interface';
   selector: 'app-comment-item',
   templateUrl: './comment-item.component.html',
   styleUrls: [
-    './../../shared/host.css',
     './../../shared/shared.css',
     './comment-item.component.css',
   ]
