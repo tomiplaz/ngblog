@@ -10,7 +10,6 @@ import { Comment } from '../comment.interface';
   templateUrl: './comment-form.component.html',
   styleUrls: [
     '../../shared/shared.css',
-    '../../shared/variables.css',
     './comment-form.component.css',
   ]
 })
