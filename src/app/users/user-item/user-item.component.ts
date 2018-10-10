@@ -6,8 +6,9 @@ import { User } from '../user.interface';
   selector: 'app-user-item',
   templateUrl: './user-item.component.html',
   styleUrls: [
-    './user-item.component.css',
+    './../../shared/host.css',
     './../../shared/shared.css',
+    './user-item.component.css',
   ]
 })
 export class UserItemComponent implements OnInit {

@@ -6,8 +6,9 @@ import { Post } from '../post.interface';
   selector: 'app-post-item',
   templateUrl: './post-item.component.html',
   styleUrls: [
-    './post-item.component.css',
+    './../../shared/host.css',
     './../../shared/shared.css',
+    './post-item.component.css',
   ]
 })
 export class PostItemComponent implements OnInit {
