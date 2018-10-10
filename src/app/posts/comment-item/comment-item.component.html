@@ -1,5 +1,10 @@
+<div class="metadata">
+  <span class="bold">BY</span>
+  <span class="routable" *ngIf="comment.user">{{ comment.user.name }}</span>
+  <span *ngIf="!comment.user">anonymous</span>
+  <span class="bold">ON</span>
+  <span>{{ comment.created_at | date:'medium' }}</span>
+</div>
 <div>
-  <p>Posted By: {{ comment.user_id }}</p>
-  <p>Posted At: {{ comment.created_at }}</p>
-  <p>{{ comment.text }}</p>
+  {{ comment.text }}
 </div>
