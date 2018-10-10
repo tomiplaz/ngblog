@@ -3,17 +3,32 @@
   <input type="text" name="title" placeholder="Title" formControlName="title"/>
   <textarea name="content" placeholder="Content" formControlName="content"></textarea>
   <div>
-    <input type="text" name="tag" placeholder="Tag" maxlength="20" formControlName="tag"/>
+    <input
+      type="text"
+      name="tag"
+      placeholder="Tag"
+      maxlength="20"
+      formControlName="tag"
+      (keypress)="onTagInputKeyPress($event)"
+    />
     <button
       type="button"
       [disabled]="!postForm.controls.tag.value || postForm.controls.tag.errors"
       (click)="onAddTagClick()">
-      Add tag
+      Add
     </button>
     <p *ngIf="postForm.controls.tag.invalid && postForm.controls.tag.errors.pattern">
       Please use letters and numbers only
     </p>
+    <div class="margin-bottom-s">
+      <span class="bold">TAGS</span>
+      <ng-container *ngIf="tags.length">
+        <ng-container *ngFor="let tag of tags">
+          <span>#{{ tag }}</span>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!tags.length">/</ng-container>
+    </div>
   </div>
-  <pre>{{ tags | json }}</pre>
   <button type="submit" [disabled]="postForm.invalid">Submit</button>
 </form>

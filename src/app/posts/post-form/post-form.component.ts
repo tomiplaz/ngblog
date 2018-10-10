@@ -30,12 +30,21 @@ export class PostFormComponent implements OnInit {
   }
 
   addTag() {
-    this.tags.push(this.postForm.controls.tag.value);
+    if (this.tags.indexOf(this.postForm.controls.tag.value) === -1) {
+      this.tags.push(this.postForm.controls.tag.value);
+    }
     this.postForm.controls.tag.reset();
   }
 
   onAddTagClick() {
     this.addTag();
+  }
+
+  onTagInputKeyPress(event) {
+    if ([' ', ',', 'Enter'].indexOf(event.key) !== -1) {
+      event.preventDefault();
+      this.addTag();
+    }
   }
 
   onSubmit() {
