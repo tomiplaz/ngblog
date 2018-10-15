@@ -29,7 +29,8 @@ const routes: Routes = [
         component: PostsComponent,
         resolve: {
           posts: PostsResolverService
-        }
+        },
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
       }
     ]
   }

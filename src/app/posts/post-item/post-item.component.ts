@@ -39,4 +39,8 @@ export class PostItemComponent implements OnInit {
     this.router.navigate(['users', this.post.user.string_id]);
   }
 
+  onTagClick(tag) {
+    this.router.navigate(['posts'], { queryParams: { tag } });
+  }
+
 }

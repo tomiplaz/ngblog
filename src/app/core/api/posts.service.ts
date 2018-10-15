@@ -14,12 +14,16 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(): Observable<Post[]> {
-    return this.httpClient.get<Post[]>(PostsService.baseUrl);
+  getPosts(tag: string): Observable<Post[]> {
+    const options = {
+      params: { ...tag && { tag } },
+    };
+    return this.httpClient.get<Post[]>(PostsService.baseUrl, options);
   }
   
   getPost(stringId: string): Observable<Post> {
-    return this.httpClient.get<Post>(PostsService.baseUrl + '/' + stringId);
+    const url = `${PostsService.baseUrl}/${stringId}`;
+    return this.httpClient.get<Post>(url);
   }
 
   createPost(post: Post): Observable<Post> {

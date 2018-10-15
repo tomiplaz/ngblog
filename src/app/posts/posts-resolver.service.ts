@@ -10,7 +10,7 @@ export class PostsResolverService implements Resolve<Post[]> {
   constructor(private postsService: PostsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> {
-    return this.postsService.getPosts();
+    return this.postsService.getPosts(route.queryParamMap.get('tag'));
   }
 
 }
