@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
@@ -16,6 +17,7 @@ import { CommentItemComponent } from './comment-item/comment-item.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    QuillModule,
     PostsRoutingModule
   ],
   declarations: [
