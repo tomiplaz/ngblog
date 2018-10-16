@@ -15,7 +15,7 @@ import { Comment } from '../comment.interface';
 })
 export class CommentFormComponent implements OnInit {
 
-  commentForm: FormGroup;
+  private commentForm: FormGroup;
   @Input() postId: number;
   @Output() commentAdded: EventEmitter<Comment> = new EventEmitter<Comment>();
 
@@ -41,11 +41,10 @@ export class CommentFormComponent implements OnInit {
     this.postsService.createPostComment(this.postId, submitData)
       .subscribe(response => {
         this.messageService.createPostCommentSuccess();
+        this.commentForm.reset();
         this.commentAdded.emit(response);
       }, response => {
         this.messageService.error(response);
-      }, () => {
-        this.commentForm.reset();
       });
   }
 
