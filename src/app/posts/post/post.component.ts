@@ -30,7 +30,6 @@ export class PostComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeDataSubscription = this.route.data
       .subscribe((data: { post: Post }) => {
-        this.postsService.incrementPostViewsCount(data.post.id);
         this.post = data.post;
       }, error => {
         this.messageService.error(error);

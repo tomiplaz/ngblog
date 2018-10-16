@@ -35,9 +35,4 @@ export class PostsService {
     return this.httpClient.post<Comment>(url, comment);
   }
 
-  incrementPostViewsCount(postId: number): Observable<any> {
-    const url = `${PostsService.baseUrl}/${postId}/increment_views`;
-    return this.httpClient.post<any>(url, null);
-  }
-
 }
