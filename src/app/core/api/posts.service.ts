@@ -20,7 +20,7 @@ export class PostsService {
     };
     return this.httpClient.get<Post[]>(PostsService.baseUrl, options);
   }
-  
+
   getPost(stringId: string): Observable<Post> {
     const url = `${PostsService.baseUrl}/${stringId}`;
     return this.httpClient.get<Post>(url);
@@ -33,6 +33,11 @@ export class PostsService {
   createPostComment(postId: number, comment: Comment): Observable<Comment> {
     const url = `${PostsService.baseUrl}/${postId}/comments`;
     return this.httpClient.post<Comment>(url, comment);
+  }
+
+  incrementPostViewsCount(postId: number): Observable<any> {
+    const url = `${PostsService.baseUrl}/${postId}/increment_views`;
+    return this.httpClient.post<any>(url, null);
   }
 
 }

@@ -5,6 +5,7 @@ import { Comment } from '../comment.interface';
 import { CommonService } from '../../core/common.service';
 import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../../core/message.service';
+import { PostsService } from '../../core/api/posts.service';
 
 @Component({
   selector: 'app-post',
@@ -23,11 +24,13 @@ export class PostComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private commonService: CommonService,
     private messageService: MessageService,
+    private postsService: PostsService,
   ) { }
 
   ngOnInit() {
     this.routeDataSubscription = this.route.data
       .subscribe((data: { post: Post }) => {
+        this.postsService.incrementPostViewsCount(data.post.id);
         this.post = data.post;
       }, error => {
         this.messageService.error(error);
