@@ -2,13 +2,13 @@
   {{ user.name }}
 </h2>
 <div class="metadata">
-  <span class="bold">JOINED</span>
+  <span class="label">Joined</span>
   <span>{{ user.created_at | date:'medium' }}</span>
 </div>
 <div class="metadata">
-  <span class="bold">POSTS</span>
+  <span class="label">Posts</span>
   <span>{{ user.posts_count }}</span>
   <span>&bull;</span>
-  <span class="bold">COMMENTS</span>
+  <span class="label">comments</span>
   <span>{{ user.comments_count }}</span>
 </div>

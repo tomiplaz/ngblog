@@ -1,5 +1,5 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
-  <div class="bold margin-bottom-s">NEW POST</div>
+  <div class="label margin-bottom-s">New post</div>
   <input type="text" name="title" placeholder="Title" formControlName="title"/>
   <quill-editor
     formControlName="content">
@@ -23,7 +23,7 @@
       Please use letters and numbers only
     </p>
     <div class="margin-bottom-s">
-      <span class="bold">TAGS</span>
+      <span class="label">Tags</span>
       <ng-container *ngIf="tags.length">
         <ng-container *ngFor="let tag of tags">
           <span (click)="onTagClick(tag)">#{{ tag }}</span>

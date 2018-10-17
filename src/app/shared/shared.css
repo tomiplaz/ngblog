@@ -10,11 +10,8 @@
   font-size: 0.8em;
 }
 
-.bold {
+.label {
   font-weight: bold;
-}
-
-.uppercase {
   text-transform: uppercase;
 }
 
