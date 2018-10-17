@@ -29,4 +29,8 @@ export class UserItemComponent implements OnInit {
     }
   }
 
+  onPostsClick() {
+    this.router.navigate(['posts'], { queryParams: { user: this.user.string_id } });
+  }
+
 }

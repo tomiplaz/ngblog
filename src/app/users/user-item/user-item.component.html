@@ -6,7 +6,7 @@
   <span>{{ user.created_at | date:'medium' }}</span>
 </div>
 <div class="metadata">
-  <span class="label">Posts</span>
+  <span class="label routable" (click)="onPostsClick()">Posts</span>
   <span>{{ user.posts_count }}</span>
   <span>&bull;</span>
   <span class="label">comments</span>

@@ -14,9 +14,12 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(tag: string): Observable<Post[]> {
+  getPosts(tag: string, user: string): Observable<Post[]> {
     const options = {
-      params: { ...tag && { tag } },
+      params: {
+        ...tag && { tag },
+        ...user && { user },
+      },
     };
     return this.httpClient.get<Post[]>(PostsService.baseUrl, options);
   }
