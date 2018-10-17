@@ -8,7 +8,10 @@ import { MessageService } from '../../core/message.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: [
+    '../../shared/shared.css',
+    './users.component.css',
+  ]
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
