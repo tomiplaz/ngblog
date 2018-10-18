@@ -17,8 +17,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   private loggedInUser: User = null;
   private loggedInUserSubscription: Subscription;
   private loggedInRoutingItems: RoutingItem[] = [
-    { commands: ['my-profile'], text: 'My Profile' },
-    { commands: ['posts', 'new'], text: 'New Post' },
+    { commands: ['profile'], text: 'Profile' },
+    { commands: ['posts', 'new'], text: 'Post' },
   ];
   private loggedOutRoutingItems: RoutingItem[] = [
     { commands: ['login'], text: 'Login' },
