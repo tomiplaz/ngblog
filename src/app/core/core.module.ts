@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MessageService } from './message.service';
 import { CommonService } from './common.service';
 import { LoggedInGuard } from './logged-in-guard.service';
+import { BreadcrumbsComponent } from './navigation/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { LoggedInGuard } from './logged-in-guard.service';
   ],
   declarations: [
     NavigationComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BreadcrumbsComponent
   ],
   exports: [
     NavigationComponent,

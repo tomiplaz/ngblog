@@ -1,0 +1,4 @@
+<ng-container *ngFor="let breadcrumb of breadcrumbs; index as i">
+  <span>/</span>
+  <span class="label routable" (click)="router.navigate(breadcrumbs.slice(0, i + 1))">{{ breadcrumb }}</span>
+</ng-container>

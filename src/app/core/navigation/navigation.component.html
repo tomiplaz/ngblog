@@ -1,4 +1,5 @@
 <div class="label title routable" (click)="router.navigate(['home'])">Y&bull;A&bull;B&bull;A</div>
+<app-breadcrumbs></app-breadcrumbs>
 <ul *ngIf="!isLoginOrCreateAccountUrl">
   <ng-container *ngIf="loggedInUser">
     <li>{{ loggedInUser.name }}</li>
