@@ -1,20 +1,16 @@
-<ul class="primary">
+<div class="label title routable" (click)="onRoutableClick(['home'])">Y&bull;A&bull;B&bull;A</div>
+<ul>
   <ng-container *ngIf="loggedInUser">
     <li *ngFor="let item of loggedInRoutingItems">
-      <span (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
+      <span class="label routable" (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
     </li>
     <li>
-      <span (click)="onLogoutClick()">LOGOUT</span>
+      <span class="label routable" (click)="onLogoutClick()">Logout</span>
     </li>
   </ng-container>
   <ng-container *ngIf="!loggedInUser">
     <li *ngFor="let item of loggedOutRoutingItems">
-      <span (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
+      <span class="label routable" (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
     </li>
   </ng-container>
-</ul>
-<ul>
-  <li *ngFor="let item of constantRoutingItems">
-    <span (click)="onRoutableClick(item.commands)">{{ item.text }}</span>
-  </li>
 </ul>

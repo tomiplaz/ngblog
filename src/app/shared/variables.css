@@ -1,4 +1,7 @@
-:host {
+:root {
   --margin-s: 20px;
   --margin-m: 30px;
+  --dark-color: #000000;
+  --light-color: #ffffff;
+  --max-width: 640px;
 }

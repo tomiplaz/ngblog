@@ -7,15 +7,23 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: [
+    '../../shared/shared.css',
+    './navigation.component.css',
+  ]
 })
 export class NavigationComponent implements OnInit, OnDestroy {
 
   private loggedInUser: User = null;
   private loggedInUserSubscription: Subscription;
-  private loggedInRoutingItems: RoutingItem[] = [];
-  private loggedOutRoutingItems: RoutingItem[] = [];
-  private constantRoutingItems: RoutingItem[] = [];
+  private loggedInRoutingItems: RoutingItem[] = [
+    { commands: ['my-profile'], text: 'My Profile' },
+    { commands: ['posts', 'new'], text: 'New Post' },
+  ];
+  private loggedOutRoutingItems: RoutingItem[] = [
+    { commands: ['login'], text: 'Login' },
+    { commands: ['create-account'], text: 'Join!' },
+  ];
 
   constructor(
     private router: Router,
@@ -24,26 +32,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loggedInUserSubscription = this.loginService.loggedInUserObservable
-      .subscribe(user => {
-        this.loggedInUser = user;
-        if (user) {
-          this.loggedInRoutingItems = [
-            { commands: ['users', user.string_id], text: 'MY PROFILE' },
-            { commands: ['posts', 'new'], text: 'NEW POST' },
-          ];
-        }
-      });
-
-    this.loggedOutRoutingItems = [
-      { commands: ['login'], text: 'LOGIN' },
-      { commands: ['create-account'], text: 'NEW ACCOUNT' },
-    ];
-
-    this.constantRoutingItems = [
-      { commands: ['home'], text: 'HOME' },
-      { commands: ['posts'], text: 'POSTS' },
-      { commands: ['users'], text: 'USERS' },
-    ];
+      .subscribe(user => this.loggedInUser = user);
   }
 
   onRoutableClick(commands) {

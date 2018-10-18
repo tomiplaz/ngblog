@@ -1,27 +1,26 @@
 :host {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     position: fixed;
-    top: 50px;
-    left: 10vw;
+    top: 0;
+    width: var(--max-width);
+    background-color: var(--light-color);
+    padding: 10px 0;
+}
+
+.title {
+    font-size: 1.2em;
 }
 
 ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 ul li {
-    margin: 5px 10px;
-}
-
-ul li span {
-    border-bottom: 1px dashed black;
-}
-
-ul li span:hover {
-    cursor: pointer;
-    border-bottom-style: solid;
-}
-
-.primary {
-    margin-bottom: 50px;
+    display: inline;
+    margin: 0 5px;
 }
