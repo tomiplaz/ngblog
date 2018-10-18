@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
 import { Subscription } from 'rxjs/Subscription';
+import { filter, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navigation',
@@ -15,7 +16,9 @@ import { Subscription } from 'rxjs/Subscription';
 export class NavigationComponent implements OnInit, OnDestroy {
 
   private loggedInUser: User = null;
+  private isLoginOrCreateAccountUrl: boolean;
   private loggedInUserSubscription: Subscription;
+  private navigationEndEventsSubscription: Subscription;
   private loggedInRoutingItems: RoutingItem[] = [
     { commands: ['profile'], text: 'Profile' },
     { commands: ['posts', 'new'], text: 'Post' },
@@ -33,18 +36,21 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loggedInUserSubscription = this.loginService.loggedInUserObservable
       .subscribe(user => this.loggedInUser = user);
-  }
-
-  onRoutableClick(commands) {
-    this.router.navigate(commands);
+    this.navigationEndEventsSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
+      .subscribe((event: NavigationEnd) => {
+        this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
+      });
   }
 
   onLogoutClick() {
     this.loginService.logout();
+    this.router.navigate(['home']);
   }
 
   ngOnDestroy() {
     this.loggedInUserSubscription.unsubscribe();
+    this.navigationEndEventsSubscription.unsubscribe();
   }
 
 }
