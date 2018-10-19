@@ -28,6 +28,11 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.breadcrumbs = this.router.url.split('/').slice(1);
   }
 
+  private onClick(index: number, isLast: boolean) {
+    const commands = this.breadcrumbs.slice(0, index + 1);
+    if (!isLast) this.router.navigate(commands);
+  }
+
   ngOnDestroy() {
     this.navigationEndEventsSubscription.unsubscribe();
   }
