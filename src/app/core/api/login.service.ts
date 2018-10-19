@@ -29,7 +29,7 @@ export class LoginService {
       localStorage.setItem(USER_KEY, JSON.stringify(response.user));
       localStorage.setItem(JWT_KEY, response.token);
       this.loggedInUser.next(response.user);
-    }, response => { });
+    });
 
     return observable;
   }
