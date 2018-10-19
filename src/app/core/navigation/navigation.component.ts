@@ -34,7 +34,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.loggedInUserSubscription = this.loginService.loggedInUserObservable
+    this.loggedInUserSubscription = this.loginService.loggedInUser$
       .subscribe(user => this.loggedInUser = user);
     this.navigationEndEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())

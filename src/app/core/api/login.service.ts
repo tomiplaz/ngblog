@@ -16,7 +16,7 @@ const USER_KEY = 'ngblog-user';
 export class LoginService {
 
   private loggedInUser: Subject<User> = new BehaviorSubject(null);
-  loggedInUserObservable = this.loggedInUser.asObservable();
+  loggedInUser$ = this.loggedInUser.asObservable();
 
   constructor(private httpClient: HttpClient) {
     this.loggedInUser.next(this.getUser());
