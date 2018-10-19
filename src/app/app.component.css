@@ -1,8 +1,24 @@
 :host {
-    display: block;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: left;
+  padding-top: 70px;
+  min-height: 100vh;
 }
 
-.main {
-    height: 100%;
+:host(.light) {
+  color: var(--dark-color);
+  border-color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+:host(.dark) {
+  color: var(--light-color);
+  border-color: var(--light-color);
+  background-color: var(--dark-color);
+}
+
+.content {
+  width: var(--width);
 }

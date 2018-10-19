@@ -11,6 +11,8 @@ import { MessageService } from './message.service';
 import { CommonService } from './common.service';
 import { LoggedInGuard } from './logged-in-guard.service';
 import { BreadcrumbsComponent } from './navigation/breadcrumbs/breadcrumbs.component';
+import { FooterComponent } from './footer/footer.component';
+import { SettingsService } from './settings.service';
 
 @NgModule({
   imports: [
@@ -24,15 +26,18 @@ import { BreadcrumbsComponent } from './navigation/breadcrumbs/breadcrumbs.compo
   declarations: [
     NavigationComponent,
     PageNotFoundComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    FooterComponent
   ],
   exports: [
     NavigationComponent,
+    FooterComponent,
   ],
   providers: [
     MessageService,
     CommonService,
     LoggedInGuard,
+    SettingsService,
   ]
 })
 export class CoreModule { }

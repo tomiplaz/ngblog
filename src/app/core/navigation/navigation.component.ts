@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { LoginService } from '../api/login.service';
-import { User } from '../../users/user.interface';
 import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
+import { LoginService } from '../api/login.service';
+import { User } from '../../users/user.interface';
+import { SettingsService } from '../settings.service';
+import { Theme } from '../settings.values';
 
 @Component({
   selector: 'app-navigation',
@@ -15,22 +17,26 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 })
 export class NavigationComponent implements OnInit, OnDestroy {
 
-  private loggedInUser: User = null;
-  private isLoginOrCreateAccountUrl: boolean;
-  private loggedInUserSubscription: Subscription;
-  private navigationEndEventsSubscription: Subscription;
-  private loggedInRoutingItems: RoutingItem[] = [
+  @HostBinding('class.light') isLight: boolean;
+  @HostBinding('class.dark') isDark: boolean;
+  loggedInUser: User;
+  isLoginOrCreateAccountUrl: boolean;
+  loggedInRoutingItems: RoutingItem[] = [
     { commands: ['profile'], text: 'Profile' },
     { commands: ['posts', 'new'], text: 'Post' },
   ];
-  private loggedOutRoutingItems: RoutingItem[] = [
+  loggedOutRoutingItems: RoutingItem[] = [
     { commands: ['login'], text: 'Login' },
     { commands: ['create-account'], text: 'Join!' },
   ];
+  private loggedInUserSubscription: Subscription;
+  private navigationEndEventsSubscription: Subscription;
+  private themeSubscription: Subscription;
 
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private settingsService: SettingsService,
   ) { }
 
   ngOnInit() {
@@ -40,6 +46,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
       .subscribe((event: NavigationEnd) => {
         this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
+      });
+    this.themeSubscription = this.settingsService.theme$
+      .subscribe(theme => {
+        this.isLight = theme === Theme.Light;
+        this.isDark = theme === Theme.Dark;
       });
   }
 
@@ -51,6 +62,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.loggedInUserSubscription.unsubscribe();
     this.navigationEndEventsSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
 }
