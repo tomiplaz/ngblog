@@ -1,18 +1,22 @@
-<div class="label title routable" (click)="router.navigate(['home'])">Y&bull;A&bull;B&bull;A</div>
-<app-breadcrumbs></app-breadcrumbs>
-<ul *ngIf="!isLoginOrCreateAccountUrl">
-  <ng-container *ngIf="loggedInUser">
-    <li>{{ loggedInUser.name }}</li>
-    <li *ngFor="let item of loggedInRoutingItems">
-      <span class="label routable" (click)="router.navigate(item.commands)">{{ item.text }}</span>
-    </li>
-    <li>
-      <span class="label routable" (click)="onLogoutClick()">Logout</span>
-    </li>
-  </ng-container>
-  <ng-container *ngIf="!loggedInUser">
-    <li *ngFor="let item of loggedOutRoutingItems">
-      <span class="label routable" (click)="router.navigate(item.commands)">{{ item.text }}</span>
-    </li>
-  </ng-container>
-</ul>
+<div class="container">
+  <div class="title bold routable" (click)="router.navigate(['home'])">SimpleBloggingApp</div>
+  <ul [hidden]="isLoginOrCreateAccountUrl">
+    <ng-container *ngIf="loggedInUser">
+      <li>{{ loggedInUser.name }}</li>
+      <li *ngFor="let item of loggedInRoutingItems">
+        <span class="label routable" (click)="router.navigate(item.commands)">{{ item.text }}</span>
+      </li>
+      <li>
+        <span class="label routable" (click)="onLogoutClick()">Logout</span>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="!loggedInUser">
+      <li *ngFor="let item of loggedOutRoutingItems">
+        <span class="label routable" (click)="router.navigate(item.commands)">{{ item.text }}</span>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+<div class="container">
+  <app-breadcrumbs [hidden]="isLoginOrCreateAccountUrl"></app-breadcrumbs>
+</div>
