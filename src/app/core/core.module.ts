@@ -4,13 +4,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ApiModule } from './api/api.module';
 
-import { NavigationComponent } from './navigation/navigation.component';
+import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { MessageService } from './message.service';
 import { CommonService } from './common.service';
 import { LoggedInGuard } from './logged-in-guard.service';
-import { BreadcrumbsComponent } from './navigation/breadcrumbs/breadcrumbs.component';
+import { BreadcrumbsComponent } from './header/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './footer/footer.component';
 import { SettingsService } from './settings.service';
 
@@ -24,13 +24,13 @@ import { SettingsService } from './settings.service';
     })
   ],
   declarations: [
-    NavigationComponent,
+    HeaderComponent,
     PageNotFoundComponent,
     BreadcrumbsComponent,
     FooterComponent
   ],
   exports: [
-    NavigationComponent,
+    HeaderComponent,
     FooterComponent,
   ],
   providers: [

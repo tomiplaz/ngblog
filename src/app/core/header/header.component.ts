@@ -8,14 +8,14 @@ import { SettingsService } from '../settings.service';
 import { Theme } from '../settings.values';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
+  selector: 'app-header',
+  templateUrl: './header.component.html',
   styleUrls: [
     '../../shared/shared.css',
-    './navigation.component.css',
+    './header.component.css',
   ]
 })
-export class NavigationComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostBinding('class.light') isLight: boolean;
   @HostBinding('class.dark') isDark: boolean;
