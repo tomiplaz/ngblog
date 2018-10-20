@@ -8,7 +8,7 @@ export enum Size { Small, Medium, Large };
 
 const SETTINGS_KEY = 'ngblog-settings';
 const DEFAULT_THEME = Theme.Light;
-const DEFAULT_SIZE = Size.Medium;
+const DEFAULT_SIZE = Size.Small;
 
 @Injectable()
 export class SettingsService {

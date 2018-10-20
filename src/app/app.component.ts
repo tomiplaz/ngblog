@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { SettingsService } from './core/settings.service';
-import { Theme } from './core/settings.service';
+import { Theme, Size } from './core/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +26,12 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isLight = theme === Theme.Light;
         this.isDark = theme === Theme.Dark;
       });
-    this.sizeSubscription = this.settingsService
+    this.sizeSubscription = this.settingsService.size$
+      .subscribe(size => {
+        this.isSmall = size === Size.Small;
+        this.isMedium = size === Size.Medium;
+        this.isLarge = size === Size.Large;
+      });
   }
 
   ngOnDestroy() {
