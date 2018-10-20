@@ -25,10 +25,30 @@
   background-color: var(--dark-color);
 }
 
-.themeCharacter {
+.character {
+  margin: 0 3px;
+}
+
+.theme.character {
   font-size: 1.4em;
 }
 
-.themeCharacter:hover {
+.size.character {
+  font-weight: bold;
+}
+
+.size.character.small {
+  font-size: 1.0em;
+}
+
+.size.character.medium {
+  font-size: 1.2em;
+}
+
+.size.character.large {
+  font-size: 1.4em;
+}
+
+.theme.character:hover, .size.character:hover {
   cursor: pointer;
 }

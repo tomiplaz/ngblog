@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SettingsService } from '../settings.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Theme } from '../settings.service';
+import { Theme, Size } from '../settings.service';
 
 enum ThemeCharacter {
   STAR = '&#x02606;',
@@ -20,8 +20,12 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   isLight: boolean;
   isDark: boolean;
+  isSmall: boolean;
+  isMedium: boolean;
+  isLarge: boolean;
   themeCharacter: ThemeCharacter;
   private themeSubscription: Subscription;
+  private sizeSubscription: Subscription;
 
   constructor(private settingsService: SettingsService) { }
 
@@ -32,14 +36,25 @@ export class FooterComponent implements OnInit, OnDestroy {
         this.isDark = theme === Theme.Dark;
         this.themeCharacter = theme === Theme.Light ? ThemeCharacter.FSTAR : ThemeCharacter.STAR;
       });
+    this.sizeSubscription = this.settingsService.size$
+      .subscribe(size => {
+        this.isSmall = size === Size.Small;
+        this.isMedium = size === Size.Medium;
+        this.isLarge = size === Size.Large;
+      });
   }
 
-  toggleTheme() {
+  changeTheme() {
     this.settingsService.changeTheme(this.isLight ? Theme.Dark : Theme.Light);
+  }
+
+  changeSize(size: Size) {
+    this.settingsService.changeSize(size);
   }
 
   ngOnDestroy() {
     this.themeSubscription.unsubscribe();
+    this.sizeSubscription.unsubscribe();
   }
 
 }
