@@ -19,6 +19,18 @@
   background-color: var(--dark-color);
 }
 
+:host(.small) {
+  font-size: 16px;
+}
+
+:host(.medium) {
+  font-size: 18px;
+}
+
+:host(.large) {
+  font-size: 20px;
+}
+
 .content {
   width: var(--width);
 }

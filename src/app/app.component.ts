@@ -12,7 +12,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostBinding('class.light') isLight: boolean;
   @HostBinding('class.dark') isDark: boolean;
+  @HostBinding('class.small') isSmall: boolean;
+  @HostBinding('class.medium') isMedium: boolean;
+  @HostBinding('class.large') isLarge: boolean;
   private themeSubscription: Subscription;
+  private sizeSubscription: Subscription;
 
   constructor(private settingsService: SettingsService) { }
 
@@ -22,10 +26,12 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isLight = theme === Theme.Light;
         this.isDark = theme === Theme.Dark;
       });
+    this.sizeSubscription = this.settingsService
   }
 
   ngOnDestroy() {
     this.themeSubscription.unsubscribe();
+    this.sizeSubscription.unsubscribe();
   }
 
 }
