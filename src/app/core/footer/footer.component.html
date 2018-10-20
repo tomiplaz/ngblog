@@ -1,6 +1,9 @@
 <div class="container" [ngClass]="{ 'light': isLight, 'dark': isDark }">
-  <span class="size character small" (click)="changeSize(0)">a</span>
-  <span class="size character medium" (click)="changeSize(1)">a</span>
-  <span class="size character large" (click)="changeSize(2)">a</span>
+  <span
+    class="size character"
+    [ngClass]="{ 'small': isSmall, 'medium': isMedium, 'large': isLarge }"
+    (click)="changeSize()">
+    a
+  </span>
   <span class="theme character" (click)="changeTheme()" [innerHTML]="themeCharacter"></span>
 </div>

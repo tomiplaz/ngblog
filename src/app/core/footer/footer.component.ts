@@ -48,7 +48,8 @@ export class FooterComponent implements OnInit, OnDestroy {
     this.settingsService.changeTheme(this.isLight ? Theme.Dark : Theme.Light);
   }
 
-  changeSize(size: Size) {
+  changeSize() {
+    const size = this.isSmall ? Size.Medium : this.isMedium ? Size.Large : Size.Small;
     this.settingsService.changeSize(size);
   }
 

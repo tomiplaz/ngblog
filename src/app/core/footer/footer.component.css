@@ -38,15 +38,15 @@
 }
 
 .size.character.small {
-  font-size: 1.0em;
-}
-
-.size.character.medium {
   font-size: 1.2em;
 }
 
-.size.character.large {
+.size.character.medium {
   font-size: 1.4em;
+}
+
+.size.character.large {
+  font-size: 1.6em;
 }
 
 .theme.character:hover, .size.character:hover {
