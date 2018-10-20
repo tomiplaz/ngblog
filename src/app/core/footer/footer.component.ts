@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SettingsService } from '../settings.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Theme } from '../settings.values';
+import { Theme } from '../settings.service';
 
 enum ThemeCharacter {
   STAR = '&#x02606;',

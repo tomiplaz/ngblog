@@ -5,7 +5,7 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
 import { SettingsService } from '../settings.service';
-import { Theme } from '../settings.values';
+import { Theme } from '../settings.service';
 
 @Component({
   selector: 'app-header',

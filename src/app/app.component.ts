@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { SettingsService } from './core/settings.service';
-import { Theme } from './core/settings.values';
+import { Theme } from './core/settings.service';
 
 @Component({
   selector: 'app-root',
