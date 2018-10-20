@@ -20,15 +20,15 @@
 }
 
 :host(.small) {
-  font-size: 16px;
+  font-size: var(--small-font);
 }
 
 :host(.medium) {
-  font-size: 18px;
+  font-size: var(--medium-font);
 }
 
 :host(.large) {
-  font-size: 20px;
+  font-size: var(--large-font);
 }
 
 .content {
