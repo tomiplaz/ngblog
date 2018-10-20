@@ -8,7 +8,7 @@ export interface Post {
     user_id: number,
     title: string,
     content: string,
-    views_count: number,
+    views_count?: number,
     created_at?: string,
     updated_at?: string,
     user?: User,
