@@ -13,34 +13,37 @@ const DEFAULT_SIZE = Size.Medium;
 @Injectable()
 export class SettingsService {
 
-  private settings: Settings = JSON.parse(localStorage.getItem(SETTINGS_KEY));
   private theme: Subject<Theme> = new BehaviorSubject(DEFAULT_THEME);
   private size: Subject<Size> = new BehaviorSubject(DEFAULT_SIZE);
   theme$ = this.theme.asObservable();
   size$ = this.size.asObservable();
 
   constructor() {
-    if (this.settings) {
-      this.theme.next(this.settings.theme);
-      this.size.next(this.settings.size);
+    const settings = this.getSettings();
+    if (settings) {
+      this.theme.next(settings.theme);
+      this.size.next(settings.size);
     } else {
-      this.settings = { theme: DEFAULT_THEME, size: DEFAULT_SIZE };
-      this.updateSettings(this.settings);
+      this.setSettings({ theme: DEFAULT_THEME, size: DEFAULT_SIZE });
     }
+  }
+
+  private getSettings(): Settings {
+    return JSON.parse(localStorage.getItem(SETTINGS_KEY));
+  }
+
+  private setSettings(settings: Settings) {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   }
 
   changeTheme(theme: Theme) {
     this.theme.next(theme);
-    this.updateSettings({ ...this.settings, theme });
+    this.setSettings({ ...this.getSettings(), theme });
   }
 
   changeSize(size: Size) {
     this.size.next(size);
-    this.updateSettings({ ...this.settings, size });
-  }
-
-  updateSettings(settings: Settings) {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    this.setSettings({ ...this.getSettings(), size });
   }
 
 }
