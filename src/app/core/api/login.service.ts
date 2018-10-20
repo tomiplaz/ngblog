@@ -8,6 +8,7 @@ import 'rxjs/add/operator/share';
 import { environment } from '../../../environments/environment';
 import { Login } from '../../login/login.interface';
 import { User } from '../../users/user.interface';
+import { Observable } from 'rxjs/Observable';
 
 const JWT_KEY = 'ngblog-jwt';
 const USER_KEY = 'ngblog-user';
@@ -22,7 +23,7 @@ export class LoginService {
     this.loggedInUser.next(this.getUser());
   }
 
-  login(credentials: Login): any {
+  login(credentials: Login): Observable<any> {
     const observable = this.httpClient.post<any>(environment.apiUrl + '/login', credentials).share();
 
     observable.subscribe(response => {
