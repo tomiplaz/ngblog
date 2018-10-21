@@ -1,15 +1,29 @@
+interface Store {
+  [key: string]: string
+}
+
+interface LocalStorageSpies {
+  length : jasmine.Spy,
+  key : jasmine.Spy,
+  clear : jasmine.Spy,
+  getItem : jasmine.Spy,
+  setItem : jasmine.Spy,
+  removeItem : jasmine.Spy,
+};
+
 export class FakeLocalStorage implements Storage {
 
   [name: string]: any;
 
-  private store: { [key: string]: string } = {};
-
-  public lengthSpy: jasmine.Spy = spyOnProperty(localStorage, 'length').and.returnValue(this.length);
-  public keySpy: jasmine.Spy = spyOn(localStorage, 'key').and.callFake(this.key.bind(this));
-  public clearSpy: jasmine.Spy = spyOn(localStorage, 'clear').and.callFake(this.clear.bind(this));
-  public getItemSpy: jasmine.Spy = spyOn(localStorage, 'getItem').and.callFake(this.getItem.bind(this));
-  public setItemSpy: jasmine.Spy = spyOn(localStorage, 'setItem').and.callFake(this.setItem.bind(this));
-  public removeItemSpy: jasmine.Spy = spyOn(localStorage, 'removeItem').and.callFake(this.removeItem.bind(this));
+  private store: Store = {};
+  public spies: LocalStorageSpies = {
+    length: spyOnProperty(localStorage, 'length').and.returnValue(this.length),
+    key: spyOn(localStorage, 'key').and.callFake(this.key.bind(this)),
+    clear: spyOn(localStorage, 'clear').and.callFake(this.clear.bind(this)),
+    getItem: spyOn(localStorage, 'getItem').and.callFake(this.getItem.bind(this)),
+    setItem: spyOn(localStorage, 'setItem').and.callFake(this.setItem.bind(this)),
+    removeItem: spyOn(localStorage, 'removeItem').and.callFake(this.removeItem.bind(this)),
+  };
 
   constructor() { }
 
