@@ -9,6 +9,7 @@ import { FakeLocalStorage } from '../../../tests/fake.local-storage';
 
 fdescribe('LoginService', () => {
   let service: LoginService;
+  const user: User = { id: 1, name: 'foo', email: 'foo@bar.com' };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,14 +27,8 @@ fdescribe('LoginService', () => {
   describe('#login', () => {
     let httpTC: HttpTestingController;
     const url = `${environment.apiUrl}/login`;
-    const credentials: Login = {
-      email: 'foo@bar.com',
-      password: 'password',
-    };
-    const mockSuccessResponse: { token: string, user: User } = {
-      token: 'jwt',
-      user: { name: 'foo', email: credentials.email },
-    };
+    const credentials: Login = { email: user.email, password: 'password' };
+    const mockSuccessResponse: { token: string, user: User } = { token: 'jwt', user };
 
     beforeEach(() => {
       httpTC = TestBed.get(HttpTestingController);
@@ -74,7 +69,7 @@ fdescribe('LoginService', () => {
       httpTC.expectOne(url).flush(mockSuccessResponse);
     });
 
-    it ('should provide next value for logged in user on success', () => {
+    it('should provide next value for logged in user on success', () => {
       service.login(credentials);
       service.loggedInUser$.subscribe(loggedInUser => {
         expect(loggedInUser).toEqual(mockSuccessResponse.user);
@@ -104,15 +99,43 @@ fdescribe('LoginService', () => {
     });
   });
 
-  it('should be able to provide token', () => {
-    //
+  it('#getToken should return token from local storage', () => {
+    const mockLocalStorage = new FakeLocalStorage();
+
+    const token = service.getToken();
+
+    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledTimes(1);
+    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledWith(JWT_KEY);
+    expect(token).toBeNull();
   });
 
-  it('should be able to provide user', () => {
-    //
+  it('#getUser should return logged in user from local storage', () => {
+    const mockLocalStorage = new FakeLocalStorage();
+
+    const user = service.getUser();
+
+    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledTimes(1);
+    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledWith(USER_KEY);
+    expect(user).toBeNull();
   });
 
-  it('should be able to provide user ID', () => {
-    //
+  describe('#getUserId', () => {
+    it('should return user\'s ID if user is logged in', () => {
+      const getUserSpy = spyOn(service, 'getUser').and.returnValue(user);
+
+      const userId = service.getUserId();
+
+      expect(getUserSpy).toHaveBeenCalledTimes(1);
+      expect(userId).toBe(user.id);
+    });
+
+    it('should return null if user is not logged in', () => {
+      const getUserSpy = spyOn(service, 'getUser');
+
+      const userId = service.getUserId();
+
+      expect(getUserSpy).toHaveBeenCalledTimes(1);
+      expect(userId).toBeNull();
+    });
   });
 });
