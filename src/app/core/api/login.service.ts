@@ -10,8 +10,8 @@ import { Login } from '../../login/login.interface';
 import { User } from '../../users/user.interface';
 import { Observable } from 'rxjs/Observable';
 
-const JWT_KEY = 'ngblog-jwt';
-const USER_KEY = 'ngblog-user';
+export const JWT_KEY = 'ngblog-jwt';
+export const USER_KEY = 'ngblog-user';
 
 @Injectable()
 export class LoginService {
