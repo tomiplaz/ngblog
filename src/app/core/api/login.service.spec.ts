@@ -5,7 +5,7 @@ import { ApiModule } from './api.module';
 import { Login } from '../../login/login.interface';
 import { User } from '../../users/user.interface';
 import { environment } from '../../../environments/environment';
-import { FakeLocalStorage } from '../../../tests/fake.local-storage';
+import { LocalStorageFake } from '../../../tests/local-storage.fake';
 
 fdescribe('LoginService', () => {
   let service: LoginService;
@@ -55,15 +55,15 @@ fdescribe('LoginService', () => {
     });
 
     it('should set token and user in local storage on success', () => {
-      const mockLocalStorage = new FakeLocalStorage();
+      const localStorageMock = new LocalStorageFake();
 
       service.login(credentials).subscribe(() => {
-        expect(mockLocalStorage.spies.setItem).toHaveBeenCalledTimes(2);
-        expect(mockLocalStorage.spies.setItem).toHaveBeenCalledWith(JWT_KEY, mockSuccessResponse.token);
-        expect(mockLocalStorage.spies.setItem).toHaveBeenCalledWith(USER_KEY, JSON.stringify(mockSuccessResponse.user));
-        expect(mockLocalStorage.length).toBe(2);
-        expect(mockLocalStorage.getItem(JWT_KEY)).toBe(mockSuccessResponse.token);
-        expect(mockLocalStorage.getItem(USER_KEY)).toEqual(JSON.stringify(mockSuccessResponse.user));
+        expect(localStorageMock.spies.setItem).toHaveBeenCalledTimes(2);
+        expect(localStorageMock.spies.setItem).toHaveBeenCalledWith(JWT_KEY, mockSuccessResponse.token);
+        expect(localStorageMock.spies.setItem).toHaveBeenCalledWith(USER_KEY, JSON.stringify(mockSuccessResponse.user));
+        expect(localStorageMock.length).toBe(2);
+        expect(localStorageMock.getItem(JWT_KEY)).toBe(mockSuccessResponse.token);
+        expect(localStorageMock.getItem(USER_KEY)).toEqual(JSON.stringify(mockSuccessResponse.user));
       });
 
       httpTC.expectOne(url).flush(mockSuccessResponse);
@@ -81,13 +81,13 @@ fdescribe('LoginService', () => {
 
   describe('#logout', () => {
     it('should remove token and user in local storage', () => {
-      const mockLocalStorage = new FakeLocalStorage();
+      const localStorageMock = new LocalStorageFake();
 
       service.logout();
 
-      expect(mockLocalStorage.spies.removeItem).toHaveBeenCalledTimes(2);
-      expect(mockLocalStorage.spies.removeItem).toHaveBeenCalledWith(JWT_KEY);
-      expect(mockLocalStorage.spies.removeItem).toHaveBeenCalledWith(USER_KEY);
+      expect(localStorageMock.spies.removeItem).toHaveBeenCalledTimes(2);
+      expect(localStorageMock.spies.removeItem).toHaveBeenCalledWith(JWT_KEY);
+      expect(localStorageMock.spies.removeItem).toHaveBeenCalledWith(USER_KEY);
     });
 
     it('should provide null for next value for logged in user', () => {
@@ -100,22 +100,22 @@ fdescribe('LoginService', () => {
   });
 
   it('#getToken should return token from local storage', () => {
-    const mockLocalStorage = new FakeLocalStorage();
+    const localStorageMock = new LocalStorageFake();
 
     const token = service.getToken();
 
-    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledTimes(1);
-    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledWith(JWT_KEY);
+    expect(localStorageMock.spies.getItem).toHaveBeenCalledTimes(1);
+    expect(localStorageMock.spies.getItem).toHaveBeenCalledWith(JWT_KEY);
     expect(token).toBeNull();
   });
 
   it('#getUser should return logged in user from local storage', () => {
-    const mockLocalStorage = new FakeLocalStorage();
+    const localStorageMock = new LocalStorageFake();
 
     const user = service.getUser();
 
-    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledTimes(1);
-    expect(mockLocalStorage.spies.getItem).toHaveBeenCalledWith(USER_KEY);
+    expect(localStorageMock.spies.getItem).toHaveBeenCalledTimes(1);
+    expect(localStorageMock.spies.getItem).toHaveBeenCalledWith(USER_KEY);
     expect(user).toBeNull();
   });
 

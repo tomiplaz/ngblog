@@ -11,7 +11,7 @@ interface LocalStorageSpies {
   removeItem: jasmine.Spy,
 };
 
-export class FakeLocalStorage implements Storage {
+export class LocalStorageFake implements Storage {
 
   [name: string]: any;
 
