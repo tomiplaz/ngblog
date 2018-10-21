@@ -41,7 +41,7 @@ export class LoginService {
     this.loggedInUser.next(null);
   }
 
-  getToken(): string {
+  getToken(): string | null {
     return localStorage.getItem(JWT_KEY);
   }
 

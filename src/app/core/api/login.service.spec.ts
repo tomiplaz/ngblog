@@ -73,6 +73,35 @@ fdescribe('LoginService', () => {
 
       httpTC.expectOne(url).flush(mockSuccessResponse);
     });
+
+    it ('should provide next value for logged in user on success', () => {
+      service.login(credentials);
+      service.loggedInUser$.subscribe(loggedInUser => {
+        expect(loggedInUser).toEqual(mockSuccessResponse.user);
+      });
+
+      httpTC.expectOne(url).flush(mockSuccessResponse);
+    });
+  });
+
+  describe('#logout', () => {
+    it('should remove token and user in local storage', () => {
+      const mockLocalStorage = new FakeLocalStorage();
+
+      service.logout();
+
+      expect(mockLocalStorage.spies.removeItem).toHaveBeenCalledTimes(2);
+      expect(mockLocalStorage.spies.removeItem).toHaveBeenCalledWith(JWT_KEY);
+      expect(mockLocalStorage.spies.removeItem).toHaveBeenCalledWith(USER_KEY);
+    });
+
+    it('should provide null for next value for logged in user', () => {
+      service.logout();
+
+      service.loggedInUser$.subscribe(loggedInUser => {
+        expect(loggedInUser).toBeNull();
+      });
+    });
   });
 
   it('should be able to provide token', () => {
