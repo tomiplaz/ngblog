@@ -3,12 +3,12 @@ interface Store {
 }
 
 interface LocalStorageSpies {
-  length : jasmine.Spy,
-  key : jasmine.Spy,
-  clear : jasmine.Spy,
-  getItem : jasmine.Spy,
-  setItem : jasmine.Spy,
-  removeItem : jasmine.Spy,
+  length: jasmine.Spy,
+  key: jasmine.Spy,
+  clear: jasmine.Spy,
+  getItem: jasmine.Spy,
+  setItem: jasmine.Spy,
+  removeItem: jasmine.Spy,
 };
 
 export class FakeLocalStorage implements Storage {
