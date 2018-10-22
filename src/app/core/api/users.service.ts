@@ -1,28 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { environment } from '../../../environments/environment';
-
-import { User } from '../../users/user.interface';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
+import { User } from '../../users/user.interface';
 
 @Injectable()
 export class UsersService {
 
-  private static baseUrl = environment.apiUrl + '/users';
+  readonly BASE_URL = environment.apiUrl + '/users';
 
   constructor(private httpClient: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(UsersService.baseUrl);
+    return this.httpClient.get<User[]>(this.BASE_URL);
   }
   
   getUser(stringId: string): Observable<User> {
-    return this.httpClient.get<User>(UsersService.baseUrl + '/' + stringId);
+    return this.httpClient.get<User>(this.BASE_URL + '/' + stringId);
   }
 
   createUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(UsersService.baseUrl, user);
+    return this.httpClient.post<User>(this.BASE_URL, user);
   }
 
 }
