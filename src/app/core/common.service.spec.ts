@@ -14,6 +14,10 @@ describe('CommonService', () => {
     service = TestBed.get(CommonService);
   });
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
   it('#trackById should return object\'s id property', () => {
     const object = { id: 1 };
 
