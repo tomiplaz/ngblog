@@ -16,6 +16,7 @@ export const USER_KEY = 'ngblog-user';
 @Injectable()
 export class LoginService {
 
+  readonly URL = `${environment.apiUrl}/login`;
   private loggedInUser: Subject<User> = new BehaviorSubject(null);
   loggedInUser$ = this.loggedInUser.asObservable();
 
@@ -24,7 +25,7 @@ export class LoginService {
   }
 
   login(credentials: Login): Observable<any> {
-    const observable = this.httpClient.post<any>(environment.apiUrl + '/login', credentials).share();
+    const observable = this.httpClient.post<any>(this.URL, credentials).share();
 
     observable.subscribe(response => {
       localStorage.setItem(USER_KEY, JSON.stringify(response.user));

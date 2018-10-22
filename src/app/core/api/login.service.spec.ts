@@ -4,10 +4,9 @@ import { LoginService, JWT_KEY, USER_KEY } from './login.service';
 import { ApiModule } from './api.module';
 import { Login } from '../../login/login.interface';
 import { User } from '../../users/user.interface';
-import { environment } from '../../../environments/environment';
 import { LocalStorageFake } from '../../../tests/local-storage.fake';
 
-fdescribe('LoginService', () => {
+describe('LoginService', () => {
   let service: LoginService;
   const user: User = { id: 1, name: 'foo', email: 'foo@bar.com' };
 
@@ -26,7 +25,6 @@ fdescribe('LoginService', () => {
 
   describe('#login', () => {
     let httpTC: HttpTestingController;
-    const url = `${environment.apiUrl}/login`;
     const credentials: Login = { email: user.email, password: 'password' };
     const mockSuccessResponse: { token: string, user: User } = { token: 'jwt', user };
 
@@ -41,7 +39,7 @@ fdescribe('LoginService', () => {
     it('should send a POST request with credentials', () => {
       service.login(credentials);
 
-      const mockRequest = httpTC.expectOne(url);
+      const mockRequest = httpTC.expectOne(service.URL);
       expect(mockRequest.request.method).toBe('POST');
       expect(mockRequest.request.body).toEqual(credentials);
     });
@@ -51,7 +49,7 @@ fdescribe('LoginService', () => {
         expect(response).toEqual(mockSuccessResponse);
       });
 
-      httpTC.expectOne(url).flush(mockSuccessResponse);
+      httpTC.expectOne(service.URL).flush(mockSuccessResponse);
     });
 
     it('should set token and user in local storage on success', () => {
@@ -66,7 +64,7 @@ fdescribe('LoginService', () => {
         expect(localStorageMock.getItem(USER_KEY)).toEqual(JSON.stringify(mockSuccessResponse.user));
       });
 
-      httpTC.expectOne(url).flush(mockSuccessResponse);
+      httpTC.expectOne(service.URL).flush(mockSuccessResponse);
     });
 
     it('should provide next value for logged in user on success', () => {
@@ -75,7 +73,7 @@ fdescribe('LoginService', () => {
         expect(loggedInUser).toEqual(mockSuccessResponse.user);
       });
 
-      httpTC.expectOne(url).flush(mockSuccessResponse);
+      httpTC.expectOne(service.URL).flush(mockSuccessResponse);
     });
   });
 
