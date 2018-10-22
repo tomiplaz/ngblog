@@ -6,7 +6,7 @@ import { Login } from '../../login/login.interface';
 import { User } from '../../users/user.interface';
 import { LocalStorageFake } from '../../../tests/local-storage.fake';
 
-fdescribe('LoginService', () => {
+describe('LoginService', () => {
   let service: LoginService;
   const user: User = { id: 1, name: 'foo', email: 'foo@bar.com' };
 
