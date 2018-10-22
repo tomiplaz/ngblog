@@ -5,7 +5,7 @@ import { UsersService } from './users.service';
 import { ApiModule } from './api.module';
 import { User } from '../../users/user.interface';
 
-fdescribe('UsersService', () => {
+describe('UsersService', () => {
   let service: UsersService;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ fdescribe('UsersService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('methods', () => {
+  describe('method', () => {
     let httpTC: HttpTestingController;
 
     beforeEach(() => {
@@ -56,7 +56,7 @@ fdescribe('UsersService', () => {
         expect(value instanceof Observable).toBeTruthy();
       });
 
-      it('should send a request to get users when subscribed', () => {
+      it('should send a request to get a user when subscribed', () => {
         service.getUser(stringId).subscribe();
 
         const mockRequest = httpTC.expectOne(`${service.BASE_URL}/${stringId}`);
