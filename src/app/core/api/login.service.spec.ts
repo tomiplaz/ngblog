@@ -6,7 +6,7 @@ import { Login } from '../../login/login.interface';
 import { User } from '../../users/user.interface';
 import { LocalStorageFake } from '../../../tests/local-storage.fake';
 
-describe('LoginService', () => {
+fdescribe('LoginService', () => {
   let service: LoginService;
   const user: User = { id: 1, name: 'foo', email: 'foo@bar.com' };
 
@@ -21,6 +21,12 @@ describe('LoginService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should provide initial value for logged in user', () => {
+    service.loggedInUser$.subscribe(user => {
+      expect(user).toBeNull();
+    });
   });
 
   describe('#login', () => {

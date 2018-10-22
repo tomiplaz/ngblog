@@ -17,12 +17,10 @@ export const USER_KEY = 'ngblog-user';
 export class LoginService {
 
   readonly URL = `${environment.apiUrl}/login`;
-  private loggedInUser: Subject<User> = new BehaviorSubject(null);
+  private loggedInUser: Subject<User> = new BehaviorSubject(this.getUser());
   loggedInUser$ = this.loggedInUser.asObservable();
 
-  constructor(private httpClient: HttpClient) {
-    this.loggedInUser.next(this.getUser());
-  }
+  constructor(private httpClient: HttpClient) { }
 
   login(credentials: Login): Observable<any> {
     const observable = this.httpClient.post<any>(this.URL, credentials).share();
