@@ -4,22 +4,32 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class MessageService {
 
+  readonly MESSAGES = {
+    CREATE_ACCOUNT_SUCCESS: 'Account created. Please log in.',
+    LOGIN_SUCCESS: 'Welcome back!',
+    CREATE_POST_SUCCESS: 'Post created.',
+    CREATE_COMMENT_SUCCESS: 'Comment created.',
+    BAD_REQUEST: 'Bad request.',
+    INTERNAL_SERVER_ERROR: 'Internal server error.',
+    UNKNOWN_ERROR: 'Uknown error.',
+  };
+
   constructor(private toastrService: ToastrService) { }
 
   createAccountSuccess() {
-    this.toastrService.success('Account created. Please log in.');
+    this.toastrService.success(this.MESSAGES.CREATE_ACCOUNT_SUCCESS);
   }
 
   loginSuccess() {
-    this.toastrService.info('Welcome back!');
+    this.toastrService.info(this.MESSAGES.LOGIN_SUCCESS);
   }
 
   createPostSuccess() {
-    this.toastrService.success('Post created.');
+    this.toastrService.success(this.MESSAGES.CREATE_POST_SUCCESS);
   }
 
   createCommentSuccess() {
-    this.toastrService.success('Comment created.');
+    this.toastrService.success(this.MESSAGES.CREATE_COMMENT_SUCCESS);
   }
 
   error(response: any) {
@@ -36,14 +46,14 @@ export class MessageService {
             });
           }
         } catch (e) {
-          this.toastrService.error('Bad request.');
+          this.toastrService.error(this.MESSAGES.BAD_REQUEST);
         }
         break;
       case 500:
-        this.toastrService.error('Internal server error.');
+        this.toastrService.error(this.MESSAGES.INTERNAL_SERVER_ERROR);
         break;
       default:
-        this.toastrService.error('Uknown error.');
+        this.toastrService.error(this.MESSAGES.UNKNOWN_ERROR);
     }
   }
 
