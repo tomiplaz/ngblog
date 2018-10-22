@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { LoginService } from './api/login.service';
+import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LoggedInGuard implements CanActivate {
 
-  constructor(
-    private loginService: LoginService
-  ) { }
+  constructor(private loginService: LoginService) { }
 
-  canActivate() {
-    return Boolean(this.loginService.loggedInUser$);
+  canActivate(): Observable<boolean> {
+    return this.loginService.loggedInUser$.pipe(map(loggedInUser => Boolean(loggedInUser)));
   }
 
 }
