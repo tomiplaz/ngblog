@@ -6,7 +6,7 @@ import { ApiModule } from './api.module';
 import { Post } from '../../posts/post.interface';
 import { Comment } from '../../posts/comment.interface';
 
-fdescribe('PostsService', () => {
+describe('PostsService', () => {
   let service: PostsService;
 
   beforeEach(() => {
