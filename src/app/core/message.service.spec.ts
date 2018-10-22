@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MessageService } from './message.service';
 import { CoreModule } from './core.module';
 
-fdescribe('CommonService', () => {
+describe('CommonService', () => {
   let service: MessageService;
   let toastrServiceSpy: jasmine.SpyObj<ToastrService>;
 
