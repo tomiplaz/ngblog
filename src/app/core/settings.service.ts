@@ -6,15 +6,15 @@ import { Settings } from './settings.interface';
 export enum Theme { Light, Dark };
 export enum Size { Small, Medium, Large };
 
-const SETTINGS_KEY = 'ngblog-settings';
-const DEFAULT_THEME = Theme.Light;
-const DEFAULT_SIZE = Size.Small;
+export const SETTINGS_KEY = 'ngblog-settings';
 
 @Injectable()
 export class SettingsService {
 
-  private theme: Subject<Theme> = new BehaviorSubject(DEFAULT_THEME);
-  private size: Subject<Size> = new BehaviorSubject(DEFAULT_SIZE);
+  readonly DEFAULT_THEME = Theme.Light;
+  readonly DEFAULT_SIZE = Size.Small;
+  private theme: Subject<Theme> = new BehaviorSubject(this.DEFAULT_THEME);
+  private size: Subject<Size> = new BehaviorSubject(this.DEFAULT_SIZE);
   theme$ = this.theme.asObservable();
   size$ = this.size.asObservable();
 
@@ -24,7 +24,7 @@ export class SettingsService {
       this.theme.next(settings.theme);
       this.size.next(settings.size);
     } else {
-      this.setSettings({ theme: DEFAULT_THEME, size: DEFAULT_SIZE });
+      this.setSettings({ theme: this.DEFAULT_THEME, size: this.DEFAULT_SIZE });
     }
   }
 
