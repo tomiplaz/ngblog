@@ -31,7 +31,7 @@ export class PostsService {
     return this.httpClient.post<Post>(this.BASE_URL, post);
   }
 
-  createPostComment(postId: number, comment: Comment): Observable<Comment> {
+  createComment(postId: number, comment: Comment): Observable<Comment> {
     const url = `${this.BASE_URL}/${postId}/comments`;
     return this.httpClient.post<Comment>(url, comment);
   }

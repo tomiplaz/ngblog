@@ -38,9 +38,9 @@ export class CommentFormComponent implements OnInit {
       user_id: this.loginService.getUserId(),
     };
 
-    this.postsService.createPostComment(this.postId, submitData)
+    this.postsService.createComment(this.postId, submitData)
       .subscribe(response => {
-        this.messageService.createPostCommentSuccess();
+        this.messageService.createCommentSuccess();
         this.commentForm.reset();
         this.commentAdded.emit(response);
       }, response => {

@@ -18,7 +18,7 @@ export class MessageService {
     this.toastrService.success('Post created.');
   }
 
-  createPostCommentSuccess() {
+  createCommentSuccess() {
     this.toastrService.success('Comment created.');
   }
 
