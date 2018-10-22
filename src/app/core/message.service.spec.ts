@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MessageService } from './message.service';
 import { CoreModule } from './core.module';
 
-describe('CommonService', () => {
+fdescribe('CommonService', () => {
   let service: MessageService;
   let toastrServiceSpy: jasmine.SpyObj<ToastrService>;
 
@@ -29,29 +29,29 @@ describe('CommonService', () => {
   it('#createAccountSuccess should show toastr with create account success message', () => {
     service.createAccountSuccess();
 
-    expect(toastrServiceSpy.success.calls.count()).toBe(1);
-    expect(toastrServiceSpy.success.calls.mostRecent().args).toEqual([service.MESSAGES.CREATE_ACCOUNT_SUCCESS]);
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.CREATE_ACCOUNT_SUCCESS);
   });
 
   it('#loginSuccess should show toastr with login info message', () => {
     service.loginSuccess();
 
-    expect(toastrServiceSpy.info.calls.count()).toBe(1);
-    expect(toastrServiceSpy.info.calls.mostRecent().args).toEqual([service.MESSAGES.LOGIN_SUCCESS]);
+    expect(toastrServiceSpy.info).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.info).toHaveBeenCalledWith(service.MESSAGES.LOGIN_SUCCESS);
   });
 
   it('#createPostSuccess should show toastr with create post success message', () => {
     service.createPostSuccess();
 
-    expect(toastrServiceSpy.success.calls.count()).toBe(1);
-    expect(toastrServiceSpy.success.calls.mostRecent().args).toEqual([service.MESSAGES.CREATE_POST_SUCCESS]);
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.CREATE_POST_SUCCESS);
   });
 
   it('#createCommentSuccess should show toastr with create comment success message', () => {
     service.createCommentSuccess();
 
-    expect(toastrServiceSpy.success.calls.count()).toBe(1);
-    expect(toastrServiceSpy.success.calls.mostRecent().args).toEqual([service.MESSAGES.CREATE_COMMENT_SUCCESS]);
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.CREATE_COMMENT_SUCCESS);
   });
 
   describe('#error', () => {
@@ -60,8 +60,8 @@ describe('CommonService', () => {
 
       service.error(stubResponse);
 
-      expect(toastrServiceSpy.error.calls.count()).toBe(1);
-      expect(toastrServiceSpy.error.calls.mostRecent().args).toEqual([stubResponse.error.message]);
+      expect(toastrServiceSpy.error).toHaveBeenCalledTimes(1);
+      expect(toastrServiceSpy.error).toHaveBeenCalledWith(stubResponse.error.message);
     });
 
     it('should show toastrs with validation error messages if response has validation errors and status is 400', () => {
@@ -79,7 +79,7 @@ describe('CommonService', () => {
 
       service.error(stubResponse);
 
-      expect(toastrServiceSpy.error.calls.count()).toBe(3);
+      expect(toastrServiceSpy.error).toHaveBeenCalledTimes(3);
       expect(toastrServiceSpy.error.calls.argsFor(0)).toEqual(['foo']);
       expect(toastrServiceSpy.error.calls.argsFor(1)).toEqual(['foo']);
       expect(toastrServiceSpy.error.calls.argsFor(2)).toEqual(['bar']);
@@ -90,8 +90,8 @@ describe('CommonService', () => {
 
       service.error(stubResponse);
 
-      expect(toastrServiceSpy.error.calls.count()).toBe(1);
-      expect(toastrServiceSpy.error.calls.mostRecent().args).toEqual([service.MESSAGES.BAD_REQUEST]);
+      expect(toastrServiceSpy.error).toHaveBeenCalledTimes(1);
+      expect(toastrServiceSpy.error).toHaveBeenCalledWith(service.MESSAGES.BAD_REQUEST);
     });
 
     it('should show toastr with internal server error message if response status is 500', () => {
@@ -99,8 +99,8 @@ describe('CommonService', () => {
 
       service.error(stubResponse);
 
-      expect(toastrServiceSpy.error.calls.count()).toBe(1);
-      expect(toastrServiceSpy.error.calls.mostRecent().args).toEqual([service.MESSAGES.INTERNAL_SERVER_ERROR]);
+      expect(toastrServiceSpy.error).toHaveBeenCalledTimes(1);
+      expect(toastrServiceSpy.error).toHaveBeenCalledWith(service.MESSAGES.INTERNAL_SERVER_ERROR);
     });
 
     it('should show toastr with uknown error message as a default case', () => {
@@ -108,8 +108,8 @@ describe('CommonService', () => {
 
       service.error(stubResponse);
 
-      expect(toastrServiceSpy.error.calls.count()).toBe(1);
-      expect(toastrServiceSpy.error.calls.mostRecent().args).toEqual([service.MESSAGES.UNKNOWN_ERROR]);
+      expect(toastrServiceSpy.error).toHaveBeenCalledTimes(1);
+      expect(toastrServiceSpy.error).toHaveBeenCalledWith(service.MESSAGES.UNKNOWN_ERROR);
     });
   });
 });
