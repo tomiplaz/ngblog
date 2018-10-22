@@ -35,7 +35,7 @@ export class MessageService {
   error(response: any) {
     switch (response.status) {
       case 400:
-        if (response.error.message) {
+        if (response.error && response.error.message) {
           this.toastrService.error(response.error.message);
         } else try {
           // Display validation error messages, if any
