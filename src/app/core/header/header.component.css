@@ -1,21 +1,13 @@
-@media only screen and (max-width: 600px) {
-  :host {
-    display: none;
-  }
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid;
 }
 
-@media only screen and (min-width: 600px) {
-  :host {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: 1px solid;
-  }
-
-  .container {
-    justify-content: space-between;
-  }
+.container {
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 992px) {
