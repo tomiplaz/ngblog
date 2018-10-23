@@ -34,3 +34,7 @@
 .content {
   width: var(--width);
 }
+
+.main {
+  padding: 10px;
+}
