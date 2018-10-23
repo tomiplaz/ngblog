@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
-import { SettingsService } from '../settings.service';
+import { SettingsService, Size } from '../settings.service';
 import { Theme } from '../settings.service';
 
 @Component({
@@ -20,6 +20,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @HostBinding('class.light') isLight: boolean;
   @HostBinding('class.dark') isDark: boolean;
   @HostBinding('class.closed') isClosed: boolean = false;
+  @HostBinding('class.small') isSmall: boolean;
+  @HostBinding('class.medium') isMedium: boolean;
+  @HostBinding('class.large') isLarge: boolean;
 
   loggedInUser: User;
   isLoginOrCreateAccountUrl: boolean;
@@ -35,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private loggedInUserSubscription: Subscription;
   private navigationEndEventsSubscription: Subscription;
   private themeSubscription: Subscription;
+  private sizeSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -55,6 +59,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isLight = theme === Theme.Light;
         this.isDark = theme === Theme.Dark;
       });
+    this.sizeSubscription = this.settingsService.size$
+      .subscribe(size => {
+        this.isSmall = size === Size.Small;
+        this.isMedium = size === Size.Medium;
+        this.isLarge = size === Size.Large;
+      });
   }
 
   onLogoutClick() {
@@ -70,6 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.loggedInUserSubscription.unsubscribe();
     this.navigationEndEventsSubscription.unsubscribe();
     this.themeSubscription.unsubscribe();
+    this.sizeSubscription.unsubscribe();
   }
 
 }

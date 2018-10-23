@@ -22,8 +22,16 @@
   background-color: var(--dark-color);
 }
 
-:host(.closed) {
-  top: -60px;
+:host(.closed.small) {
+  top: -75px;
+}
+
+:host(.closed.medium) {
+  top: -87px;
+}
+
+:host(.closed.large) {
+  top: -95px;
 }
 
 .container {
@@ -47,6 +55,18 @@ ul {
 }
 
 @media only screen and (min-width: 600px) {
+  :host(.closed.small) {
+    top: -43px;
+  }
+
+  :host(.closed.medium) {
+    top: -50px;
+  }
+
+  :host(.closed.large) {
+    top: -54px;
+  }
+
   ul li {
     display: inline;
     margin: 0 5px;
