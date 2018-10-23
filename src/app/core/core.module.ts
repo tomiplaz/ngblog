@@ -13,6 +13,7 @@ import { LoggedInGuard } from './logged-in-guard.service';
 import { BreadcrumbsComponent } from './header/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './footer/footer.component';
 import { SettingsService } from './settings.service';
+import { HeaderToggleComponent } from './header/header-toggle/header-toggle.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { SettingsService } from './settings.service';
     HeaderComponent,
     PageNotFoundComponent,
     BreadcrumbsComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderToggleComponent
   ],
   exports: [
     HeaderComponent,

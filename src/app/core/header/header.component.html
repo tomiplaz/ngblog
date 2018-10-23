@@ -22,6 +22,6 @@
     </ul>
   </div>
 </div>
-<div class="toggle" (click)="onToggleClick()">
-  <span class="label clickable">{{ toggleText }}</span>
-</div>
+<app-header-toggle
+  (toggled)="onToggled($event)">
+</app-header-toggle>

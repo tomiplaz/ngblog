@@ -19,10 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostBinding('class.light') isLight: boolean;
   @HostBinding('class.dark') isDark: boolean;
-  @HostBinding('class.closed') isClosed: boolean = true;
-
-  readonly CLOSED_TEXT = 'Show';
-  readonly OPENED_TEXT = 'Hide';
+  @HostBinding('class.closed') isClosed: boolean = false;
 
   loggedInUser: User;
   isLoginOrCreateAccountUrl: boolean;
@@ -34,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { commands: ['login'], text: 'Login' },
     { commands: ['create-account'], text: 'Join!' },
   ];
-  toggleText: string = this.isClosed ? this.CLOSED_TEXT : this.OPENED_TEXT;
 
   private loggedInUserSubscription: Subscription;
   private navigationEndEventsSubscription: Subscription;
@@ -66,9 +62,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['home']);
   }
 
-  onToggleClick() {
-    this.isClosed = !this.isClosed;
-    this.toggleText = this.isClosed ? this.CLOSED_TEXT : this.OPENED_TEXT;
+  onToggled(isClosed: boolean) {
+    this.isClosed = isClosed;
   }
 
   ngOnDestroy() {
