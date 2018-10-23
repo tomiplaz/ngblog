@@ -3,11 +3,6 @@ import { SettingsService } from '../settings.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Theme, Size } from '../settings.service';
 
-enum ThemeCharacter {
-  STAR = '&#x02606;',
-  FSTAR = '&#x02605;',
-}
-
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -23,7 +18,6 @@ export class FooterComponent implements OnInit, OnDestroy {
   isSmall: boolean;
   isMedium: boolean;
   isLarge: boolean;
-  themeCharacter: ThemeCharacter;
   private themeSubscription: Subscription;
   private sizeSubscription: Subscription;
 
@@ -34,7 +28,6 @@ export class FooterComponent implements OnInit, OnDestroy {
       .subscribe(theme => {
         this.isLight = theme === Theme.Light;
         this.isDark = theme === Theme.Dark;
-        this.themeCharacter = theme === Theme.Light ? ThemeCharacter.FSTAR : ThemeCharacter.STAR;
       });
     this.sizeSubscription = this.settingsService.size$
       .subscribe(size => {
