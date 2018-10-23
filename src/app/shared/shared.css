@@ -19,11 +19,11 @@
   text-transform: uppercase;
 }
 
-.routable {
+.clickable {
   text-decoration: underline;
 }
 
-.routable:hover {
+.clickable:hover {
   cursor: pointer;
 }
 

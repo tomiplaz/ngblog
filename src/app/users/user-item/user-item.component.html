@@ -1,4 +1,4 @@
-<h2 class="title" [ngClass]="{ 'routable': isNameRoutable }" (click)="onNameClick()">
+<h2 class="title" [ngClass]="{ 'clickable': isNameClickable }" (click)="onNameClick()">
   {{ user.name }}
 </h2>
 <div class="metadata">
@@ -6,7 +6,7 @@
   <span>{{ user.created_at | date:'medium' }}</span>
 </div>
 <div class="metadata">
-  <span class="label routable" (click)="onPostsClick()">Posts</span>
+  <span class="label clickable" (click)="onPostsClick()">Posts</span>
   <span>{{ user.posts_count }}</span>
   <span>&#x02022;</span>
   <span class="label">comments</span>
