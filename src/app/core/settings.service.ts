@@ -12,7 +12,7 @@ export const SETTINGS_KEY = 'ngblog-settings';
 export class SettingsService {
 
   readonly DEFAULT_THEME = Theme.Light;
-  readonly DEFAULT_SIZE = Size.Small;
+  readonly DEFAULT_SIZE = Size.Medium;
   private theme: Subject<Theme> = new BehaviorSubject(this.DEFAULT_THEME);
   private size: Subject<Size> = new BehaviorSubject(this.DEFAULT_SIZE);
   theme$ = this.theme.asObservable();
