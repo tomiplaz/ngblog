@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SettingsService } from './settings.service';
 import { HeaderToggleComponent } from './header/header-toggle/header-toggle.component';
 import { FooterToggleComponent } from './footer/footer-toggle/footer-toggle.component';
+import { store } from './store/store';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { FooterToggleComponent } from './footer/footer-toggle/footer-toggle.comp
     ToastrModule.forRoot({
       timeOut: 2000
     }),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(store),
   ],
   declarations: [
     HeaderComponent,
