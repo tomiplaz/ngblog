@@ -20,7 +20,7 @@ export class HeaderToggleComponent implements OnInit, OnDestroy {
   @HostBinding('class.dark') isDark: boolean;
 
   readonly CLOSED_TEXT = 'Show';
-  readonly OPENED_TEXT = 'Hide';
+  readonly OPEN_TEXT = 'Hide';
 
   private isClosed: boolean;
   private isClosedSubject: Subject<boolean> = new BehaviorSubject<boolean>(false);
@@ -35,7 +35,7 @@ export class HeaderToggleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isClosedSubscription = this.isClosed$.subscribe(isClosed => {
       this.isClosed = isClosed;
-      this.toggleText = isClosed ? this.CLOSED_TEXT : this.OPENED_TEXT;
+      this.toggleText = isClosed ? this.CLOSED_TEXT : this.OPEN_TEXT;
       this.toggled.emit(isClosed);
     });
     this.themeSubscription = this.settingsService.theme$.subscribe(theme => {
