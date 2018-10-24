@@ -28,21 +28,18 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.themeSubscription = this.settingsService.theme$
-      .subscribe(theme => {
-        this.isLight = theme === Theme.Light;
-        this.isDark = theme === Theme.Dark;
-      });
-    this.sizeSubscription = this.settingsService.size$
-      .subscribe(size => {
-        this.isSmall = size === Size.Small;
-        this.isMedium = size === Size.Medium;
-        this.isLarge = size === Size.Large;
-      });
-    this.loggedInUserSubscription = this.loginService.loggedInUser$
-      .subscribe(user => {
-        this.isHeaderListHorizontal = !user;
-      });
+    this.themeSubscription = this.settingsService.theme$.subscribe(theme => {
+      this.isLight = theme === Theme.Light;
+      this.isDark = theme === Theme.Dark;
+    });
+    this.sizeSubscription = this.settingsService.size$.subscribe(size => {
+      this.isSmall = size === Size.Small;
+      this.isMedium = size === Size.Medium;
+      this.isLarge = size === Size.Large;
+    });
+    this.loggedInUserSubscription = this.loginService.loggedInUser$.subscribe(user => {
+      this.isHeaderListHorizontal = !user;
+    });
   }
 
   onHeaderToggled(isClosed) {

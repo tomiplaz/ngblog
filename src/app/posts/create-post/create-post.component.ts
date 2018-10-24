@@ -21,13 +21,12 @@ export class CreatePostComponent implements PostFormInterface {
   }
 
   submitHandler(post: Post) {
-    this.postsService.createPost(post)
-      .subscribe(response => {
-        this.messageService.createPostSuccess();
-        this.router.navigate(['posts']);
-      }, response => {
-        this.messageService.error(response);
-      });
+    this.postsService.createPost(post).subscribe(() => {
+      this.messageService.createPostSuccess();
+      this.router.navigate(['posts']);
+    }, response => {
+      this.messageService.error(response);
+    });
   }
 
 }

@@ -27,17 +27,15 @@ export class FooterComponent implements OnInit, OnDestroy {
   constructor(private settingsService: SettingsService) { }
 
   ngOnInit() {
-    this.themeSubscription = this.settingsService.theme$
-      .subscribe(theme => {
-        this.isLight = theme === Theme.Light;
-        this.isDark = theme === Theme.Dark;
-      });
-    this.sizeSubscription = this.settingsService.size$
-      .subscribe(size => {
-        this.isSmall = size === Size.Small;
-        this.isMedium = size === Size.Medium;
-        this.isLarge = size === Size.Large;
-      });
+    this.themeSubscription = this.settingsService.theme$.subscribe(theme => {
+      this.isLight = theme === Theme.Light;
+      this.isDark = theme === Theme.Dark;
+    });
+    this.sizeSubscription = this.settingsService.size$.subscribe(size => {
+      this.isSmall = size === Size.Small;
+      this.isMedium = size === Size.Medium;
+      this.isLarge = size === Size.Large;
+    });
   }
 
   changeTheme() {

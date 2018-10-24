@@ -26,12 +26,11 @@ export class PostsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeDataSubscription = this.route.data
-      .subscribe((data: { posts: Post[] }) => {
-        this.posts = data.posts;
-      }, error => {
-        this.messageService.error(error);
-      });
+    this.routeDataSubscription = this.route.data.subscribe((data: { posts: Post[] }) => {
+      this.posts = data.posts;
+    }, error => {
+      this.messageService.error(error);
+    });
   }
 
   onPostTitleClick(stringId: string) {

@@ -38,14 +38,13 @@ export class CommentFormComponent implements OnInit {
       user_id: this.loginService.getUserId(),
     };
 
-    this.postsService.createComment(this.postId, submitData)
-      .subscribe(response => {
-        this.messageService.createCommentSuccess();
-        this.commentForm.reset();
-        this.commentAdded.emit(response);
-      }, response => {
-        this.messageService.error(response);
-      });
+    this.postsService.createComment(this.postId, submitData).subscribe(response => {
+      this.messageService.createCommentSuccess();
+      this.commentForm.reset();
+      this.commentAdded.emit(response);
+    }, response => {
+      this.messageService.error(response);
+    });
   }
 
 }

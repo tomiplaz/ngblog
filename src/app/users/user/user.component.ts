@@ -23,12 +23,11 @@ export class UserComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeDataSubscription = this.route.data
-      .subscribe((data: { user: User }) => {
-        this.user = data.user;
-      }, error => {
-        this.messageService.error(error);
-      });
+    this.routeDataSubscription = this.route.data.subscribe((data: { user: User }) => {
+      this.user = data.user;
+    }, error => {
+      this.messageService.error(error);
+    });
   }
 
   ngOnDestroy() {

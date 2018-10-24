@@ -26,12 +26,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeDataSubscription = this.route.data
-      .subscribe((data: { users: User[] }) => {
-        this.users = data.users;
-      }, error => {
-        this.messageService.error(error);
-      });
+    this.routeDataSubscription = this.route.data.subscribe((data: { users: User[] }) => {
+      this.users = data.users;
+    }, error => {
+      this.messageService.error(error);
+    });
   }
 
   onUserNameClick(stringId: string) {

@@ -49,27 +49,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.loggedInUserSubscription = this.loginService.loggedInUser$
-      .subscribe(user => {
-        this.loggedInUser = user;
-        this.isListHorizontal = !user;
-      });
+    this.loggedInUserSubscription = this.loginService.loggedInUser$.subscribe(user => {
+      this.loggedInUser = user;
+      this.isListHorizontal = !user;
+    });
     this.navigationEndEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
       .subscribe((event: NavigationEnd) => {
         this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
       });
-    this.themeSubscription = this.settingsService.theme$
-      .subscribe(theme => {
-        this.isLight = theme === Theme.Light;
-        this.isDark = theme === Theme.Dark;
-      });
-    this.sizeSubscription = this.settingsService.size$
-      .subscribe(size => {
-        this.isSmall = size === Size.Small;
-        this.isMedium = size === Size.Medium;
-        this.isLarge = size === Size.Large;
-      });
+    this.themeSubscription = this.settingsService.theme$.subscribe(theme => {
+      this.isLight = theme === Theme.Light;
+      this.isDark = theme === Theme.Dark;
+    });
+    this.sizeSubscription = this.settingsService.size$.subscribe(size => {
+      this.isSmall = size === Size.Small;
+      this.isMedium = size === Size.Medium;
+      this.isLarge = size === Size.Large;
+    });
   }
 
   onLogoutClick() {

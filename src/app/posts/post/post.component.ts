@@ -28,12 +28,11 @@ export class PostComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeDataSubscription = this.route.data
-      .subscribe((data: { post: Post }) => {
-        this.post = data.post;
-      }, error => {
-        this.messageService.error(error);
-      });
+    this.routeDataSubscription = this.route.data.subscribe((data: { post: Post }) => {
+      this.post = data.post;
+    }, error => {
+      this.messageService.error(error);
+    });
   }
 
   onCommentAdded(comment: Comment) {
