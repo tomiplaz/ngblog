@@ -4,7 +4,7 @@
   border: 1px solid;
   border-bottom: none;
   transition-property: border-color;
-  transition-duration: var(--color-transition-duration);
+  transition-duration: var(--transition-duration);
 }
 
 :host(.light) {

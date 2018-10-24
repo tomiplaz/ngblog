@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  transition-property: bottom;
+  transition-duration: var(--transition-duration);
 }
 
 :host(.closed) {

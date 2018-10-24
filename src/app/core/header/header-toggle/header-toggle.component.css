@@ -6,7 +6,7 @@
   position: absolute;
   right: var(--right-padding);
   transition-property: border-color;
-  transition-duration: var(--color-transition-duration);
+  transition-duration: var(--transition-duration);
 }
 
 :host(.light) {
