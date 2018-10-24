@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { SettingsService } from './core/settings.service';
 import { Theme, Size } from './core/settings.service';
@@ -11,6 +11,8 @@ import { LoginService } from './core/api/login.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  @ViewChild('content') content: ElementRef;
+
   @HostBinding('class.light') isLight: boolean;
   @HostBinding('class.dark') isDark: boolean;
   @HostBinding('class.small') isSmall: boolean;
@@ -18,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('class.large') isLarge: boolean;
   @HostBinding('class.header-closed') isHeaderClosed: boolean = false;
   @HostBinding('class.header-list-horizontal') isHeaderListHorizontal: boolean = false;
+
   private themeSubscription: Subscription;
   private sizeSubscription: Subscription;
   private loggedInUserSubscription: Subscription;
@@ -44,6 +47,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onHeaderToggled(isClosed) {
     this.isHeaderClosed = isClosed;
+  }
+
+  @HostListener('window:scroll')
+  onScroll() {
+    const top = this.content.nativeElement.getBoundingClientRect().top;
   }
 
   ngOnDestroy() {
