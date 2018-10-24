@@ -1,8 +1,16 @@
 :host {
   font-size: 0.8em;
-  padding: 5px 5px 0 5px;
-  border: 1px solid black;
+  padding: 2px 5px 0 5px;
+  border: 1px solid;
   border-top: none;
   position: absolute;
   right: var(--right-padding);
+}
+
+:host(.light) {
+  border-color: var(--dark-color);
+}
+
+:host(.dark) {
+  border-color: var(--light-color);
 }
