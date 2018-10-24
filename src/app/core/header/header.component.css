@@ -4,6 +4,8 @@
   left: 0;
   width: 100%;
   border-bottom: 1px solid;
+  transition-property: color, border-color, background-color;
+  transition-duration: var(--color-transition-duration);
 }
 
 :host(.light) {
