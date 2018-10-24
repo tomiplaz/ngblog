@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @HostBinding('class.small') isSmall: boolean;
   @HostBinding('class.medium') isMedium: boolean;
   @HostBinding('class.large') isLarge: boolean;
+
+  @Output() toggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   loggedInUser: User;
   isLoginOrCreateAccountUrl: boolean;
@@ -74,6 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onToggled(isClosed: boolean) {
     this.isClosed = isClosed;
+    this.toggled.emit(isClosed);
   }
 
   ngOnDestroy() {

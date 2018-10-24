@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('class.small') isSmall: boolean;
   @HostBinding('class.medium') isMedium: boolean;
   @HostBinding('class.large') isLarge: boolean;
+  @HostBinding('class.header-closed') isHeaderClosed: boolean = false;
   private themeSubscription: Subscription;
   private sizeSubscription: Subscription;
 
@@ -32,6 +33,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isMedium = size === Size.Medium;
         this.isLarge = size === Size.Large;
       });
+  }
+
+  onHeaderToggled(isClosed) {
+    this.isHeaderClosed = isClosed;
   }
 
   ngOnDestroy() {
