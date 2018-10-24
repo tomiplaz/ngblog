@@ -17,9 +17,9 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   isLight: boolean;
   isDark: boolean;
-  isSmall: boolean;
-  isMedium: boolean;
-  isLarge: boolean;
+  @HostBinding('class.small') isSmall: boolean;
+  @HostBinding('class.medium') isMedium: boolean;
+  @HostBinding('class.large') isLarge: boolean;
 
   private themeSubscription: Subscription;
   private sizeSubscription: Subscription;

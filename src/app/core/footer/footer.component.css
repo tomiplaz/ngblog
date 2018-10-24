@@ -9,8 +9,16 @@
   transition-duration: var(--transition-duration);
 }
 
-:host(.closed) {
-  bottom: -35px;
+:host(.closed.small) {
+  bottom: -24px;
+}
+
+:host(.closed.medium) {
+  bottom: -28px;
+}
+
+:host(.closed.large) {
+  bottom: -31px;
 }
 
 .container {
@@ -18,7 +26,7 @@
 }
 
 .main {
-  padding: 5px;
+  padding: 0 5px;
   border: 1px solid;
   border-bottom: none;
 }
