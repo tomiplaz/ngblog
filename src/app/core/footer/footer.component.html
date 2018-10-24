@@ -1,11 +1,16 @@
 <div class="container" [ngClass]="{ 'light': isLight, 'dark': isDark }">
-  <span
-    class="size character"
-    [ngClass]="{ 'small': isSmall, 'medium': isMedium, 'large': isLarge }"
-    (click)="changeSize()">
-    a
-  </span>
-  <span class="theme character" (click)="changeTheme()">
-    &#x025FB;
-  </span>
+  <app-footer-toggle
+    (toggled)="onToggled($event)">
+  </app-footer-toggle>
+  <div class="main">
+    <span
+      class="size character"
+      [ngClass]="{ 'small': isSmall, 'medium': isMedium, 'large': isLarge }"
+      (click)="changeSize()">
+      a
+    </span>
+    <span class="theme character" (click)="changeTheme()">
+      &#x025FB;
+    </span>
+  </div>
 </div>

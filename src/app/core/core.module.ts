@@ -14,6 +14,7 @@ import { BreadcrumbsComponent } from './header/breadcrumbs/breadcrumbs.component
 import { FooterComponent } from './footer/footer.component';
 import { SettingsService } from './settings.service';
 import { HeaderToggleComponent } from './header/header-toggle/header-toggle.component';
+import { FooterToggleComponent } from './footer/footer-toggle/footer-toggle.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { HeaderToggleComponent } from './header/header-toggle/header-toggle.comp
     PageNotFoundComponent,
     BreadcrumbsComponent,
     FooterComponent,
-    HeaderToggleComponent
+    HeaderToggleComponent,
+    FooterToggleComponent
   ],
   exports: [
     HeaderComponent,

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { SettingsService } from '../settings.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Theme, Size } from '../settings.service';
@@ -13,11 +13,14 @@ import { Theme, Size } from '../settings.service';
 })
 export class FooterComponent implements OnInit, OnDestroy {
 
+  @HostBinding('class.closed') isClosed: boolean = false;
+
   isLight: boolean;
   isDark: boolean;
   isSmall: boolean;
   isMedium: boolean;
   isLarge: boolean;
+
   private themeSubscription: Subscription;
   private sizeSubscription: Subscription;
 
@@ -44,6 +47,10 @@ export class FooterComponent implements OnInit, OnDestroy {
   changeSize() {
     const size = this.isSmall ? Size.Medium : this.isMedium ? Size.Large : Size.Small;
     this.settingsService.changeSize(size);
+  }
+
+  onToggled(isClosed: boolean) {
+    this.isClosed = isClosed;
   }
 
   ngOnDestroy() {

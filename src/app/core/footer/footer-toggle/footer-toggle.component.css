@@ -1,0 +1,6 @@
+:host {
+  font-size: 0.8em;
+  padding: 0 5px 2px 5px;
+  border: 1px solid black;
+  border-bottom: none;
+}
