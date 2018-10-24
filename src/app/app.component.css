@@ -4,7 +4,7 @@
   justify-content: center;
   text-align: left;
   min-height: 100vh;
-  transition-property: color, border-color, background-color, padding-top;
+  transition-property: color, border-color, background-color, padding-top, font-size;
   transition-duration: var(--transition-duration);
 }
 
