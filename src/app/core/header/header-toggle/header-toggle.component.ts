@@ -51,6 +51,7 @@ export class HeaderToggleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.isClosedSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
 }
