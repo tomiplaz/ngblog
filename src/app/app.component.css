@@ -33,6 +33,18 @@
   padding-top: 118px;
 }
 
+:host(.small.header-list-horizontal) {
+  padding-top: 63px;
+}
+
+:host(.medium.header-list-horizontal) {
+  padding-top: 71px;
+}
+
+:host(.large.header-list-horizontal) {
+  padding-top: 77px;
+}
+
 :host(.small.header-closed) {
   padding-top: 20px;
 }

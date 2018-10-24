@@ -1,7 +1,7 @@
 <div class="container">
   <div>
     <div class="title label clickable" (click)="router.navigate(['home'])">Bloggging</div>
-    <app-breadcrumbs [hidden]="isLoginOrCreateAccountUrl"></app-breadcrumbs>
+    <app-breadcrumbs></app-breadcrumbs>
   </div>
   <div [hidden]="isLoginOrCreateAccountUrl">
     <ul>
@@ -23,5 +23,6 @@
   </div>
 </div>
 <app-header-toggle
+  [hidden]="isLoginOrCreateAccountUrl"
   (toggled)="onToggled($event)">
 </app-header-toggle>

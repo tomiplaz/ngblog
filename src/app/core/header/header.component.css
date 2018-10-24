@@ -30,6 +30,23 @@
   top: -95px;
 }
 
+:host(.closed.small.list-horizontal) {
+  top: -43px;
+}
+
+:host(.closed.medium.list-horizontal) {
+  top: -50px;
+}
+
+:host(.closed.large.list-horizontal) {
+  top: -54px;
+}
+
+:host(.list-horizontal) ul li {
+  display: inline;
+  margin: 0 5px;
+}
+
 .container {
   display: flex;
   flex-direction: row;

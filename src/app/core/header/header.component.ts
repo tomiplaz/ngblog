@@ -4,8 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
-import { SettingsService, Size } from '../settings.service';
-import { Theme } from '../settings.service';
+import { SettingsService, Size, Theme } from '../settings.service';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @HostBinding('class.small') isSmall: boolean;
   @HostBinding('class.medium') isMedium: boolean;
   @HostBinding('class.large') isLarge: boolean;
+  @HostBinding('class.list-horizontal') isListHorizontal: boolean;
 
   @Output() toggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -50,7 +50,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loggedInUserSubscription = this.loginService.loggedInUser$
-      .subscribe(user => this.loggedInUser = user);
+      .subscribe(user => {
+        this.loggedInUser = user;
+        this.isListHorizontal = !user;
+      });
     this.navigationEndEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
       .subscribe((event: NavigationEnd) => {
