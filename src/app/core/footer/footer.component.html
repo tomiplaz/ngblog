@@ -1,8 +1,8 @@
-<div class="container" [ngClass]="{ 'light': isLight, 'dark': isDark }">
+<div class="container">
   <app-footer-toggle
     (toggled)="onToggled($event)">
   </app-footer-toggle>
-  <div class="main">
+  <div class="main" [ngClass]="{ 'light': isLight, 'dark': isDark }">
     <span
       class="size character"
       [ngClass]="{ 'small': isSmall, 'medium': isMedium, 'large': isLarge }"
