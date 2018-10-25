@@ -20,5 +20,7 @@ export const sessionReducer = (state: Session = initialState, action: SessionAct
       return { ...state, isFooterOpen: true };
     case SessionActionName.CLOSE_FOOTER:
       return { ...state, isFooterOpen: false };
+    default:
+      return state;
   }
 };
