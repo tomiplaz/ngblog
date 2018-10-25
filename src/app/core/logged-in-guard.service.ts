@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { LoginService } from './api/login.service';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
+import { AppStore } from './store/store';
 
 @Injectable()
 export class LoggedInGuard implements CanActivate {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private store: Store<AppStore>) { }
 
   canActivate(): Observable<boolean> {
-    return this.loginService.loggedInUser$.pipe(map(loggedInUser => Boolean(loggedInUser)));
+    return this.store.pipe(select(state => state.auth.isLoggedIn));
   }
 
 }

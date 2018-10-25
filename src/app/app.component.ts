@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy, HostBinding, HostListener, ViewChild, ElementRef, Host } from '@angular/core';
+import { Component, OnInit, HostBinding, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs/Subscription';
-import { LoginService } from './core/api/login.service';
 import { AppStore } from './core/store/store';
 
 @Component({
@@ -9,16 +7,13 @@ import { AppStore } from './core/store/store';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 
   @ViewChild('content') content: ElementRef;
 
   @HostBinding('class') classAttribute: string;
-  @HostBinding('class.header-list-horizontal') isHeaderListHorizontal: boolean = false;
 
-  private loggedInUserSubscription: Subscription;
-
-  constructor(private store: Store<AppStore>, private loginService: LoginService) { }
+  constructor(private store: Store<AppStore>) { }
 
   ngOnInit() {
     this.store.subscribe(store => {
@@ -26,21 +21,14 @@ export class AppComponent implements OnInit, OnDestroy {
         store.settings.theme,
         store.settings.size,
         ...store.session.isHeaderOpen ? [] : ['header-closed'],
+        ...store.auth.isLoggedIn ? [] : ['header-list-horizontal'],
       ].join(' ');
-    });
-
-    this.loggedInUserSubscription = this.loginService.loggedInUser$.subscribe(user => {
-      this.isHeaderListHorizontal = !user;
     });
   }
 
   @HostListener('window:scroll')
   onScroll() {
     const top = this.content.nativeElement.getBoundingClientRect().top;
-  }
-
-  ngOnDestroy() {
-    this.loggedInUserSubscription.unsubscribe();
   }
 
 }

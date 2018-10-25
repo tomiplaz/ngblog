@@ -23,9 +23,8 @@ interface RoutingItem {
 export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') classAttribute: string;
-  @HostBinding('class.list-horizontal') isListHorizontal: boolean;
 
-  loggedInUser: User;
+  user: User;
   isLoginOrCreateAccountUrl: boolean;
   loggedInRoutingItems: RoutingItem[] = [
     { commands: ['profile'], text: 'Profile' },
@@ -36,7 +35,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { commands: ['create-account'], text: 'Join!' },
   ];
 
-  private loggedInUserSubscription: Subscription;
   private navigationEndEventsSubscription: Subscription;
 
   constructor(
@@ -46,20 +44,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.loggedInUserSubscription = this.loginService.loggedInUser$.subscribe(user => {
-      this.loggedInUser = user;
-      this.isListHorizontal = !user;
-    });
     this.navigationEndEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
       .subscribe((event: NavigationEnd) => {
         this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
       });
     this.store.subscribe(store => {
+      this.user = store.auth.user;
       this.classAttribute = [
         store.settings.theme,
         store.settings.size,
         ...store.session.isHeaderOpen ? [] : ['closed'],
+        ...store.auth.isLoggedIn ? [] : ['list-horizontal'],
       ].join(' ');
     });
   }
@@ -70,7 +66,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.loggedInUserSubscription.unsubscribe();
     this.navigationEndEventsSubscription.unsubscribe();
   }
 

@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/share';
-
-import { environment } from '../../../environments/environment';
-import { Login } from '../../login/login.interface';
-import { User } from '../../users/user.interface';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/share';
+import { environment } from '../../../environments/environment';
+import { Credentials } from '../../login/credentials.interface';
+import { User } from '../../users/user.interface';
+import { AppStore } from '../store/store';
+import { Login, Logout } from '../store/auth/auth.actions';
 
 export const JWT_KEY = 'ngblog-jwt';
 export const USER_KEY = 'ngblog-user';
@@ -17,18 +16,17 @@ export const USER_KEY = 'ngblog-user';
 export class LoginService {
 
   readonly URL = `${environment.apiUrl}/login`;
-  private loggedInUser: Subject<User> = new BehaviorSubject(this.getUser());
-  loggedInUser$ = this.loggedInUser.asObservable();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private store: Store<AppStore>) { }
 
-  login(credentials: Login): Observable<any> {
+  login(credentials: Credentials): Observable<any> {
     const observable = this.httpClient.post<any>(this.URL, credentials).share();
 
     observable.subscribe(response => {
       localStorage.setItem(USER_KEY, JSON.stringify(response.user));
       localStorage.setItem(JWT_KEY, response.token);
-      this.loggedInUser.next(response.user);
+
+      this.store.dispatch(new Login(response.token, response.user));
     });
 
     return observable;
@@ -37,7 +35,8 @@ export class LoginService {
   logout() {
     localStorage.removeItem(JWT_KEY);
     localStorage.removeItem(USER_KEY);
-    this.loggedInUser.next(null);
+
+    this.store.dispatch(new Logout());
   }
 
   getToken(): string | null {
