@@ -15,8 +15,8 @@ import { ToggleTheme, ToggleSize } from '../store/settings/settings.actions';
 export class FooterComponent implements OnInit {
 
   theme: Theme;
-  @HostBinding('class') size: Size;
-  @HostBinding('class.closed') isClosed: boolean;
+  size: Size;
+  @HostBinding('class') classAttribute: string;
 
   constructor(private store: Store<AppStore>) { }
 
@@ -24,7 +24,11 @@ export class FooterComponent implements OnInit {
     this.store.subscribe(store => {
       this.theme = store.settings.theme;
       this.size = store.settings.size;
-      this.isClosed = !store.session.isFooterOpen;
+      this.classAttribute = [
+        store.settings.theme,
+        store.settings.size,
+        ...store.session.isFooterOpen ? [] : ['closed'],
+      ].join(' ');
     });
   }
 

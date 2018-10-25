@@ -14,7 +14,7 @@ import { ToggleFooter } from '../../store/session/session.actions';
 })
 export class FooterToggleComponent implements OnInit {
 
-  @HostBinding('class') theme: Theme;
+  @HostBinding('class') classAttribute: Theme;
 
   readonly CLOSED_TEXT = 'Show';
   readonly OPEN_TEXT = 'Hide';
@@ -25,7 +25,7 @@ export class FooterToggleComponent implements OnInit {
 
   ngOnInit() {
     this.store.subscribe(store => {
-      this.theme = store.settings.theme;
+      this.classAttribute = store.settings.theme;
       this.toggleText = store.session.isFooterOpen ? this.OPEN_TEXT : this.CLOSED_TEXT;
     });
   }

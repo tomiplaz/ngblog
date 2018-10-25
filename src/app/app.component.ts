@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy, HostBinding, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding, HostListener, ViewChild, ElementRef, Host } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { LoginService } from './core/api/login.service';
-import { Theme, Size } from './core/store/settings/settings.values';
 import { AppStore } from './core/store/store';
 
 @Component({
@@ -14,9 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @ViewChild('content') content: ElementRef;
 
-  @HostBinding('class') theme: Theme;
-  @HostBinding('class') size: Size;
-  @HostBinding('class.header-closed') isHeaderClosed: boolean = false;
+  @HostBinding('class') classAttribute: string;
   @HostBinding('class.header-list-horizontal') isHeaderListHorizontal: boolean = false;
 
   private loggedInUserSubscription: Subscription;
@@ -25,9 +22,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.store.subscribe(store => {
-      this.theme = store.settings.theme;
-      this.size = store.settings.size;
-      this.isHeaderClosed = !store.session.isHeaderOpen;
+      this.classAttribute = [
+        store.settings.theme,
+        store.settings.size,
+        ...store.session.isHeaderOpen ? [] : ['header-closed'],
+      ].join(' ');
     });
 
     this.loggedInUserSubscription = this.loginService.loggedInUser$.subscribe(user => {

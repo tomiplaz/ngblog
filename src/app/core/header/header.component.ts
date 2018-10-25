@@ -6,7 +6,6 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
 import { AppStore } from '../store/store';
-import { Theme, Size } from '../store/settings/settings.values';
 
 interface RoutingItem {
   commands: string[],
@@ -23,9 +22,7 @@ interface RoutingItem {
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  @HostBinding('class') theme: Theme;
-  @HostBinding('class') size: Size;
-  @HostBinding('class.closed') isClosed: boolean;
+  @HostBinding('class') classAttribute: string;
   @HostBinding('class.list-horizontal') isListHorizontal: boolean;
 
   loggedInUser: User;
@@ -59,9 +56,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
       });
     this.store.subscribe(store => {
-      this.theme = store.settings.theme;
-      this.size = store.settings.size;
-      this.isClosed = !store.session.isHeaderOpen;
+      this.classAttribute = [
+        store.settings.theme,
+        store.settings.size,
+        ...store.session.isHeaderOpen ? [] : ['closed'],
+      ].join(' ');
     });
   }
 
