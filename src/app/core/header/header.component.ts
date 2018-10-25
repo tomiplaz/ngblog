@@ -1,10 +1,17 @@
-import { Component, OnInit, OnDestroy, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
-import { SettingsService, Size, Theme } from '../settings.service';
+import { AppStore } from '../store/store';
+import { Theme, Size } from '../store/settings/settings.values';
+
+interface RoutingItem {
+  commands: string[],
+  text: string,
+}
 
 @Component({
   selector: 'app-header',
@@ -16,15 +23,10 @@ import { SettingsService, Size, Theme } from '../settings.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  @HostBinding('class.light') isLight: boolean;
-  @HostBinding('class.dark') isDark: boolean;
-  @HostBinding('class.closed') isClosed: boolean = false;
-  @HostBinding('class.small') isSmall: boolean;
-  @HostBinding('class.medium') isMedium: boolean;
-  @HostBinding('class.large') isLarge: boolean;
+  @HostBinding('class') theme: Theme;
+  @HostBinding('class') size: Size;
+  @HostBinding('class.closed') isClosed: boolean;
   @HostBinding('class.list-horizontal') isListHorizontal: boolean;
-
-  @Output() toggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   loggedInUser: User;
   isLoginOrCreateAccountUrl: boolean;
@@ -39,13 +41,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private loggedInUserSubscription: Subscription;
   private navigationEndEventsSubscription: Subscription;
-  private themeSubscription: Subscription;
-  private sizeSubscription: Subscription;
 
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private settingsService: SettingsService,
+    private store: Store<AppStore>,
   ) { }
 
   ngOnInit() {
@@ -58,14 +58,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((event: NavigationEnd) => {
         this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
       });
-    this.themeSubscription = this.settingsService.theme$.subscribe(theme => {
-      this.isLight = theme === Theme.Light;
-      this.isDark = theme === Theme.Dark;
-    });
-    this.sizeSubscription = this.settingsService.size$.subscribe(size => {
-      this.isSmall = size === Size.Small;
-      this.isMedium = size === Size.Medium;
-      this.isLarge = size === Size.Large;
+    this.store.subscribe(store => {
+      this.theme = store.settings.theme;
+      this.size = store.settings.size;
+      this.isClosed = !store.session.isHeaderOpen;
     });
   }
 
@@ -74,21 +70,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['home']);
   }
 
-  onToggled(isClosed: boolean) {
-    this.isClosed = isClosed;
-    this.toggled.emit(isClosed);
-  }
-
   ngOnDestroy() {
     this.loggedInUserSubscription.unsubscribe();
     this.navigationEndEventsSubscription.unsubscribe();
-    this.themeSubscription.unsubscribe();
-    this.sizeSubscription.unsubscribe();
   }
 
-}
-
-interface RoutingItem {
-  commands: string[],
-  text: string,
 }

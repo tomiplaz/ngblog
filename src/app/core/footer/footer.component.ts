@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
-import { SettingsService } from '../settings.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Theme, Size } from '../settings.service';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppStore } from '../store/store';
+import { Theme, Size } from '../store/settings/settings.values';
+import { ToggleTheme, ToggleSize } from '../store/settings/settings.actions';
 
 @Component({
   selector: 'app-footer',
@@ -11,49 +12,28 @@ import { Theme, Size } from '../settings.service';
     './footer.component.css',
   ]
 })
-export class FooterComponent implements OnInit, OnDestroy {
+export class FooterComponent implements OnInit {
 
-  @HostBinding('class.closed') isClosed: boolean = false;
+  theme: Theme;
+  @HostBinding('class') size: Size;
+  @HostBinding('class.closed') isClosed: boolean;
 
-  isLight: boolean;
-  isDark: boolean;
-  @HostBinding('class.small') isSmall: boolean;
-  @HostBinding('class.medium') isMedium: boolean;
-  @HostBinding('class.large') isLarge: boolean;
-
-  private themeSubscription: Subscription;
-  private sizeSubscription: Subscription;
-
-  constructor(private settingsService: SettingsService) { }
+  constructor(private store: Store<AppStore>) { }
 
   ngOnInit() {
-    this.themeSubscription = this.settingsService.theme$.subscribe(theme => {
-      this.isLight = theme === Theme.Light;
-      this.isDark = theme === Theme.Dark;
-    });
-    this.sizeSubscription = this.settingsService.size$.subscribe(size => {
-      this.isSmall = size === Size.Small;
-      this.isMedium = size === Size.Medium;
-      this.isLarge = size === Size.Large;
+    this.store.subscribe(store => {
+      this.theme = store.settings.theme;
+      this.size = store.settings.size;
+      this.isClosed = !store.session.isFooterOpen;
     });
   }
 
   changeTheme() {
-    this.settingsService.changeTheme(this.isLight ? Theme.Dark : Theme.Light);
+    this.store.dispatch(new ToggleTheme());
   }
 
   changeSize() {
-    const size = this.isSmall ? Size.Medium : this.isMedium ? Size.Large : Size.Small;
-    this.settingsService.changeSize(size);
-  }
-
-  onToggled(isClosed: boolean) {
-    this.isClosed = isClosed;
-  }
-
-  ngOnDestroy() {
-    this.themeSubscription.unsubscribe();
-    this.sizeSubscription.unsubscribe();
+    this.store.dispatch(new ToggleSize());
   }
 
 }

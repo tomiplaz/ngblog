@@ -11,7 +11,6 @@ import { CommonService } from './common.service';
 import { LoggedInGuard } from './logged-in-guard.service';
 import { BreadcrumbsComponent } from './header/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './footer/footer.component';
-import { SettingsService } from './settings.service';
 import { HeaderToggleComponent } from './header/header-toggle/header-toggle.component';
 import { FooterToggleComponent } from './footer/footer-toggle/footer-toggle.component';
 import { store } from './store/store';
@@ -21,9 +20,7 @@ import { store } from './store/store';
     CommonModule,
     ApiModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 2000
-    }),
+    ToastrModule.forRoot({ timeOut: 2000 }),
     StoreModule.forRoot(store),
   ],
   declarations: [
@@ -42,7 +39,6 @@ import { store } from './store/store';
     MessageService,
     CommonService,
     LoggedInGuard,
-    SettingsService,
   ]
 })
 export class CoreModule { }
