@@ -1,26 +1,16 @@
 import { Action } from "@ngrx/store";
 
 export enum SessionActionName {
-  OPEN_HEADER = '[Session] Open Header',
-  CLOSE_HEADER = '[Session] Close Header',
-  OPEN_FOOTER = '[Session] Open Footer',
-  CLOSE_FOOTER = '[Session] Close Footer',
+  TOGGLE_HEADER = '[Session] Toggle Header',
+  TOGGLE_FOOTER = '[Session] Toggle Footer',
 };
 
-export class OpenHeader implements Action {
-  readonly type = SessionActionName.OPEN_HEADER;
+export class ToggleHeader implements Action {
+  readonly type = SessionActionName.TOGGLE_HEADER;
 }
 
-export class CloseHeader implements Action {
-  readonly type = SessionActionName.CLOSE_HEADER;
+export class ToggleFooter implements Action {
+  readonly type = SessionActionName.TOGGLE_FOOTER;
 }
 
-export class OpenFooter implements Action {
-  readonly type = SessionActionName.OPEN_FOOTER;
-}
-
-export class CloseFooter implements Action {
-  readonly type = SessionActionName.CLOSE_FOOTER;
-}
-
-export type SessionAction = OpenHeader | CloseHeader | OpenFooter | CloseFooter; 
+export type SessionAction = ToggleHeader | ToggleFooter;

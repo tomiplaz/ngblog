@@ -13,10 +13,18 @@ const initialState: Settings = {
 
 export const settingsReducer = (state: Settings = initialState, action: SettingsAction) => {
   switch (action.type) {
-    case SettingsActionName.CHANGE_THEME:
-      return { ...state, theme: action.theme };
-    case SettingsActionName.CHANGE_SIZE:
-      return { ...state, size: action.size };
+    case SettingsActionName.TOGGLE_THEME:
+      return {
+        ...state,
+        theme: state.theme === Theme.Light ? Theme.Dark : Theme.Light,
+      };
+    case SettingsActionName.TOGGLE_SIZE:
+      return {
+        ...state,
+        size: state.size === Size.Small ? Size.Medium :
+          state.size === Size.Medium ? Size.Large :
+          Size.Small,
+      };
     default:
       return state;
   }

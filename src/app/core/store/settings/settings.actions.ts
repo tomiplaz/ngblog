@@ -1,21 +1,16 @@
 import { Action } from "@ngrx/store";
-import { Theme, Size } from "./settings.values";
 
 export enum SettingsActionName {
-  CHANGE_THEME = '[Settings] Change Theme',
-  CHANGE_SIZE = '[Settings] Change Size',
+  TOGGLE_THEME = '[Settings] Toggle Theme',
+  TOGGLE_SIZE = '[Settings] Toggle Size',
 };
 
-export class ChangeTheme implements Action {
-  readonly type = SettingsActionName.CHANGE_THEME;
-
-  constructor(public theme: Theme) { }
+export class ToggleTheme implements Action {
+  readonly type = SettingsActionName.TOGGLE_THEME;
 };
 
-export class ChangeSize implements Action {
-  readonly type = SettingsActionName.CHANGE_SIZE;
-
-  constructor(public size: Size) { }
+export class ToggleSize implements Action {
+  readonly type = SettingsActionName.TOGGLE_SIZE;
 };
 
-export type SettingsAction = ChangeTheme | ChangeSize;
+export type SettingsAction = ToggleTheme | ToggleSize;
