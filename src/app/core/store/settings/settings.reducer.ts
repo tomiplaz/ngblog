@@ -1,17 +1,17 @@
 import { Theme, Size } from "./settings.values";
 import { SettingsActionName, SettingsAction } from "./settings.actions";
 
-export interface Settings {
+export interface SettingsState {
   theme: Theme,
   size: Size,
 };
 
-const initialState: Settings = {
+const initialState: SettingsState = {
   theme: Theme.Light,
   size: Size.Medium,
 };
 
-export const settingsReducer = (state: Settings = initialState, action: SettingsAction) => {
+export const settingsReducer = (state: SettingsState = initialState, action: SettingsAction) => {
   switch (action.type) {
     case SettingsActionName.TOGGLE_THEME:
       return {
