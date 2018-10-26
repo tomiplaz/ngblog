@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../../core/api/login.service';
+import { Store } from '@ngrx/store';
+import { AppStore } from '../../core/store/store';
 
 @Component({
   selector: 'app-post-form',
@@ -14,11 +15,12 @@ export class PostFormComponent implements OnInit {
 
   postForm: FormGroup;
   tags: String[] = [];
+  private userId: number;
   @Input() submit: any; 
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private store: Store<AppStore>,
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,9 @@ export class PostFormComponent implements OnInit {
       title: [null, Validators.required],
       content: [null, Validators.required],
       tag: [null, Validators.pattern(/^[a-zA-Z0-9]+$/)],
+    });
+    this.store.subscribe(store => {
+      this.userId = store.auth.user ? store.auth.user.id : null;
     });
   }
 
@@ -67,7 +72,7 @@ export class PostFormComponent implements OnInit {
     this.submit({
       ...this.postForm.value,
       tags: this.tags,
-      user_id: this.loginService.getUserId(),
+      user_id: this.userId,
     });
   }
 
