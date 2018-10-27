@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
-  private breadcrumbs: string[] = [];
+  breadcrumbs: string[] = [];
   private navigationEndEventsSubscription: Subscription;
 
   constructor(private router: Router) { }
@@ -28,7 +28,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.breadcrumbs = this.router.url.split('/').slice(1);
   }
 
-  private onClick(index: number, isLast: boolean) {
+  onClick(index: number, isLast: boolean) {
     const commands = this.breadcrumbs.slice(0, index + 1);
     if (!isLast) this.router.navigate(commands);
   }

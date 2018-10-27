@@ -14,7 +14,7 @@ import { MessageService } from '../../core/message.service';
 })
 export class UserComponent implements OnInit, OnDestroy {
 
-  private user: User;
+  user: User;
   private routeDataSubscription: Subscription;
 
   constructor(

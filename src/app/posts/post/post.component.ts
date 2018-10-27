@@ -5,7 +5,6 @@ import { Comment } from '../comment.interface';
 import { CommonService } from '../../core/common.service';
 import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../../core/message.service';
-import { PostsService } from '../../core/api/posts.service';
 
 @Component({
   selector: 'app-post',
@@ -17,14 +16,13 @@ import { PostsService } from '../../core/api/posts.service';
 })
 export class PostComponent implements OnInit, OnDestroy {
 
-  private post: Post;
+  post: Post;
   private routeDataSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private commonService: CommonService,
     private messageService: MessageService,
-    private postsService: PostsService,
   ) { }
 
   ngOnInit() {

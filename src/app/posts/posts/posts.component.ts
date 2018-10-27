@@ -15,7 +15,7 @@ import { MessageService } from '../../core/message.service';
 })
 export class PostsComponent implements OnInit, OnDestroy {
 
-  private posts: Post[];
+   posts: Post[];
   private routeDataSubscription: Subscription;
 
   constructor(

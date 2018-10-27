@@ -15,7 +15,7 @@ export class PostItemComponent implements OnInit {
 
   @Input() post: Post;
   @Input() isTitleClickable: boolean = false;
-  private sanitizedPostContent: string;
+  sanitizedPostContent: string;
 
   constructor(
     private router: Router,
