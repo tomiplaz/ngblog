@@ -2,6 +2,8 @@ import { Theme, Size } from "./settings.values";
 import { SettingsActionName, SettingsAction } from "./settings.actions";
 
 const SETTINGS_KEY = 'bloggging-settings';
+const DEFAULT_THEME = Theme.Light;
+const DEFAULT_SIZE = Size.Medium;
 
 export interface SettingsState {
   theme: Theme,
@@ -10,9 +12,12 @@ export interface SettingsState {
 
 const localStorageSettings: SettingsState = JSON.parse(localStorage.getItem(SETTINGS_KEY));
 
-const initialState: SettingsState = {
-  theme: 'theme' in localStorageSettings ? localStorageSettings.theme : Theme.Light,
-  size: 'size' in localStorageSettings ? localStorageSettings.size : Size.Medium,
+const initialState: SettingsState = localStorageSettings ? {
+  theme: localStorageSettings.theme || DEFAULT_THEME,
+  size: localStorageSettings.size || DEFAULT_SIZE,
+} : {
+  theme: DEFAULT_THEME,
+  size: DEFAULT_SIZE,
 };
 
 export const settingsReducer = (state: SettingsState = initialState, action: SettingsAction) => {

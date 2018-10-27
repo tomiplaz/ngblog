@@ -11,7 +11,7 @@ export interface AuthState {
 };
 
 const initialState: AuthState = {
-  token: JSON.parse(localStorage.getItem(JWT_KEY)),
+  token: localStorage.getItem(JWT_KEY),
   user: JSON.parse(localStorage.getItem(USER_KEY)),
   isLoggedIn: false,
 };
