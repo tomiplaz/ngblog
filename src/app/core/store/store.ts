@@ -15,8 +15,8 @@ export const store = {
   session: sessionReducer,
 };
 
-export const authSelector = createFeatureSelector<AuthState>('auth');
+export const selectAuth = createFeatureSelector<AuthState>('auth');
 
-export const settingsSelector = createFeatureSelector<SettingsState>('settings');
+export const selectSettings = createFeatureSelector<SettingsState>('settings');
 
-export const sessionSelector = createFeatureSelector<SessionState>('session');
+export const selectSession = createFeatureSelector<SessionState>('session');
