@@ -1,4 +1,4 @@
-interface Store {
+interface Data {
   [key: string]: string
 }
 
@@ -15,7 +15,7 @@ export class LocalStorageFake implements Storage {
 
   [name: string]: any;
 
-  private store: Store = {};
+  private data: Data = {};
   public spies: LocalStorageSpies = {
     length: spyOnProperty(localStorage, 'length').and.returnValue(this.length),
     key: spyOn(localStorage, 'key').and.callFake(this.key.bind(this)),
@@ -28,27 +28,27 @@ export class LocalStorageFake implements Storage {
   constructor() { }
 
   get length(): number {
-    return Object.keys(this.store).length;
+    return Object.keys(this.data).length;
   }
 
   key(index: number): string | null {
-    return Object.keys(this.store)[index] || null;
+    return Object.keys(this.data)[index] || null;
   }
 
   clear(): void {
-    this.store = {};
+    this.data = {};
   }
 
   getItem(key: string): string | null {
-    return key in this.store ? this.store[key] : null;
+    return key in this.data ? this.data[key] : null;
   }
 
   setItem(key: string, value: string): void {
-    this.store[key] = value;
+    this.data[key] = value;
   }
 
   removeItem(key: string): void {
-    delete this.store[key];
+    delete this.data[key];
   }
 
 };
