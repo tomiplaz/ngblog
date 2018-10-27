@@ -1,10 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
 import { Comment } from '../comment.interface';
 import { AppState } from '../../core/store/store';
+import { Subscription } from 'rxjs/Subscription';
+import { selectUser } from '../../core/store/auth/auth.selectors';
+import { User } from '../../users/user.interface';
 
 @Component({
   selector: 'app-comment-form',
@@ -14,9 +17,10 @@ import { AppState } from '../../core/store/store';
     './comment-form.component.css',
   ]
 })
-export class CommentFormComponent implements OnInit {
+export class CommentFormComponent implements OnInit, OnDestroy {
 
   private commentForm: FormGroup;
+  private userSubscription: Subscription;
   private userId: number;
   @Input() postId: number;
   @Output() commentAdded: EventEmitter<Comment> = new EventEmitter<Comment>();
@@ -32,8 +36,8 @@ export class CommentFormComponent implements OnInit {
     this.commentForm = this.formBuilder.group({
       text: [null, Validators.required],
     });
-    this.store.subscribe(store => {
-      this.userId = store.auth.user ? store.auth.user.id : null;
+    this.store.pipe(select(selectUser)).subscribe((user: User) => {
+      this.userId = user ? user.id : null;
     });
   }
 
@@ -50,6 +54,10 @@ export class CommentFormComponent implements OnInit {
     }, response => {
       this.messageService.error(response);
     });
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
 }
