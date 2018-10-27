@@ -1,8 +1,8 @@
 import { User } from "../../../users/user.interface";
 import { AuthAction, AuthActionName } from "./auth.actions";
 
-export const JWT_KEY = 'ngblog-jwt';
-export const USER_KEY = 'ngblog-user';
+export const JWT_KEY = 'bloggging-jwt';
+export const USER_KEY = 'bloggging-user';
 
 export interface AuthState {
   token: string,
