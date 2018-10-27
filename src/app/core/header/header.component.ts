@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User;
   isLoginOrCreateAccountUrl: boolean;
   loggedInRoutingItems: RoutingItem[] = [
-    { commands: ['profile'], text: 'Profile' },
+    { commands: ['users', 'my-profile'], text: 'Profile' },
     { commands: ['posts', 'new'], text: 'Post' },
   ];
   loggedOutRoutingItems: RoutingItem[] = [

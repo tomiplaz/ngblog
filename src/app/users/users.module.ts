@@ -7,6 +7,7 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
 import { UsersResolverService } from './users-resolver.service';
 import { UserResolverService } from './user-resolver.service';
 import { UserItemComponent } from './user-item/user-item.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { UserItemComponent } from './user-item/user-item.component';
     UsersComponent,
     UserComponent,
     UserPostsComponent,
-    UserItemComponent
+    UserItemComponent,
+    MyProfileComponent
   ],
   providers: [
     UsersResolverService,
