@@ -1,22 +1,25 @@
-import { Component, OnInit, HostBinding, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, HostBinding, HostListener, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppStore } from './core/store/store';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   @ViewChild('content') content: ElementRef;
 
   @HostBinding('class') classAttribute: string;
 
+  private storeSubscription: Subscription;
+
   constructor(private store: Store<AppStore>) { }
 
   ngOnInit() {
-    this.store.subscribe(store => {
+    this.storeSubscription = this.store.subscribe(store => {
       this.classAttribute = [
         store.settings.theme,
         store.settings.size,
@@ -29,6 +32,10 @@ export class AppComponent implements OnInit {
   @HostListener('window:scroll')
   onScroll() {
     const top = this.content.nativeElement.getBoundingClientRect().top;
+  }
+
+  ngOnDestroy() {
+    this.storeSubscription.unsubscribe();
   }
 
 }
