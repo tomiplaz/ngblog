@@ -1,8 +1,9 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/store';
 import { Theme, Size } from '../store/settings/settings.values';
 import { ToggleTheme, ToggleSize } from '../store/settings/settings.actions';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-footer',
@@ -12,22 +13,25 @@ import { ToggleTheme, ToggleSize } from '../store/settings/settings.actions';
     './footer.component.css',
   ]
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
+
+  private storeSubscription: Subscription;
 
   theme: Theme;
   size: Size;
+
   @HostBinding('class') classAttribute: string;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.subscribe(store => {
-      this.theme = store.settings.theme;
-      this.size = store.settings.size;
+    this.storeSubscription = this.store.subscribe(state => {
+      this.theme = state.settings.theme;
+      this.size = state.settings.size;
       this.classAttribute = [
-        store.settings.theme,
-        store.settings.size,
-        ...store.session.isFooterOpen ? [] : ['closed'],
+        state.settings.theme,
+        state.settings.size,
+        ...state.session.isFooterOpen ? [] : ['closed'],
       ].join(' ');
     });
   }
@@ -38,6 +42,10 @@ export class FooterComponent implements OnInit {
 
   changeSize() {
     this.store.dispatch(new ToggleSize());
+  }
+
+  ngOnDestroy() {
+    this.storeSubscription.unsubscribe();
   }
 
 }
