@@ -19,9 +19,6 @@ export class FooterToggleComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') classAttribute: Theme;
 
-  readonly CLOSED_TEXT = 'Show';
-  readonly OPEN_TEXT = 'Hide';
-
   private themeSubscription: Subscription;
   isFooterOpen$ = this.store.pipe(select(selectIsFooterOpen));
 
