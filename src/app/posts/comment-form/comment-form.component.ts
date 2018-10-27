@@ -19,7 +19,7 @@ import { User } from '../../users/user.interface';
 })
 export class CommentFormComponent implements OnInit, OnDestroy {
 
-  private commentForm: FormGroup;
+  commentForm: FormGroup;
   private userSubscription: Subscription;
   private userId: number;
   @Input() postId: number;
@@ -36,7 +36,7 @@ export class CommentFormComponent implements OnInit, OnDestroy {
     this.commentForm = this.formBuilder.group({
       text: [null, Validators.required],
     });
-    this.store.pipe(select(selectUser)).subscribe((user: User) => {
+    this.userSubscription = this.store.pipe(select(selectUser)).subscribe((user: User) => {
       this.userId = user ? user.id : null;
     });
   }

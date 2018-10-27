@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppState } from '../../core/store/store';
+import { Subscription } from 'rxjs/Subscription';
+import { selectUser } from '../../core/store/auth/auth.selectors';
+import { User } from '../../users/user.interface';
 
 @Component({
   selector: 'app-post-form',
@@ -11,10 +14,11 @@ import { AppState } from '../../core/store/store';
     './post-form.component.css',
   ]
 })
-export class PostFormComponent implements OnInit {
+export class PostFormComponent implements OnInit, OnDestroy {
 
   postForm: FormGroup;
   tags: String[] = [];
+  private userSubscription: Subscription;
   private userId: number;
   @Input() submit: any; 
 
@@ -29,8 +33,8 @@ export class PostFormComponent implements OnInit {
       content: [null, Validators.required],
       tag: [null, Validators.pattern(/^[a-zA-Z0-9]+$/)],
     });
-    this.store.subscribe(store => {
-      this.userId = store.auth.user ? store.auth.user.id : null;
+    this.userSubscription = this.store.pipe(select(selectUser)).subscribe((user: User) => {
+      this.userId = user ? user.id : null;
     });
   }
 
@@ -74,6 +78,10 @@ export class PostFormComponent implements OnInit {
       tags: this.tags,
       user_id: this.userId,
     });
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
 }
