@@ -13,7 +13,7 @@ export interface AuthState {
 const initialState: AuthState = {
   token: localStorage.getItem(JWT_KEY),
   user: JSON.parse(localStorage.getItem(USER_KEY)),
-  isLoggedIn: false,
+  isLoggedIn: Boolean(localStorage.getItem(JWT_KEY)),
 };
 
 export const authReducer = (state: AuthState = initialState, action: AuthAction) => {
