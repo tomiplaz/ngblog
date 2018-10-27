@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppStore } from '../store/store';
+import { AppState } from '../store/store';
 import { Theme, Size } from '../store/settings/settings.values';
 import { ToggleTheme, ToggleSize } from '../store/settings/settings.actions';
 
@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
   size: Size;
   @HostBinding('class') classAttribute: string;
 
-  constructor(private store: Store<AppStore>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.store.subscribe(store => {

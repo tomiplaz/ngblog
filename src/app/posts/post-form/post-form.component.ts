@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppStore } from '../../core/store/store';
+import { AppState } from '../../core/store/store';
 
 @Component({
   selector: 'app-post-form',
@@ -20,7 +20,7 @@ export class PostFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<AppStore>,
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit() {

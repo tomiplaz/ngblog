@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import { environment } from '../../../environments/environment';
 import { Credentials } from '../../login/credentials.interface';
-import { AppStore } from '../store/store';
+import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class LoginService {
 
   readonly URL = `${environment.apiUrl}/login`;
 
-  constructor(private httpClient: HttpClient, private store: Store<AppStore>) { }
+  constructor(private httpClient: HttpClient, private store: Store<AppState>) { }
 
   login(credentials: Credentials): Observable<any> {
     const observable = this.httpClient.post<any>(this.URL, credentials).share();

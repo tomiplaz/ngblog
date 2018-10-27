@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
-import { AppStore } from '../store/store';
+import { AppState } from '../store/store';
 
 interface RoutingItem {
   commands: string[],
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private store: Store<AppStore>,
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit() {

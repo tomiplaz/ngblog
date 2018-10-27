@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, HostBinding } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Theme } from '../../store/settings/settings.values';
-import { AppStore } from '../../store/store';
+import { AppState } from '../../store/store';
 import { ToggleFooter } from '../../store/session/session.actions';
 
 @Component({
@@ -21,7 +21,7 @@ export class FooterToggleComponent implements OnInit {
 
   toggleText: string;
 
-  constructor(private store: Store<AppStore>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.store.subscribe(store => {

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, HostListener, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppStore } from './core/store/store';
+import { AppState } from './core/store/store';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private storeSubscription: Subscription;
 
-  constructor(private store: Store<AppStore>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.storeSubscription = this.store.subscribe(store => {

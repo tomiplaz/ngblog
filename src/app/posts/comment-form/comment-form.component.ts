@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
 import { Comment } from '../comment.interface';
-import { AppStore } from '../../core/store/store';
+import { AppState } from '../../core/store/store';
 
 @Component({
   selector: 'app-comment-form',
@@ -25,7 +25,7 @@ export class CommentFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private postsService: PostsService,
     private messageService: MessageService,
-    private store: Store<AppStore>,
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit() {
