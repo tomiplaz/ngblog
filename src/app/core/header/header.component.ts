@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ];
 
   private navigationEndEventsSubscription: Subscription;
+  private storeSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -49,13 +50,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((event: NavigationEnd) => {
         this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
       });
-    this.store.subscribe(store => {
-      this.user = store.auth.user;
+    this.store.subscribe(state => {
+      this.user = state.auth.user;
       this.classAttribute = [
-        store.settings.theme,
-        store.settings.size,
-        ...store.session.isHeaderOpen ? [] : ['closed'],
-        ...store.auth.isLoggedIn ? [] : ['list-horizontal'],
+        state.settings.theme,
+        state.settings.size,
+        ...state.session.isHeaderOpen ? [] : ['closed'],
+        ...state.auth.isLoggedIn ? [] : ['list-horizontal'],
       ].join(' ');
     });
   }
@@ -67,6 +68,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.navigationEndEventsSubscription.unsubscribe();
+    this.storeSubscription.unsubscribe();
   }
 
 }
