@@ -1,36 +1,36 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
-  <div class="label margin-bottom-s">New post</div>
+  <div class="label margin-bottom-s">Create post</div>
   <input type="text" name="title" placeholder="Title" formControlName="title"/>
-  <quill-editor
-    formControlName="content">
-  </quill-editor>
-  <div>
-    <input
-      type="text"
-      name="tag"
-      placeholder="Tag"
-      maxlength="20"
-      formControlName="tag"
-      (keypress)="onTagInputKeyPress($event)"
-    />
-    <button
-      type="button"
-      [disabled]="!postForm.controls.tag.value || postForm.controls.tag.errors || tags.length >= 5"
-      (click)="onAddTagClick()">
-      Add
-    </button>
-    <p *ngIf="postForm.controls.tag.invalid && postForm.controls.tag.errors.pattern">
-      Please use letters and numbers only
-    </p>
-    <div class="margin-bottom-s">
-      <span class="label">Tags</span>
-      <ng-container *ngIf="tags.length">
-        <ng-container *ngFor="let tag of tags">
-          <span (click)="onTagClick(tag)">#{{ tag }}</span>
-        </ng-container>
+  <div class="margin-bottom-s">
+    <quill-editor
+      formControlName="content">
+    </quill-editor>
+  </div>
+  <input
+    type="text"
+    name="tag"
+    placeholder="Tag"
+    maxlength="20"
+    formControlName="tag"
+    (keypress)="onTagInputKeyPress($event)"
+  />
+  <button
+    type="button"
+    [disabled]="!postForm.controls.tag.value || postForm.controls.tag.errors || tags.length >= 5"
+    (click)="onAddTagClick()">
+    Add
+  </button>
+  <p *ngIf="postForm.controls.tag.invalid && postForm.controls.tag.errors.pattern">
+    Please use letters and numbers only
+  </p>
+  <div class="margin-bottom-s">
+    <span class="label">Tags</span>
+    <ng-container *ngIf="tags.length">
+      <ng-container *ngFor="let tag of tags">
+        <span (click)="onTagClick(tag)">#{{ tag }}</span>
       </ng-container>
-      <ng-container *ngIf="!tags.length">/</ng-container>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="!tags.length">/</ng-container>
   </div>
   <button type="submit" [disabled]="postForm.invalid">Submit</button>
 </form>
