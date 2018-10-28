@@ -45,3 +45,8 @@ textarea {
 .margin-bottom-s {
   margin-bottom: var(--margin-s)
 }
+
+.toggle {
+  margin: 0 auto;
+  cursor: pointer;
+}

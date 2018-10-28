@@ -11,7 +11,6 @@ import { CommonService } from './common.service';
 import { LoggedInGuard } from './logged-in-guard.service';
 import { BreadcrumbsComponent } from './header/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './footer/footer.component';
-import { FooterToggleComponent } from './footer/footer-toggle/footer-toggle.component';
 import { store } from './store/store';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { store } from './store/store';
     PageNotFoundComponent,
     BreadcrumbsComponent,
     FooterComponent,
-    FooterToggleComponent
   ],
   exports: [
     HeaderComponent,

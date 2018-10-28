@@ -2,71 +2,55 @@
   position: fixed;
   bottom: 0;
   right: var(--right-padding);
+  text-align: center;
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  border: 1px solid;
+  border-bottom: none;
   transition-property: bottom;
   transition-duration: var(--transition-duration);
 }
 
 :host(.closed.small) {
-  bottom: -24px;
+  bottom: -29px;
 }
 
 :host(.closed.medium) {
-  bottom: -28px;
+  bottom: -32px;
 }
 
 :host(.closed.large) {
-  bottom: -31px;
+  bottom: -35px;
 }
 
-.container {
-  text-align: right;
-}
-
-.main {
-  padding: 0 5px;
-  border: 1px solid;
-  border-bottom: none;
-}
-
-.main.light {
+:host(.light) {
   color: var(--dark-color);
   border-color: var(--dark-color);
   background-color: var(--light-color);
 }
 
-.main.dark {
+:host(.dark) {
   color: var(--light-color);
   border-color: var(--light-color);
   background-color: var(--dark-color);
 }
 
+.toggle {
+  flex: 1 100%;
+}
+
 .character {
-  margin: 0 3px;
-}
-
-.theme.character {
-  font-size: 1.6em;
-}
-
-.size.character {
-  font-weight: bold;
-}
-
-.size.character.small {
+  width: 40%;
+  padding: 5% 0;
+  line-height: 1.2em;
   font-size: 1.2em;
 }
 
-.size.character.medium {
-  font-size: 1.4em;
-}
-
-.size.character.large {
-  font-size: 1.6em;
-}
-
-.theme.character:hover, .size.character:hover {
+.character:hover {
   cursor: pointer;
+}
+
+.character.size {
+  font-weight: bold;
 }

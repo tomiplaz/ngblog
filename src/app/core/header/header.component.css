@@ -76,11 +76,6 @@ ul {
   padding: 0;
 }
 
-.toggle {
-  margin: 0 auto;
-  cursor: pointer;
-}
-
 @media only screen and (min-width: 600px) {
   :host(.closed.small) {
     top: var(--closed-small-horizontal-top);
