@@ -8,7 +8,7 @@ export interface SessionState {
 
 const initialState: SessionState = {
   isHeaderOpen: true,
-  isFooterOpen: true,
+  isFooterOpen: false,
   isHeaderToggleDisabled: false,
 };
 
