@@ -36,10 +36,6 @@
   background-color: var(--dark-color);
 }
 
-.toggle {
-  flex: 1 100%;
-}
-
 .character {
   width: 40%;
   padding: 5% 0;

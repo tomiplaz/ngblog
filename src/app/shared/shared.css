@@ -47,6 +47,21 @@ textarea {
 }
 
 .toggle {
-  margin: 0 auto;
+  flex: 1 100%;
+}
+
+.toggle span {
   cursor: pointer;
+}
+
+.toggle.disabled span {
+  cursor: default;
+}
+
+:host(.light) .toggle.disabled {
+  color: var(--disabled-dark-color);
+}
+
+:host(.dark) .toggle.disabled {
+  color: var(--disabled-light-color);
 }
