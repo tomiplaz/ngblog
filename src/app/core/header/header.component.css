@@ -76,6 +76,14 @@ ul {
   padding: 0;
 }
 
+:host(.light) .toggle.disabled {
+  color: var(--disabled-dark-color);
+}
+
+:host(.dark) .toggle.disabled {
+  color: var(--disabled-light-color);
+}
+
 @media only screen and (min-width: 600px) {
   :host(.closed.small) {
     top: var(--closed-small-horizontal-top);

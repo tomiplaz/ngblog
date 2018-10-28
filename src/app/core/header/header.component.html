@@ -22,4 +22,6 @@
     </ul>
   </div>
 </div>
-<div class="toggle" (click)="onToggleClick()">&#x022EF;&#x022EF;</div>
+<div class="toggle" [ngClass]="{ 'disabled': isToggleDisabled }" (click)="onToggleClick()">
+  &#x022EF;&#x022EF;
+</div>

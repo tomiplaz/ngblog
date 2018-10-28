@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @HostBinding('class') classAttribute: string;
 
   user: User;
+  isToggleDisabled: boolean;
   isLoginOrCreateAccountUrl: boolean;
   loggedInRoutingItems: RoutingItem[] = [
     { commands: ['my-profile'], text: 'Profile' },
@@ -53,6 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
     this.store.subscribe(state => {
       this.user = state.auth.user;
+      this.isToggleDisabled = state.session.isHeaderToggleDisabled;
       this.classAttribute = [
         state.settings.theme,
         state.settings.size,
@@ -68,7 +70,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onToggleClick() {
-    this.store.dispatch(new ToggleHeader());
+    if (!this.isToggleDisabled) this.store.dispatch(new ToggleHeader());
   }
 
   ngOnDestroy() {

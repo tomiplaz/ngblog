@@ -9,7 +9,7 @@ export interface SessionState {
 const initialState: SessionState = {
   isHeaderOpen: true,
   isFooterOpen: false,
-  isHeaderToggleDisabled: false,
+  isHeaderToggleDisabled: true,
 };
 
 export const sessionReducer = (state: SessionState = initialState, action: SessionAction) => {

@@ -3,6 +3,8 @@
   --margin-m: 30px;
   --dark-color: #000000;
   --light-color: #ffffff;
+  --disabled-dark-color: #bbbbbb;
+  --disabled-light-color: #555555;
   --width: 640px;
   --small-font: 16px;
   --medium-font: 18px;
