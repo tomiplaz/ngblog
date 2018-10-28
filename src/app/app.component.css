@@ -6,6 +6,9 @@
   min-height: 100vh;
   transition-property: color, border-color, background-color, padding-top, font-size;
   transition-duration: var(--transition-duration);
+  --small-padding-top: 74px;
+  --medium-padding-top: 83px;
+  --large-padding-top: 90px;
 }
 
 :host(.light) {
@@ -22,41 +25,29 @@
 
 :host(.small) {
   font-size: var(--small-font);
-  padding-top: 95px;
+  padding-top: 106px;
 }
 
 :host(.medium) {
   font-size: var(--medium-font);
-  padding-top: 108px;
+  padding-top: 120px;
 }
 
 :host(.large) {
   font-size: var(--large-font);
-  padding-top: 118px;
+  padding-top: 131px;
 }
 
 :host(.small.header-list-horizontal) {
-  padding-top: 63px;
+  padding-top: var(--small-padding-top);
 }
 
 :host(.medium.header-list-horizontal) {
-  padding-top: 71px;
+  padding-top: var(--medium-padding-top);
 }
 
 :host(.large.header-list-horizontal) {
-  padding-top: 77px;
-}
-
-:host(.small.header-closed) {
-  padding-top: 20px;
-}
-
-:host(.medium.header-closed) {
-  padding-top: 21px;
-}
-
-:host(.large.header-closed) {
-  padding-top: 23px;
+  padding-top: var(--large-padding-top);
 }
 
 .content {
@@ -69,14 +60,14 @@
 
 @media only screen and (min-width: 600px) {
   :host(.small) {
-    padding-top: 63px;
+    padding-top: var(--small-padding-top);
   }
 
   :host(.medium) {
-    padding-top: 71px;
+    padding-top: var(--medium-padding-top);
   }
 
   :host(.large) {
-    padding-top: 77px;
+    padding-top: var(--large-padding-top);
   }
 }

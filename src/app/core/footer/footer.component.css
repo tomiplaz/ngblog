@@ -13,15 +13,15 @@
 }
 
 :host(.closed.small) {
-  bottom: -29px;
+  bottom: -30px;
 }
 
 :host(.closed.medium) {
-  bottom: -32px;
+  bottom: -33px;
 }
 
 :host(.closed.large) {
-  bottom: -35px;
+  bottom: -36px;
 }
 
 :host(.light) {
