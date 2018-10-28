@@ -6,6 +6,12 @@
   border-bottom: 1px solid;
   transition-property: color, border-color, background-color, top;
   transition-duration: var(--transition-duration);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --closed-small-horizontal-top: -50px;
+  --closed-medium-horizontal-top: -57px;
+  --closed-large-horizontal-top: -61px;
 }
 
 :host(.light) {
@@ -21,27 +27,27 @@
 }
 
 :host(.closed.small) {
-  top: -75px;
+  top: -82px;
 }
 
 :host(.closed.medium) {
-  top: -87px;
+  top: -94px;
 }
 
 :host(.closed.large) {
-  top: -95px;
+  top: -102px;
 }
 
 :host(.closed.small.list-horizontal) {
-  top: -43px;
+  top: var(--closed-small-horizontal-top);
 }
 
 :host(.closed.medium.list-horizontal) {
-  top: -50px;
+  top: var(--closed-medium-horizontal-top);
 }
 
 :host(.closed.large.list-horizontal) {
-  top: -54px;
+  top: var(--closed-large-horizontal-top);
 }
 
 :host(.list-horizontal) ul li {
@@ -70,17 +76,22 @@ ul {
   padding: 0;
 }
 
+.toggle {
+  margin: 0 auto;
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 600px) {
   :host(.closed.small) {
-    top: -43px;
+    top: var(--closed-small-horizontal-top);
   }
 
   :host(.closed.medium) {
-    top: -50px;
+    top: var(--closed-medium-horizontal-top);
   }
 
   :host(.closed.large) {
-    top: -54px;
+    top: var(--closed-large-horizontal-top);
   }
 
   ul li {

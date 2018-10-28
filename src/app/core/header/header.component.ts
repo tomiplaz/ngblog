@@ -6,6 +6,7 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { LoginService } from '../api/login.service';
 import { User } from '../../users/user.interface';
 import { AppState } from '../store/store';
+import { ToggleHeader } from '../store/session/session.actions';
 
 interface RoutingItem {
   commands: string[],
@@ -64,6 +65,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogoutClick() {
     this.loginService.logout();
     this.router.navigate(['home']);
+  }
+
+  onToggleClick() {
+    this.store.dispatch(new ToggleHeader());
   }
 
   ngOnDestroy() {
