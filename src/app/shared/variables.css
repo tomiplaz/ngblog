@@ -1,8 +1,8 @@
 :root {
   --margin-s: 20px;
   --margin-m: 30px;
-  --dark-color: #000000;
-  --light-color: #ffffff;
+  --dark-color: #1a1a1a;
+  --light-color: #e5e5e5;
   --disabled-dark-color: #bbbbbb;
   --disabled-light-color: #555555;
   --width: 640px;
