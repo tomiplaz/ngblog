@@ -12,6 +12,7 @@ body {
 }
 
 .form-control label {
+  display: block;
   font-size: 0.8rem;
 }
 
@@ -25,4 +26,8 @@ body {
 
 .clickable:hover {
   cursor: pointer;
+}
+
+.ql-toolbar, .ql-container {
+  background-color: white;
 }

@@ -31,7 +31,7 @@ export class PostFormComponent implements OnInit, OnDestroy {
     this.postForm = this.formBuilder.group({
       title: [null, Validators.required],
       content: [null, Validators.required],
-      tag: [null, Validators.pattern(/^[a-zA-Z0-9]+$/)],
+      tag: [null, [Validators.pattern(/^[a-zA-Z0-9]+$/), Validators.maxLength(20)]],
     });
     this.userSubscription = this.store.pipe(select(selectUser)).subscribe((user: User) => {
       this.userId = user ? user.id : null;

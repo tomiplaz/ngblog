@@ -1,25 +1,34 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="label margin-bottom-s">Create post</div>
-  <input type="text" name="title" placeholder="Title" formControlName="title"/>
-  <div class="margin-bottom-s">
+  <div class="form-control">
+    <label for="title">Title</label>
+    <input type="text" name="title" placeholder="Enter post's title" formControlName="title"/>
+    <app-error-messages [name]="'Title'" [control]="postForm.controls.title"></app-error-messages>
+  </div>
+  <div class="form-control">
+    <label for="content">Content</label>
     <quill-editor
       formControlName="content">
     </quill-editor>
+    <app-error-messages [name]="'Content'" [control]="postForm.controls.content"></app-error-messages>
   </div>
-  <input
-    type="text"
-    name="tag"
-    placeholder="Tag"
-    maxlength="20"
-    formControlName="tag"
-    (keypress)="onTagInputKeyPress($event)"
-  />
-  <button
-    type="button"
-    [disabled]="!postForm.controls.tag.value || postForm.controls.tag.errors || tags.length >= 5"
-    (click)="onAddTagClick()">
-    Add
-  </button>
+  <div class="form-control">
+    <label for="tag">Tag</label>
+    <input
+      type="text"
+      name="tag"
+      placeholder="Enter tag"
+      formControlName="tag"
+      (keypress)="onTagInputKeyPress($event)"
+    />
+    <button
+      type="button"
+      [disabled]="!postForm.controls.tag.value || postForm.controls.tag.errors || tags.length >= 5"
+      (click)="onAddTagClick()">
+      Add
+    </button>
+    <app-error-messages [name]="'Tag'" [control]="postForm.controls.tag"></app-error-messages>
+  </div>
   <p *ngIf="postForm.controls.tag.invalid && postForm.controls.tag.errors.pattern">
     Please use letters and numbers only
   </p>
