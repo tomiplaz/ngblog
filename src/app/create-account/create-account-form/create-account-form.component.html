@@ -1,7 +1,27 @@
 <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()" novalidate>
-  <input type="text" name="name" placeholder="Name" formControlName="name">
-  <input type="text" name="email" placeholder="Email" formControlName="email">
-  <input type="password" name="password" placeholder="Password" formControlName="password">
-  <input type="password" name="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
+  <div class="form-control">
+    <label for="name">Name</label>
+    <input type="text" name="name" placeholder="Enter your name" formControlName="name">
+    <app-error-messages [name]="'Name'" [control]="createAccountForm.controls.name"></app-error-messages>
+  </div>
+  <div class="form-control">
+    <label for="name">Email</label>
+    <input type="text" name="email" placeholder="Enter your email" formControlName="email">
+    <app-error-messages [name]="'Email'" [control]="createAccountForm.controls.email"></app-error-messages>
+  </div>
+  <div class="form-control">
+    <label for="name">Password</label>
+    <input type="password" name="password" placeholder="Enter your password" formControlName="password">
+    <app-error-messages [name]="'Password'" [control]="createAccountForm.controls.password"></app-error-messages>
+  </div>
+  <div class="form-control">
+    <label for="name">Confirm Password</label>
+    <input type="password" name="confirmPassword" placeholder="Repeat your password" formControlName="confirmPassword">
+    <app-error-messages
+      [name]="'Confirm Password'"
+      [control]="createAccountForm.controls.confirmPassword"
+      [group]="createAccountForm">
+    </app-error-messages>
+  </div>
   <button type="submit" [disabled]="createAccountForm.invalid">Create account</button>
 </form>

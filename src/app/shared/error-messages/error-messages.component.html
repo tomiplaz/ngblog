@@ -1,0 +1,19 @@
+<div *ngIf="control.invalid && control.dirty">
+  <p *ngIf="control.errors.required">
+    {{ name }} is required.
+  </p>
+  <p *ngIf="control.errors.minlength">
+    {{ name }} needs to have at least {{ control.errors.minlength.requiredLength }} characters.
+  </p>
+  <p *ngIf="control.errors.maxlength">
+    {{ name }} needs to have at most {{ control.errors.maxlength.requiredLength }} characters.
+  </p>
+  <p *ngIf="control.errors.email">
+    {{ name }} needs to be a valid email.
+  </p>
+</div>
+<div *ngIf="group && group.invalid && group.dirty && group.errors">
+  <p *ngIf="group.controls.password.dirty && group.controls.confirmPassword.dirty && group.errors.passwordMatch">
+    Passwords don't match.
+  </p>
+</div>

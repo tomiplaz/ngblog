@@ -1,0 +1,9 @@
+:host {
+    text-align: right;
+}
+
+p {
+    color: red;
+    margin: 0 auto;
+    font-size: 0.8rem;
+}

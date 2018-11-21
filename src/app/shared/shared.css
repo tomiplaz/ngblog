@@ -10,21 +10,9 @@
   font-size: 0.8em;
 }
 
-.pointer {
-  cursor: pointer;
-}
-
 .label {
   font-weight: bold;
   text-transform: uppercase;
-}
-
-.clickable {
-  text-decoration: underline;
-}
-
-.clickable:hover {
-  cursor: pointer;
 }
 
 .header {
@@ -33,12 +21,10 @@
 
 input {
   width: 98%;
-  margin-bottom: var(--margin-s);
 }
 
 textarea {
   width: 98%;
-  margin-bottom: var(--margin-s);
   resize: none;
 }
 
