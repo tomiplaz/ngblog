@@ -20,7 +20,7 @@ export class LoginService {
 
     observable.subscribe(response => {
       this.store.dispatch(new Login(response.token, response.user));
-    });
+    }, () => {});
 
     return observable;
   }
