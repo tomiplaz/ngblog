@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.interface';
-import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../../core/message.service';
 
 @Component({
@@ -12,10 +11,9 @@ import { MessageService } from '../../core/message.service';
     './user.component.css',
   ]
 })
-export class UserComponent implements OnInit, OnDestroy {
+export class UserComponent implements OnInit {
 
   user: User;
-  private routeDataSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,15 +21,11 @@ export class UserComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeDataSubscription = this.route.data.subscribe((data: { user: User }) => {
+    this.route.data.subscribe((data: { user: User }) => {
       this.user = data.user;
     }, error => {
       this.messageService.error(error);
     });
-  }
-
-  ngOnDestroy() {
-    this.routeDataSubscription.unsubscribe();
   }
 
 }
