@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.interface';
 import { CommonService } from '../../core/common.service';
-import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../../core/message.service';
 
 @Component({
@@ -13,10 +12,9 @@ import { MessageService } from '../../core/message.service';
     './users.component.css',
   ]
 })
-export class UsersComponent implements OnInit, OnDestroy {
+export class UsersComponent implements OnInit {
 
   users: User[];
-  private routeDataSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +24,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeDataSubscription = this.route.data.subscribe((data: { users: User[] }) => {
+    this.route.data.subscribe((data: { users: User[] }) => {
       this.users = data.users;
     }, error => {
       this.messageService.error(error);
@@ -35,10 +33,6 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   onUserNameClick(stringId: string) {
     this.router.navigate([stringId], { relativeTo: this.route });
-  }
-
-  ngOnDestroy() {
-    this.routeDataSubscription.unsubscribe();
   }
 
 }
