@@ -73,11 +73,13 @@ describe('PostComponent', () => {
       .compileComponents();
     }));
 
+    beforeEach(() => {
+      fixture = TestBed.createComponent(PostComponent);
+      component = fixture.componentInstance;
+    });
+
     it('should show error message', () => {
       const errorSpy = spyOn(TestBed.get(MessageService), 'error');
-
-      const fixture = TestBed.createComponent(PostComponent);
-      const component = fixture.componentInstance;
 
       try {
         fixture.detectChanges();
@@ -85,8 +87,14 @@ describe('PostComponent', () => {
         expect(errorSpy).toHaveBeenCalledTimes(1);
         expect(errorSpy).toHaveBeenCalledWith(errorMessage);
       }
+    });
 
-      expect(component.post).toBe(undefined);
+    it('should have user property set to undefined', () => {
+      try {
+        fixture.detectChanges();
+      } catch (e) { }
+
+      expect(component.post).toBeUndefined();
     });
   });
 });
