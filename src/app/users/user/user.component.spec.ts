@@ -14,7 +14,7 @@ describe('UserComponent', () => {
 
   const user: User = { name: 'Foo', email: 'foo@bar.com' };
 
-  describe('with valid route', () => {
+  describe('with successful route data subscription', () => {
     beforeEach(async(() => {
       const routeStub = { data: of({ user }) };
   
@@ -44,7 +44,7 @@ describe('UserComponent', () => {
     });
   });
 
-  describe('with invalid route', () => {
+  describe('with unsuccessful route data subscription', () => {
     const errorMessage = 'foo';
 
     beforeEach(async(() => {
@@ -64,6 +64,10 @@ describe('UserComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(UserComponent);
       component = fixture.componentInstance;
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
     });
   
     it('should show error message', () => {

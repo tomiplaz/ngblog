@@ -14,7 +14,7 @@ describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
 
-  describe('with valid route', () => {
+  describe('with successful route data subscription', () => {
     const post: Post = { user_id: 1, title: 'Foo', content: 'Lorem Ipsum', comments: [] };
 
     beforeEach(async(() => {
@@ -55,7 +55,7 @@ describe('PostComponent', () => {
     });
   });
 
-  describe('with invalid route', () => {
+  describe('with unsuccessful route data subscription', () => {
     const errorMessage = 'foo';
 
     beforeEach(async(() => {
@@ -76,6 +76,10 @@ describe('PostComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(PostComponent);
       component = fixture.componentInstance;
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
     });
 
     it('should show error message', () => {
