@@ -1,21 +1,33 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { StoreModule, Store } from '@ngrx/store';
 import { LoginService } from './login.service';
 import { ApiModule } from './api.module';
 import { Credentials } from '../../login/credentials.interface';
 import { User } from '../../users/user.interface';
+import { authReducer } from '../store/auth/auth.reducer';
+import { AppState } from '../store/store';
+import { Login, Logout } from '../store/auth/auth.actions';
 
 describe('LoginService', () => {
   let service: LoginService;
+  let store: Store<AppState>;
   const user: User = { id: 1, name: 'foo', email: 'foo@bar.com' };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ApiModule, HttpClientTestingModule],
+      imports: [
+        ApiModule,
+        HttpClientTestingModule,
+        StoreModule.forRoot({
+          auth: authReducer,
+        }),
+      ],
       providers: [LoginService]
     });
 
     service = TestBed.get(LoginService);
+    store = TestBed.get(Store);
   });
 
   it('should be created', () => {
@@ -51,12 +63,32 @@ describe('LoginService', () => {
       httpTC.expectOne(service.URL).flush(mockSuccessResponse);
     });
 
-    it('should dispatch Login action with token and user', () => {
-      //
+    it('should dispatch Login action with token and user on success', () => {
+      const dispatchSpy = spyOn(store, 'dispatch');
+
+      service.login(credentials);
+      httpTC.expectOne(service.URL).flush(mockSuccessResponse);
+
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(new Login(mockSuccessResponse.token, mockSuccessResponse.user));
+    });
+
+    it('should not dispatch any action on failure', () => {
+      const dispatchSpy = spyOn(store, 'dispatch');
+
+      service.login(credentials);
+      httpTC.expectOne(service.URL).flush(null, { status: 400, statusText: 'Bad Request' });
+
+      expect(dispatchSpy).toHaveBeenCalledTimes(0);
     });
   });
 
   it('#logout should dispatch Logout action', () => {
-    //
+    const dispatchSpy = spyOn(store, 'dispatch');
+
+    service.logout();
+
+    expect(dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(new Logout());
   });
 });

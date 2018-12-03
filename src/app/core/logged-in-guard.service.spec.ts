@@ -6,7 +6,7 @@ import { AppState } from "./store/store";
 import { Login } from "./store/auth/auth.actions";
 import { User } from "../users/user.interface";
 
-fdescribe('LoggedInGuard', () => {
+describe('LoggedInGuard', () => {
   let service: LoggedInGuard;
   let store: Store<AppState>;
 
