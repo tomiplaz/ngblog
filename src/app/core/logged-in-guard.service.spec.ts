@@ -1,40 +1,43 @@
 import { TestBed } from "@angular/core/testing";
-import { CoreModule } from "./core.module";
+import { StoreModule, Store } from "@ngrx/store";
 import { LoggedInGuard } from "./logged-in-guard.service";
-import { LoginService } from "./api/login.service";
-import { map } from "rxjs/operators";
+import { authReducer } from "./store/auth/auth.reducer";
+import { AppState } from "./store/store";
+import { Login } from "./store/auth/auth.actions";
+import { User } from "../users/user.interface";
 
 fdescribe('LoggedInGuard', () => {
   let service: LoggedInGuard;
-  let mockLoginService: jasmine.SpyObj<LoginService>;
+  let store: Store<AppState>;
 
   beforeEach(() => {
-    const stubLoginService = {
-      loggedInUser$: {
-        pipe: jasmine.createSpy()
-      },
-    };
-
     TestBed.configureTestingModule({
-      imports: [CoreModule],
-      providers: [
-        LoggedInGuard,
-        { provide: LoginService, useValue: stubLoginService },
+      imports: [
+        StoreModule.forRoot({
+          auth: authReducer,
+        }),
       ],
+      providers: [LoggedInGuard],
     });
 
     service = TestBed.get(LoggedInGuard);
-    mockLoginService = TestBed.get(LoginService);
+    store = TestBed.get(Store);
   });
 
-  fit('#canActivate should return false if user is not logged in', () => {
-    const mockValue = service.canActivate();
-
-    expect(mockLoginService.loggedInUser$.pipe).toHaveBeenCalledTimes(1);
-    expect(mockValue).toBeFalsy();
+  it('#canActivate should return false if user is not logged in', () => {
+    service.canActivate().subscribe(canActivate => {
+      expect(canActivate).toBeFalsy();
+    });
   });
 
   it('#canActivate should return true if user is logged in', () => {
-    //
+    const token: string = 'foobar';
+    const user: User = { name: 'Foo', email: 'foo@bar.com' };
+
+    store.dispatch(new Login(token, user));
+
+    service.canActivate().subscribe(canActivate => {
+      expect(canActivate).toBeTruthy();
+    });
   });
 });

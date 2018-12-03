@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs/observable/of';
 import { _throw } from 'rxjs/observable/throw';
-
 import { PostComponent } from './post.component';
 import { Post } from '../post.interface';
 import { Comment } from '../comment.interface';
@@ -11,7 +10,7 @@ import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
 import { messageServiceStub } from '../../../tests/message-service.stub';
 
-fdescribe('PostComponent', () => {
+describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
 
