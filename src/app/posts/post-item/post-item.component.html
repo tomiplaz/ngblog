@@ -1,4 +1,4 @@
-<h2 class="title" [ngClass]="{ 'clickable': isTitleClickable }" (click)="onTitleClick()">
+<h2 class="title" [ngClass]="{ 'clickable': isPreview }" (click)="onTitleClick()">
   {{ post.title }}
 </h2>
 <div class="metadata">
@@ -22,4 +22,4 @@
   </ng-container>
   <ng-container *ngIf="!post.tags.length">/</ng-container>
 </div>
-<div [innerHTML]="sanitizedPostContent"></div>
+<div *ngIf="!isPreview" [innerHTML]="sanitizedPostContent"></div>

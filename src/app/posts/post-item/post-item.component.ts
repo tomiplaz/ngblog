@@ -14,7 +14,7 @@ import { Post } from '../post.interface';
 export class PostItemComponent implements OnInit {
 
   @Input() post: Post;
-  @Input() isTitleClickable: boolean = false;
+  @Input() isPreview: boolean = false;
   sanitizedPostContent: string;
 
   constructor(
@@ -30,7 +30,7 @@ export class PostItemComponent implements OnInit {
   }
 
   onTitleClick() {
-    if (this.isTitleClickable) {
+    if (this.isPreview) {
       this.router.navigate(['posts', this.post.string_id]);
     }
   }
