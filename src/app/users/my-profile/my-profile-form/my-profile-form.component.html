@@ -2,10 +2,12 @@
   <div class="form-control">
     <label for="name">Name</label>
     <input type="text" name="name" formControlName="name" readonly>
+    <app-error-messages [name]="'Name'" [control]="myProfileForm.controls.name"></app-error-messages>
   </div>
   <div class="form-control">
-    <label for="name">Email</label>
+    <label for="email">Email</label>
     <input type="text" name="email" formControlName="email" readonly>
+    <app-error-messages [name]="'Email'" [control]="myProfileForm.controls.email"></app-error-messages>
   </div>
   <div class="form-control">
     <textarea name="about" formControlName="about"></textarea>
@@ -13,6 +15,7 @@
   </div>
   <div class="form-control">
     <label for="website">Website</label>
+    <input type="text" name="website" formControlName="website">
     <app-error-messages [name]="'Website'" [control]="myProfileForm.controls.website"></app-error-messages>
   </div>
   <button type="submit" [disabled]="myProfileForm.invalid || myProfileForm.pristine">Update</button>
