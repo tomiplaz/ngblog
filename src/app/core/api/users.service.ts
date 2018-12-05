@@ -16,11 +16,15 @@ export class UsersService {
   }
   
   getUser(stringId: string): Observable<User> {
-    return this.httpClient.get<User>(this.BASE_URL + '/' + stringId);
+    return this.httpClient.get<User>(`${this.BASE_URL}/${stringId}`);
   }
 
   createUser(user: User): Observable<User> {
     return this.httpClient.post<User>(this.BASE_URL, user);
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.put<User>(`${this.BASE_URL}/${user.id}`, user);
   }
 
 }
