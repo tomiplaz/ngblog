@@ -1,12 +1,12 @@
 <form [formGroup]="myProfileForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="form-control">
     <label for="name">Name</label>
-    <input type="text" name="name" formControlName="name" readonly disabled>
+    <input type="text" name="name" formControlName="name" readonly>
     <app-error-messages [name]="'Name'" [control]="myProfileForm.controls.name"></app-error-messages>
   </div>
   <div class="form-control">
     <label for="email">Email</label>
-    <input type="text" name="email" formControlName="email" readonly disabled>
+    <input type="text" name="email" formControlName="email" readonly>
     <app-error-messages [name]="'Email'" [control]="myProfileForm.controls.email"></app-error-messages>
   </div>
   <div class="form-control">

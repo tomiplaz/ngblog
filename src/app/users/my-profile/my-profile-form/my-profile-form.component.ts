@@ -5,18 +5,21 @@ import { MessageService } from '../../../core/message.service';
 import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';
 import { selectUser } from '../../../core/store/auth/auth.selectors';
-import { User } from '../../user.interface';
+import { User, UpdateUser } from '../../user.interface';
 
 @Component({
   selector: 'app-my-profile-form',
   templateUrl: './my-profile-form.component.html',
-  styleUrls: ['./my-profile-form.component.css']
+  styleUrls: [
+    '../../../shared/shared.css',
+    './my-profile-form.component.css',
+  ]
 })
 export class MyProfileFormComponent implements OnInit {
 
   myProfileForm: FormGroup;
 
-  private readonly websiteRegex: RegExp = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)?/, 'gi');
+  private userId: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,11 +31,17 @@ export class MyProfileFormComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(select(selectUser)).subscribe((user: User) => {
       this.buildForm(user);
-    });
+      this.userId = user.id;
+    }).unsubscribe();
   }
 
   onSubmit() {
-    this.usersService.updateUser(this.myProfileForm.value).subscribe(() => {
+    const data: UpdateUser = {
+      website: this.myProfileForm.controls.website.value,
+      about: this.myProfileForm.controls.about.value,
+    };
+
+    this.usersService.updateUser(this.userId, data).subscribe(() => {
       this.messageService.updateMyProfileSuccess();
     }, response => {
       this.messageService.error(response);
@@ -41,10 +50,10 @@ export class MyProfileFormComponent implements OnInit {
 
   private buildForm(user: User) {
     this.myProfileForm = this.formBuilder.group({
-      name: [user.name, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-      email: [user.email, [Validators.required, Validators.email, Validators.maxLength(100)]],
+      name: [{ value: user.name, disabled: true }],
+      email: [{ value: user.email, disabled: true }],
+      website: [user.website, [Validators.maxLength(255)]],
       about: [user.about, [Validators.maxLength(1000)]],
-      website: [user.website, [Validators.pattern(this.websiteRegex), Validators.maxLength(255)]],
     });
   }
 
