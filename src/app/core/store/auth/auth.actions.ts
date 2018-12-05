@@ -4,6 +4,7 @@ import { User } from "../../../users/user.interface";
 export enum AuthActionName {
   LOGIN = '[Auth] Login',
   LOGOUT = '[Auth] Logout',
+  SET_USER = '[Auth] Set User',
 };
 
 export class Login implements Action {
@@ -16,4 +17,10 @@ export class Logout implements Action {
   readonly type = AuthActionName.LOGOUT;
 };
 
-export type AuthAction = Login | Logout;
+export class SetUser implements Action {
+  readonly type = AuthActionName.SET_USER;
+
+  constructor(public user: User) { }
+}
+
+export type AuthAction = Login | Logout | SetUser;

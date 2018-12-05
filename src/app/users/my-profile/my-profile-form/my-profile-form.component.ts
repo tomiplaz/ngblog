@@ -6,6 +6,7 @@ import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';
 import { selectUser } from '../../../core/store/auth/auth.selectors';
 import { User, UpdateUser } from '../../user.interface';
+import { SetUser } from '../../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'app-my-profile-form',
@@ -41,8 +42,9 @@ export class MyProfileFormComponent implements OnInit {
       about: this.myProfileForm.controls.about.value,
     };
 
-    this.usersService.updateUser(this.userId, data).subscribe(() => {
+    this.usersService.updateUser(this.userId, data).subscribe((user: User) => {
       this.messageService.updateMyProfileSuccess();
+      this.store.dispatch(new SetUser(user));
     }, response => {
       this.messageService.error(response);
     });

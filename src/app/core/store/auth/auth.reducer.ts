@@ -38,6 +38,11 @@ export const authReducer = (state: AuthState = initialState, action: AuthAction)
         isLoggedIn: false,
       };
     }
+    case AuthActionName.SET_USER: {
+      localStorage.setItem(USER_KEY, JSON.stringify(action.user));
+
+      return { ...state, user: action.user };
+    }
     default:
       return state;
   }
