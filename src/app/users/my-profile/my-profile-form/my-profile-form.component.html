@@ -1,0 +1,19 @@
+<form [formGroup]="myProfileForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-control">
+    <label for="name">Name</label>
+    <input type="text" name="name" formControlName="name" readonly>
+  </div>
+  <div class="form-control">
+    <label for="name">Email</label>
+    <input type="text" name="email" formControlName="email" readonly>
+  </div>
+  <div class="form-control">
+    <textarea name="about" formControlName="about"></textarea>
+    <app-error-messages [name]="'About'" [control]="myProfileForm.controls.about"></app-error-messages>
+  </div>
+  <div class="form-control">
+    <label for="website">Website</label>
+    <app-error-messages [name]="'Website'" [control]="myProfileForm.controls.website"></app-error-messages>
+  </div>
+  <button type="submit" [disabled]="myProfileForm.invalid || myProfileForm.pristine">Update</button>
+</form>
