@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
-import { User, UpdateUser } from '../../users/user.interface';
+import { User, UpdateUser, ChangePassword } from '../../users/user.interface';
 
 @Injectable()
 export class UsersService {
@@ -25,6 +25,10 @@ export class UsersService {
 
   updateUser(userId: number, data: UpdateUser): Observable<User> {
     return this.httpClient.patch<User>(`${this.BASE_URL}/${userId}`, data);
+  }
+
+  changePassword(userId: number, data: ChangePassword): Observable<any> {
+    return this.httpClient.post<any>(`${this.BASE_URL}/${userId}/changePassword`, data);
   }
 
 }
