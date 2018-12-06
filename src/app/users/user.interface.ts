@@ -18,5 +18,4 @@ export interface UpdateUser {
 export interface ChangePassword {
   currentPassword: string,
   newPassword: string,
-  confirmNewPassword: string,
 }

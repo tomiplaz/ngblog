@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { UsersService } from '../../core/api/users.service';
 import { AppState } from '../../core/store/store';
 import { selectUser } from '../../core/store/auth/auth.selectors';
-import { User } from '../../users/user.interface';
+import { User, ChangePassword } from '../../users/user.interface';
 import { MessageService } from '../../core/message.service';
 import { CommonService } from '../../core/common.service';
 
@@ -42,7 +42,12 @@ export class ChangePasswordFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.usersService.changePassword(this.userId, this.changePasswordForm.value).subscribe(() => {
+    const data: ChangePassword = {
+      currentPassword: this.changePasswordForm.controls.currentPassword.value,
+      newPassword: this.changePasswordForm.controls.newPassword.value,
+    };
+
+    this.usersService.changePassword(this.userId, data).subscribe(() => {
       this.messageService.changePasswordSuccess();
     }, response => {
       this.messageService.error(response);
