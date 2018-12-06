@@ -13,7 +13,9 @@
   </p>
 </div>
 <div *ngIf="group && group.invalid && group.dirty && group.errors">
-  <p *ngIf="group.controls.password.dirty && group.controls.confirmPassword.dirty && group.errors.passwordMatch">
+  <p *ngIf="group.errors.passwordMatch &&
+    group.controls[passwordControlName || 'password'].dirty &&
+    group.controls[confirmPasswordControlName || 'confirmPassword'].dirty">
     Passwords must match.
   </p>
 </div>

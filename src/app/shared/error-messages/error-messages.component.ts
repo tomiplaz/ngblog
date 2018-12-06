@@ -11,6 +11,8 @@ export class ErrorMessagesComponent implements OnInit {
   @Input() name: string;
   @Input() control: FormControl;
   @Input() group: FormGroup;
+  @Input() passwordControlName: string;
+  @Input() confirmPasswordControlName: string;
 
   constructor() { }
 
