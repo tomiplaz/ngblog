@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class CommonService {
@@ -7,6 +8,15 @@ export class CommonService {
 
   trackById(index: number, object: any) {
     return object.id;
+  }
+
+  getPasswordsMatchValidator(passwordControlName: string, confirmPasswordControlName: string) {
+    return (formGroup: FormGroup) => {
+      const passwordValue = formGroup.get(passwordControlName).value;
+      const confirmPasswordValue = formGroup.get(confirmPasswordControlName).value;
+
+      return passwordValue !== confirmPasswordValue ? { passwordMatch: true } : null;
+    }
   }
 
 }

@@ -6,6 +6,7 @@ import { AppState } from '../../core/store/store';
 import { selectUser } from '../../core/store/auth/auth.selectors';
 import { User } from '../../users/user.interface';
 import { MessageService } from '../../core/message.service';
+import { CommonService } from '../../core/common.service';
 
 @Component({
   selector: 'app-change-password-form',
@@ -21,6 +22,7 @@ export class ChangePasswordFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<AppState>,
+    private commonService: CommonService,
     private usersService: UsersService,
     private messageService: MessageService,
   ) { }
@@ -35,11 +37,7 @@ export class ChangePasswordFormComponent implements OnInit {
       newPassword: [null, [Validators.required]],
       confirmNewPassword: [null, [Validators.required]],
     }, {
-      validator: (formGroup: FormGroup) => {
-        return formGroup.get('newPassword').value !== formGroup.get('confirmNewPassword').value ?
-          { passwordMatch: true } :
-          null;
-      }
+      validator: this.commonService.getPasswordsMatchValidator('newPassword', 'confirmNewPassword'),
     });
   }
 

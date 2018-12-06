@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { UsersService } from '../../core/api/users.service';
 import { MessageService } from '../../core/message.service';
+import { CommonService } from '../../core/common.service';
 
 @Component({
   selector: 'app-create-account-form',
@@ -19,6 +19,7 @@ export class CreateAccountFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private commonService: CommonService,
     private usersService: UsersService,
     private router: Router,
     private messageService: MessageService
@@ -31,11 +32,7 @@ export class CreateAccountFormComponent implements OnInit {
       password: [null, Validators.required],
       confirmPassword: [null, Validators.required],
     }, {
-      validator: (formGroup: FormGroup) => {
-        return formGroup.get('password').value !== formGroup.get('confirmPassword').value ?
-          { passwordMatch: true } :
-          null;
-      }
+      validator: this.commonService.getPasswordsMatchValidator('password', 'confirmPassword'),
     });
   }
 
