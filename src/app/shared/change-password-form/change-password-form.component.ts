@@ -7,6 +7,7 @@ import { selectUser } from '../../core/store/auth/auth.selectors';
 import { User, ChangePassword } from '../../users/user.interface';
 import { MessageService } from '../../core/message.service';
 import { CommonService } from '../../core/common.service';
+import { SetToken } from '../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'app-change-password-form',
@@ -47,8 +48,9 @@ export class ChangePasswordFormComponent implements OnInit {
       newPassword: this.changePasswordForm.controls.newPassword.value,
     };
 
-    this.usersService.changePassword(this.userId, data).subscribe(() => {
+    this.usersService.changePassword(this.userId, data).subscribe(response => {
       this.messageService.changePasswordSuccess();
+      this.store.dispatch(new SetToken(response.token));
     }, response => {
       this.messageService.error(response);
     }, () => {

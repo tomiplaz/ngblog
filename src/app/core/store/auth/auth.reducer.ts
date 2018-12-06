@@ -1,8 +1,8 @@
 import { User } from "../../../users/user.interface";
 import { AuthAction, AuthActionName } from "./auth.actions";
 
-export const JWT_KEY = 'bloggging-jwt';
-export const USER_KEY = 'bloggging-user';
+export const JWT_KEY = 'blogging-app-jwt';
+export const USER_KEY = 'blogging-app-user';
 
 export interface AuthState {
   token: string,
@@ -42,6 +42,11 @@ export const authReducer = (state: AuthState = initialState, action: AuthAction)
       localStorage.setItem(USER_KEY, JSON.stringify(action.user));
 
       return { ...state, user: action.user };
+    }
+    case AuthActionName.SET_TOKEN: {
+      localStorage.setItem(JWT_KEY, action.token);
+
+      return { ...state, token: action.token };
     }
     default:
       return state;

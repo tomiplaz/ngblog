@@ -5,6 +5,7 @@ export enum AuthActionName {
   LOGIN = '[Auth] Login',
   LOGOUT = '[Auth] Logout',
   SET_USER = '[Auth] Set User',
+  SET_TOKEN = '[Auth] Set Token',
 };
 
 export class Login implements Action {
@@ -23,4 +24,10 @@ export class SetUser implements Action {
   constructor(public user: User) { }
 }
 
-export type AuthAction = Login | Logout | SetUser;
+export class SetToken implements Action {
+  readonly type = AuthActionName.SET_TOKEN;
+
+  constructor(public token: string) { }
+}
+
+export type AuthAction = Login | Logout | SetUser | SetToken;
