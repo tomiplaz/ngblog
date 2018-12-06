@@ -10,6 +10,7 @@ export class MessageService {
     CREATE_POST_SUCCESS: 'Post created.',
     CREATE_COMMENT_SUCCESS: 'Comment created.',
     UPDATE_MY_PROFILE_SUCCESS: 'Profile updated.',
+    CHANGE_PASSWORD_SUCCESS: 'Password changed.',
     BAD_REQUEST: 'Bad request.',
     INTERNAL_SERVER_ERROR: 'Internal server error.',
     UNKNOWN_ERROR: 'Uknown error.',
@@ -35,6 +36,10 @@ export class MessageService {
 
   updateMyProfileSuccess() {
     this.toastrService.success(this.MESSAGES.UPDATE_MY_PROFILE_SUCCESS);
+  }
+
+  changePasswordSuccess() {
+    this.toastrService.success(this.MESSAGES.CHANGE_PASSWORD_SUCCESS);
   }
 
   error(response: any) {
