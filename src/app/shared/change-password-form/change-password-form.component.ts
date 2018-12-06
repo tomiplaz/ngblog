@@ -37,7 +37,7 @@ export class ChangePasswordFormComponent implements OnInit {
       newPassword: [null, [Validators.required]],
       confirmNewPassword: [null, [Validators.required]],
     }, {
-      validator: this.commonService.getPasswordsMatchValidator('newPassword', 'confirmNewPassword'),
+      validator: this.commonService.getPasswordMatchValidator('newPassword', 'confirmNewPassword'),
     });
   }
 

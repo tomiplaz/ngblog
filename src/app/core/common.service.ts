@@ -10,7 +10,7 @@ export class CommonService {
     return object.id;
   }
 
-  getPasswordsMatchValidator(passwordControlName: string, confirmPasswordControlName: string) {
+  getPasswordMatchValidator(passwordControlName: string, confirmPasswordControlName: string) {
     return (formGroup: FormGroup) => {
       const passwordValue = formGroup.get(passwordControlName).value;
       const confirmPasswordValue = formGroup.get(confirmPasswordControlName).value;

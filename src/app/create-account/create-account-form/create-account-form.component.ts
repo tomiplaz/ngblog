@@ -32,7 +32,7 @@ export class CreateAccountFormComponent implements OnInit {
       password: [null, Validators.required],
       confirmPassword: [null, Validators.required],
     }, {
-      validator: this.commonService.getPasswordsMatchValidator('password', 'confirmPassword'),
+      validator: this.commonService.getPasswordMatchValidator('password', 'confirmPassword'),
     });
   }
 
