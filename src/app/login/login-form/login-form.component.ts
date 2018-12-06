@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { LoginService } from '../../core/api/login.service';
 import { MessageService } from '../../core/message.service';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -20,6 +20,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
+    private authService: AuthService,
     private router: Router,
     private messageService: MessageService
   ) { }
@@ -39,5 +40,19 @@ export class LoginFormComponent implements OnInit {
       this.messageService.error(response);
     });
   }
-  
+
+  onForgotPasswordClick() {
+    const name = this.loginForm.controls.name.value;
+
+    if (name) {
+      this.authService.forgotPassword(name).subscribe(() => {
+        this.messageService.forgotPasswordEmailSent();
+      }, response => {
+        this.messageService.error(response);
+      });
+    } else {
+      this.messageService.forgotPasswordNameRequired();
+    }
+  }
+
 }
