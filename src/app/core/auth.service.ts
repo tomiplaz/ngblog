@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   forgotPassword(name: string): Observable<any> {
-    return this.httpClient.post<any>(`${environment.apiUrl}/forgotPassword`, { name });
+    return this.httpClient.post<any>(`${environment.apiUrl}/forgot-password`, { name });
   }
 
 }

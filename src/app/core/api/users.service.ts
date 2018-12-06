@@ -28,7 +28,7 @@ export class UsersService {
   }
 
   changePassword(userId: number, data: ChangePassword): Observable<any> {
-    return this.httpClient.post<any>(`${this.BASE_URL}/${userId}/changePassword`, data);
+    return this.httpClient.post<any>(`${this.BASE_URL}/${userId}/change-password`, data);
   }
 
 }
