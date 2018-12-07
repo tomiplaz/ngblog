@@ -50,7 +50,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.navigationEndEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
       .subscribe((event: NavigationEnd) => {
-        this.isAuthUrl = ['/login', '/create-account', '/reset-password'].includes(event.url);
+        this.isAuthUrl = event.url.includes('login') ||
+          event.url.includes('create-account') ||
+          event.url.includes('reset-password');
       });
     this.store.subscribe(state => {
       this.user = state.auth.user;
