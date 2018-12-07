@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { UsersService } from '../../core/api/users.service';
-import { AppState } from '../../core/store/store';
-import { selectUser } from '../../core/store/auth/auth.selectors';
-import { User, ChangePassword } from '../../users/user.interface';
-import { MessageService } from '../../core/message.service';
-import { CommonService } from '../../core/common.service';
-import { SetToken } from '../../core/store/auth/auth.actions';
+import { UsersService } from '../../../core/api/users.service';
+import { AppState } from '../../../core/store/store';
+import { selectUser } from '../../../core/store/auth/auth.selectors';
+import { User, ChangePassword } from '../../../users/user.interface';
+import { MessageService } from '../../../core/message.service';
+import { CommonService } from '../../../core/common.service';
+import { SetToken } from '../../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'app-change-password-form',

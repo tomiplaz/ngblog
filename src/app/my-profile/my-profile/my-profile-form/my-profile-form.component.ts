@@ -5,7 +5,7 @@ import { MessageService } from '../../../core/message.service';
 import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';
 import { selectUser } from '../../../core/store/auth/auth.selectors';
-import { User, UpdateUser } from '../../user.interface';
+import { User, UpdateUser } from '../../../users/user.interface';
 import { SetUser } from '../../../core/store/auth/auth.actions';
 
 @Component({
