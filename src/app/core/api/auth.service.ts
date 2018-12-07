@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/share';
 import { environment } from '../../../environments/environment';
 import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
