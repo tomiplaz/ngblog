@@ -11,8 +11,8 @@ export class MessageService {
     CREATE_COMMENT_SUCCESS: 'Comment created.',
     UPDATE_MY_PROFILE_SUCCESS: 'Profile updated.',
     CHANGE_PASSWORD_SUCCESS: 'Password changed.',
-    FORGOT_PASSWORD_EMAIL_SENT: 'Please check your email to change your password.',
-    FORGOT_PASSWORD_NAME_REQUIRED: 'Name is required to send you an email for password change.',
+    FORGOT_PASSWORD_EMAIL_SENT: 'Please check your email to reset your password.',
+    FORGOT_PASSWORD_EMAIL_REQUIRED: 'Email is required for forgotten password.',
     BAD_REQUEST: 'Bad request.',
     INTERNAL_SERVER_ERROR: 'Internal server error.',
     UNKNOWN_ERROR: 'Uknown error.',
@@ -48,8 +48,8 @@ export class MessageService {
     this.toastrService.success(this.MESSAGES.FORGOT_PASSWORD_EMAIL_SENT);
   }
 
-  forgotPasswordNameRequired() {
-    this.toastrService.error(this.MESSAGES.FORGOT_PASSWORD_NAME_REQUIRED);
+  forgotPasswordEmailRequired() {
+    this.toastrService.error(this.MESSAGES.FORGOT_PASSWORD_EMAIL_REQUIRED);
   }
 
   error(response: any) {

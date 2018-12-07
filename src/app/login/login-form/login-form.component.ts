@@ -25,7 +25,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      name: [null, Validators.required],
+      email: [null, Validators.required, Validators.email],
       password: [null, Validators.required]
     });
   }
@@ -40,16 +40,16 @@ export class LoginFormComponent implements OnInit {
   }
 
   onForgotPasswordClick() {
-    const name = this.loginForm.controls.name.value;
+    const email = this.loginForm.controls.email.value;
 
-    if (name) {
-      this.authService.forgotPassword(name).subscribe(() => {
+    if (email) {
+      this.authService.forgotPassword(email).subscribe(() => {
         this.messageService.forgotPasswordEmailSent();
       }, response => {
         this.messageService.error(response);
       });
     } else {
-      this.messageService.forgotPasswordNameRequired();
+      this.messageService.forgotPasswordEmailRequired();
     }
   }
 

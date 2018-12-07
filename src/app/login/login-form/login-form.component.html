@@ -1,8 +1,8 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="form-control">
-    <label for="name">Name</label>
-    <input type="text" name="name" placeholder="Enter your name" formControlName="name">
-    <app-error-messages [name]="'Name'" [control]="loginForm.controls.name"></app-error-messages>
+    <label for="email">Email</label>
+    <input type="email" name="email" placeholder="Enter your email" formControlName="email">
+    <app-error-messages [name]="'Email'" [control]="loginForm.controls.email"></app-error-messages>
   </div>
   <div class="form-control">
     <label for="password">Password</label>
