@@ -8,7 +8,6 @@ import { User } from '../../users/user.interface';
 import { authReducer } from '../store/auth/auth.reducer';
 import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
-import { environment } from '../../../environments/environment';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -37,7 +36,7 @@ describe('AuthService', () => {
 
   describe('#login', () => {
     let httpTC: HttpTestingController;
-    const loginUrl = `${environment.apiUrl}/login`;
+    const loginUrl = `${service.BASE_URL}/login`;
     const credentials: Credentials = { email: user.email, password: 'password' };
     const mockSuccessResponse: { token: string, user: User } = { token: 'jwt', user };
 
