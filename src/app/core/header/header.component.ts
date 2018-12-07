@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
-import { LoginService } from '../api/login.service';
+import { AuthService } from '../api/auth.service';
 import { User } from '../../users/user.interface';
 import { AppState } from '../store/store';
 import { ToggleHeader } from '../store/session/session.actions';
@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private loginService: LoginService,
+    private authService: AuthService,
     private store: Store<AppState>,
   ) { }
 
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogoutClick() {
-    this.loginService.logout();
+    this.authService.logout();
     this.router.navigate(['home']);
   }
 

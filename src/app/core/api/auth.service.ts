@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/share';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Credentials } from '../../login/credentials.interface';
 import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
 
-@Injectable()
-export class LoginService {
+export interface Credentials {
+  email: string,
+  password: string
+}
 
-  readonly URL = `${environment.apiUrl}/login`;
+@Injectable()
+export class AuthService {
 
   constructor(private httpClient: HttpClient, private store: Store<AppState>) { }
 
   login(credentials: Credentials): Observable<any> {
-    const observable = this.httpClient.post<any>(this.URL, credentials).share();
+    const url = `${environment.apiUrl}/login`;
+    const observable = this.httpClient.post<any>(url, credentials).share();
 
     observable.subscribe(response => {
       this.store.dispatch(new Login(response.token, response.user));
@@ -27,6 +29,12 @@ export class LoginService {
 
   logout() {
     this.store.dispatch(new Logout());
+  }
+
+  forgotPassword(name: string): Observable<any> {
+    const url = `${environment.apiUrl}/forgot-password`;
+
+    return this.httpClient.post<any>(url, { name });
   }
 
 }

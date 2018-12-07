@@ -1,16 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { StoreModule, Store } from '@ngrx/store';
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 import { ApiModule } from './api.module';
-import { Credentials } from '../../login/credentials.interface';
+import { Credentials } from './auth.service';
 import { User } from '../../users/user.interface';
 import { authReducer } from '../store/auth/auth.reducer';
 import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
+import { environment } from '../../../environments/environment';
 
-describe('LoginService', () => {
-  let service: LoginService;
+describe('AuthService', () => {
+  let service: AuthService;
   let store: Store<AppState>;
   const user: User = { id: 1, name: 'foo', email: 'foo@bar.com' };
 
@@ -23,10 +24,10 @@ describe('LoginService', () => {
           auth: authReducer,
         }),
       ],
-      providers: [LoginService]
+      providers: [AuthService]
     });
 
-    service = TestBed.get(LoginService);
+    service = TestBed.get(AuthService);
     store = TestBed.get(Store);
   });
 
@@ -36,6 +37,7 @@ describe('LoginService', () => {
 
   describe('#login', () => {
     let httpTC: HttpTestingController;
+    const loginUrl = `${environment.apiUrl}/login`;
     const credentials: Credentials = { email: user.email, password: 'password' };
     const mockSuccessResponse: { token: string, user: User } = { token: 'jwt', user };
 
@@ -50,7 +52,7 @@ describe('LoginService', () => {
     it('should send a POST request with credentials', () => {
       service.login(credentials);
 
-      const mockRequest = httpTC.expectOne(service.URL);
+      const mockRequest = httpTC.expectOne(loginUrl);
       expect(mockRequest.request.method).toBe('POST');
       expect(mockRequest.request.body).toEqual(credentials);
     });
@@ -60,14 +62,14 @@ describe('LoginService', () => {
         expect(response).toEqual(mockSuccessResponse);
       });
 
-      httpTC.expectOne(service.URL).flush(mockSuccessResponse);
+      httpTC.expectOne(loginUrl).flush(mockSuccessResponse);
     });
 
     it('should dispatch Login action with token and user on success', () => {
       const dispatchSpy = spyOn(store, 'dispatch');
 
       service.login(credentials);
-      httpTC.expectOne(service.URL).flush(mockSuccessResponse);
+      httpTC.expectOne(loginUrl).flush(mockSuccessResponse);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(new Login(mockSuccessResponse.token, mockSuccessResponse.user));
@@ -77,7 +79,7 @@ describe('LoginService', () => {
       const dispatchSpy = spyOn(store, 'dispatch');
 
       service.login(credentials);
-      httpTC.expectOne(service.URL).flush(null, { status: 400, statusText: 'Bad Request' });
+      httpTC.expectOne(loginUrl).flush(null, { status: 400, statusText: 'Bad Request' });
 
       expect(dispatchSpy).toHaveBeenCalledTimes(0);
     });

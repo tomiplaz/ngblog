@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 import { PostsService } from './posts.service';
 import { UsersService } from './users.service';
 
@@ -9,7 +9,7 @@ import { UsersService } from './users.service';
     HttpClientModule
   ],
   providers: [
-    LoginService,
+    AuthService,
     PostsService,
     UsersService
   ]

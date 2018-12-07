@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../core/api/login.service';
+import { AuthService } from '../../core/api/auth.service';
 import { MessageService } from '../../core/message.service';
-import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -19,7 +18,6 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
     private authService: AuthService,
     private router: Router,
     private messageService: MessageService
@@ -33,7 +31,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loginService.login(this.loginForm.value).subscribe(() => {
+    this.authService.login(this.loginForm.value).subscribe(() => {
       this.messageService.loginSuccess();
       this.router.navigate(['home']);
     }, response => {
