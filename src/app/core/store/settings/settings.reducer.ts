@@ -20,7 +20,7 @@ const initialState: SettingsState = localStorageSettings ? {
   size: DEFAULT_SIZE,
 };
 
-export const settingsReducer = (state: SettingsState = initialState, action: SettingsAction) => {
+export function settingsReducer(state: SettingsState = initialState, action: SettingsAction) {
   switch (action.type) {
     case SettingsActionName.TOGGLE_THEME: {
       let newState: SettingsState = {

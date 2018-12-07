@@ -12,7 +12,7 @@ const initialState: SessionState = {
   isHeaderToggleDisabled: true,
 };
 
-export const sessionReducer = (state: SessionState = initialState, action: SessionAction) => {
+export function sessionReducer(state: SessionState = initialState, action: SessionAction) {
   switch (action.type) {
     case SessionActionName.TOGGLE_HEADER:
       return { ...state, isHeaderOpen: !state.isHeaderOpen };

@@ -16,7 +16,7 @@ const initialState: AuthState = {
   isLoggedIn: Boolean(localStorage.getItem(JWT_KEY)),
 };
 
-export const authReducer = (state: AuthState = initialState, action: AuthAction) => {
+export function authReducer(state: AuthState = initialState, action: AuthAction) {
   switch (action.type) {
     case AuthActionName.LOGIN: {
       localStorage.setItem(JWT_KEY, action.token);
