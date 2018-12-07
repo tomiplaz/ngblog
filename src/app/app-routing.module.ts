@@ -4,7 +4,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { LoggedInGuard } from './core/logged-in-guard.service';
-import { MyProfileComponent } from './users/my-profile/my-profile.component';
 
 const routes: Routes = [
   {
@@ -15,11 +14,6 @@ const routes: Routes = [
   {
     path: 'create-post',
     component: CreatePostComponent,
-    canActivate: [ LoggedInGuard ],
-  },
-  {
-    path: 'my-profile',
-    component: MyProfileComponent,
     canActivate: [ LoggedInGuard ],
   },
   {
