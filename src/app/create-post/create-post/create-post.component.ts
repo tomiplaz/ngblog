@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostFormInterface } from '../post-form/post-form.interface';
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
-import { Post } from '../post.interface';
+import { Post } from '../../posts/post.interface';
 
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css']
 })
-export class CreatePostComponent implements PostFormInterface {
+export class CreatePostComponent {
 
   constructor(
     private router: Router,

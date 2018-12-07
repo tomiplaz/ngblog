@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyProfileModule } from './my-profile/my-profile.module';
+import { CreatePostModule } from './create-post/create-post.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MyProfileModule } from './my-profile/my-profile.module';
     LoginModule,
     CreateAccountModule,
     MyProfileModule,
+    CreatePostModule,
     PostsModule,
     UsersModule,
     AppRoutingModule

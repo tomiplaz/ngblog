@@ -5,14 +5,11 @@ import { QuillModule } from 'ngx-quill';
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
-import { PostFormComponent } from './post-form/post-form.component';
-import { CreatePostComponent } from './create-post/create-post.component';
 import { PostsResolverService } from './posts-resolver.service';
 import { PostResolverService } from './post-resolver.service';
 import { PostItemComponent } from './post-item/post-item.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import { CommentItemComponent } from './comment-item/comment-item.component';
-import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -20,13 +17,10 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     QuillModule,
     PostsRoutingModule,
-    SharedModule,
   ],
   declarations: [
     PostsComponent,
     PostComponent,
-    PostFormComponent,
-    CreatePostComponent,
     PostItemComponent,
     CommentFormComponent,
     CommentItemComponent,
