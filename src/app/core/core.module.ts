@@ -18,7 +18,10 @@ import { store } from './store/store';
     CommonModule,
     ApiModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({ timeOut: 2000 }),
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-center-center',
+    }),
     StoreModule.forRoot(store),
   ],
   declarations: [
