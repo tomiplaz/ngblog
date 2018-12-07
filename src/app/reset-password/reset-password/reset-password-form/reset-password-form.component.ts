@@ -35,7 +35,7 @@ export class ResetPasswordFormComponent implements OnInit {
   onSubmit() {
     const data: ResetPassword = {
       token: this.route.snapshot.queryParamMap.get('token'),
-      password: this.resetPasswordForm.controls.newPassword.value,
+      newPassword: this.resetPasswordForm.controls.newPassword.value,
     };
 
     this.authService.resetPassword(data).subscribe(() => {

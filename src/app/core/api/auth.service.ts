@@ -14,7 +14,7 @@ export interface Credentials {
 
 export interface ResetPassword {
   token: string,
-  password: string,
+  newPassword: string,
 }
 
 @Injectable()
