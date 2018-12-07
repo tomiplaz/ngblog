@@ -13,6 +13,7 @@ export class MessageService {
     CHANGE_PASSWORD_SUCCESS: 'Password changed.',
     FORGOT_PASSWORD_EMAIL_SENT: 'Please check your email to reset your password.',
     FORGOT_PASSWORD_EMAIL_REQUIRED: 'Email is required for forgotten password.',
+    RESET_PASSWORD_SUCCESS: 'Password reset.',
     BAD_REQUEST: 'Bad request.',
     INTERNAL_SERVER_ERROR: 'Internal server error.',
     UNKNOWN_ERROR: 'Uknown error.',
@@ -50,6 +51,10 @@ export class MessageService {
 
   forgotPasswordEmailRequired() {
     this.toastrService.error(this.MESSAGES.FORGOT_PASSWORD_EMAIL_REQUIRED);
+  }
+
+  resetPasswordSuccess() {
+    this.toastrService.success(this.MESSAGES.RESET_PASSWORD_SUCCESS);
   }
 
   error(response: any) {

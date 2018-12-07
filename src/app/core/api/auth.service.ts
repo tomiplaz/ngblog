@@ -12,6 +12,11 @@ export interface Credentials {
   password: string
 }
 
+export interface ResetPassword {
+  token: string,
+  password: string,
+}
+
 @Injectable()
 export class AuthService {
 
@@ -35,6 +40,10 @@ export class AuthService {
 
   forgotPassword(email: string): Observable<any> {
     return this.httpClient.post<any>(`${this.BASE_URL}/forgot-password`, { email });
+  }
+
+  resetPassword(data: ResetPassword): Observable<any> {
+    return this.httpClient.post<any>(`${this.BASE_URL}/reset-password`, data);
   }
 
 }

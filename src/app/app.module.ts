@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyProfileModule } from './my-profile/my-profile.module';
 import { CreatePostModule } from './create-post/create-post.module';
+import { ResetPasswordModule } from './reset-password/reset-password.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CreatePostModule } from './create-post/create-post.module';
     CreateAccountModule,
     MyProfileModule,
     CreatePostModule,
+    ResetPasswordModule,
     PostsModule,
     UsersModule,
     AppRoutingModule
