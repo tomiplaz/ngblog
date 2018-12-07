@@ -75,7 +75,7 @@ export class MessageService {
         }
         break;
       case 500:
-        this.toastrService.error(this.MESSAGES.INTERNAL_SERVER_ERROR);
+        this.toastrService.error(response.error.error || this.MESSAGES.INTERNAL_SERVER_ERROR);
         break;
       default:
         this.toastrService.error(this.MESSAGES.UNKNOWN_ERROR);
