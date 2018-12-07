@@ -6,10 +6,7 @@ import { MessageService } from '../../core/message.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: [
-    '../../shared/shared.css',
-    './user.component.css',
-  ]
+  styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
 

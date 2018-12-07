@@ -8,10 +8,7 @@ import { CommonService } from '../../core/common.service';
 @Component({
   selector: 'app-create-account-form',
   templateUrl: './create-account-form.component.html',
-  styleUrls: [
-    '../../shared/shared.css',
-    './create-account-form.component.css',
-  ]
+  styleUrls: ['./create-account-form.component.css']
 })
 export class CreateAccountFormComponent implements OnInit {
 

@@ -7,10 +7,7 @@ import { MessageService } from '../../core/message.service';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: [
-    '../../shared/shared.css',
-    './posts.component.css',
-  ]
+  styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
 

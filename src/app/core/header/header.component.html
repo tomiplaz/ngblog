@@ -2,7 +2,7 @@
   <div class="title clickable" (click)="router.navigate(['home'])">BloggingApp</div>
   <app-breadcrumbs></app-breadcrumbs>
 </div>
-<div class="navigation" [hidden]="isLoginOrCreateAccountUrl">
+<div class="navigation" [hidden]="isAuthUrl">
   <ul>
     <ng-container *ngIf="user">
       <li>{{ user.name }}</li>

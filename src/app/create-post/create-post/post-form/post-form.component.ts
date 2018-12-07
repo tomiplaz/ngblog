@@ -9,10 +9,7 @@ import { User } from '../../../users/user.interface';
 @Component({
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
-  styleUrls: [
-    '../../../shared/shared.css',
-    './post-form.component.css',
-  ]
+  styleUrls: ['./post-form.component.css']
 })
 export class PostFormComponent implements OnInit, OnDestroy {
 

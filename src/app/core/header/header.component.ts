@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   user: User;
   isToggleDisabled: boolean;
-  isLoginOrCreateAccountUrl: boolean;
+  isAuthUrl: boolean;
   loggedInRoutingItems: RoutingItem[] = [
     { commands: ['my-profile'], text: 'Profile' },
     { commands: ['create-post'], text: 'Post' },
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.navigationEndEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
       .subscribe((event: NavigationEnd) => {
-        this.isLoginOrCreateAccountUrl = ['/login', '/create-account'].includes(event.url);
+        this.isAuthUrl = ['/login', '/create-account', '/reset-password'].includes(event.url);
       });
     this.store.subscribe(state => {
       this.user = state.auth.user;

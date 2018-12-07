@@ -5,10 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-comment-item',
   templateUrl: './comment-item.component.html',
-  styleUrls: [
-    './../../shared/shared.css',
-    './comment-item.component.css',
-  ]
+  styleUrls: ['./comment-item.component.css']
 })
 export class CommentItemComponent implements OnInit {
 

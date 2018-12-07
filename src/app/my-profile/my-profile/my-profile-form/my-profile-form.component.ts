@@ -11,10 +11,7 @@ import { SetUser } from '../../../core/store/auth/auth.actions';
 @Component({
   selector: 'app-my-profile-form',
   templateUrl: './my-profile-form.component.html',
-  styleUrls: [
-    '../../../shared/shared.css',
-    './my-profile-form.component.css',
-  ]
+  styleUrls: ['./my-profile-form.component.css']
 })
 export class MyProfileFormComponent implements OnInit {
 

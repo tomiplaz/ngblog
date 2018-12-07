@@ -3,10 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: [
-    '../shared/shared.css',
-    './login.component.css',
-  ]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 

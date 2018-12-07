@@ -12,10 +12,7 @@ import { User } from '../../users/user.interface';
 @Component({
   selector: 'app-comment-form',
   templateUrl: './comment-form.component.html',
-  styleUrls: [
-    '../../shared/shared.css',
-    './comment-form.component.css',
-  ]
+  styleUrls: ['./comment-form.component.css']
 })
 export class CommentFormComponent implements OnInit, OnDestroy {
 

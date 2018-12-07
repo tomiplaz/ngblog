@@ -5,10 +5,7 @@ import { User } from '../user.interface';
 @Component({
   selector: 'app-user-item',
   templateUrl: './user-item.component.html',
-  styleUrls: [
-    './../../shared/shared.css',
-    './user-item.component.css',
-  ]
+  styleUrls: ['./user-item.component.css']
 })
 export class UserItemComponent implements OnInit {
 

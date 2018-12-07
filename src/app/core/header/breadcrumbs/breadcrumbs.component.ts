@@ -6,10 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: [
-    '../../../shared/shared.css',
-    './breadcrumbs.component.css',
-  ]
+  styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
