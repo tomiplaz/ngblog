@@ -25,7 +25,7 @@ export class ResetPasswordFormComponent implements OnInit {
 
   ngOnInit() {
     this.resetPasswordForm = this.formBuilder.group({
-      newPassword: [null, Validators.required],
+      newPassword: [null, [Validators.required, Validators.minLength(8)]],
       confirmNewPassword: [null, Validators.required],
     }, {
       validator: this.commonService.getPasswordMatchValidator('newPassword', 'confirmNewPassword'),

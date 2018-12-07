@@ -26,7 +26,7 @@ export class CreateAccountFormComponent implements OnInit {
     this.createAccountForm = this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       email: [null, [Validators.required, Validators.email, Validators.maxLength(100)]],
-      password: [null, Validators.required],
+      password: [null, Validators.required, Validators.minLength(8)],
       confirmPassword: [null, Validators.required],
     }, {
       validator: this.commonService.getPasswordMatchValidator('password', 'confirmPassword'),
