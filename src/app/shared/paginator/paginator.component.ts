@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PaginatedResponse } from './paginated-response';
 import { HttpClient } from '@angular/common/http';
+import { MessageService } from '../../core/message.service';
 
 @Component({
   selector: 'app-paginator',
@@ -10,10 +11,12 @@ import { HttpClient } from '@angular/common/http';
 export class PaginatorComponent implements OnInit {
 
   @Input() results: PaginatedResponse<any>;
+  @Input() scrollToTopOnFetch: boolean = true;
   @Output() resultsFetched: EventEmitter<PaginatedResponse<any>> = new EventEmitter<PaginatedResponse<any>>();
 
   constructor(
     private httpClient: HttpClient,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
@@ -36,7 +39,13 @@ export class PaginatorComponent implements OnInit {
 
   private fetchResults(url: string) {
     this.httpClient.get(url).subscribe((response: PaginatedResponse<any>) => {
+      if (this.scrollToTopOnFetch) {
+        window.scrollTo(0, 0);
+      }
+
       this.resultsFetched.next(response);
+    }, response => {
+      this.messageService.error(response);
     });
   }
 
