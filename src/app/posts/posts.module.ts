@@ -9,12 +9,14 @@ import { PostResolverService } from './post-resolver.service';
 import { PostItemComponent } from './post-item/post-item.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import { CommentItemComponent } from './comment-item/comment-item.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     PostsRoutingModule,
+    SharedModule,
   ],
   declarations: [
     PostsComponent,

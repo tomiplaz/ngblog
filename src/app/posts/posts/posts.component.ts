@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../post.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response';
 
 @Component({
   selector: 'app-posts',
@@ -11,7 +12,7 @@ import { MessageService } from '../../core/message.service';
 })
 export class PostsComponent implements OnInit {
 
-  posts: Post[];
+  results: PaginatedResponse<Post>;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +22,8 @@ export class PostsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe((data: { posts: Post[] }) => {
-      this.posts = data.posts;
+    this.route.data.subscribe((data) => {
+      this.results = data.posts;
     }, error => {
       this.messageService.error(error);
     });
@@ -30,6 +31,10 @@ export class PostsComponent implements OnInit {
 
   onPostTitleClick(stringId: string) {
     this.router.navigate([stringId], { relativeTo: this.route });
+  }
+
+  onResultsFetched(response: PaginatedResponse<Post>) {
+    this.results = response;
   }
 
 }
