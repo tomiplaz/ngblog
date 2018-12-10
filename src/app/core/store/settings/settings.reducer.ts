@@ -2,7 +2,7 @@ import { Theme, Size } from "./settings.values";
 import { SettingsActionName, SettingsAction } from "./settings.actions";
 
 const SETTINGS_KEY = 'bloggging-settings';
-const DEFAULT_THEME = Theme.Light;
+const DEFAULT_THEME = Theme.Dark;
 const DEFAULT_SIZE = Size.Medium;
 
 export interface SettingsState {
