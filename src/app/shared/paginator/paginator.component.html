@@ -1,3 +1,19 @@
-<div (click)="onPrevClick()" [hidden]="!results.prev_page_url">Prev</div>
+<div
+  class="label"
+  [ngClass]="{
+    'clickable': results.prev_page_url,
+    'disabled': !results.prev_page_url
+  }"
+  (click)="onPrevClick()">
+  Prev
+</div>
 <div>{{ results.current_page }} / {{ results.last_page }}</div>
-<div (click)="onNextClick()" [hidden]="!results.next_page_url">Next</div>
+<div
+  class="label"
+  [ngClass]="{
+    'clickable': results.next_page_url,
+    'disabled': !results.next_page_url
+  }"
+  (click)="onNextClick()">
+  Next
+</div>

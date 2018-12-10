@@ -23,11 +23,15 @@ export class PaginatorComponent implements OnInit {
   }
 
   onPrevClick() {
-    this.fetchResults(this.results.prev_page_url);
+    if (this.results.prev_page_url) {
+      this.fetchResults(this.results.prev_page_url);
+    }
   }
 
   onNextClick() {
-    this.fetchResults(this.results.next_page_url);
+    if (this.results.next_page_url) {
+      this.fetchResults(this.results.next_page_url);
+    }
   }
 
   private fetchResults(url: string) {
