@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaginatorComponent implements OnInit {
 
-  @Input() results: PaginatedResponse;
-  @Output() resultsFetched: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Input() results: PaginatedResponse<any>;
+  @Output() resultsFetched: EventEmitter<PaginatedResponse<any>> = new EventEmitter<PaginatedResponse<any>>();
 
   constructor(
     private httpClient: HttpClient,
@@ -31,8 +31,8 @@ export class PaginatorComponent implements OnInit {
   }
 
   private fetchResults(url: string) {
-    this.httpClient.get(url).subscribe((response: PaginatedResponse) => {
-      this.resultsFetched.next(response.data);
+    this.httpClient.get(url).subscribe((response: PaginatedResponse<any>) => {
+      this.resultsFetched.next(response);
     });
   }
 
