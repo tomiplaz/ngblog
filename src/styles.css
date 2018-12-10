@@ -42,12 +42,8 @@ textarea {
   flex: 1 100%;
 }
 
-.toggle span {
-  cursor: pointer;
-}
-
-.toggle.disabled span {
-  cursor: default;
+.disabled {
+  opacity: 0.42;
 }
 
 .form-control {
@@ -68,8 +64,12 @@ textarea {
   text-decoration: underline;
 }
 
-.clickable:hover {
+.clickable:hover, .toggle:hover {
   cursor: pointer;
+}
+
+.disabled:hover {
+  cursor: default;
 }
 
 .ql-toolbar, .ql-container {
