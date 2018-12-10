@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { Post } from '../../posts/post.interface';
 import { Comment } from '../../posts/comment.interface';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response';
 
 @Injectable()
 export class PostsService {
@@ -12,14 +13,14 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(tag: string, user: string): Observable<Post[]> {
+  getPosts(tag: string, user: string): Observable<PaginatedResponse<Post>> {
     const options = {
       params: {
         ...tag && { tag },
         ...user && { user },
       },
     };
-    return this.httpClient.get<Post[]>(this.BASE_URL, options);
+    return this.httpClient.get<PaginatedResponse<Post>>(this.BASE_URL, options);
   }
 
   getPost(stringId: string): Observable<Post> {

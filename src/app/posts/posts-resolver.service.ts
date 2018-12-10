@@ -3,13 +3,14 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 import { PostsService } from '../core/api/posts.service';
 import { Post } from './post.interface';
+import { PaginatedResponse } from '../shared/paginator/paginated-response';
 
 @Injectable()
-export class PostsResolverService implements Resolve<Post[]> {
+export class PostsResolverService implements Resolve<PaginatedResponse<Post>> {
 
   constructor(private postsService: PostsService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PaginatedResponse<Post>> {
     return this.postsService.getPosts(
       route.queryParamMap.get('tag'),
       route.queryParamMap.get('user'),
