@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response';
 
 @Component({
   selector: 'app-users',
@@ -11,7 +12,7 @@ import { MessageService } from '../../core/message.service';
 })
 export class UsersComponent implements OnInit {
 
-  users: User[];
+  results: PaginatedResponse<User>;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +22,8 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe((data: { users: User[] }) => {
-      this.users = data.users;
+    this.route.data.subscribe((data: { users: PaginatedResponse<User> }) => {
+      this.results = data.users;
     }, error => {
       this.messageService.error(error);
     });
@@ -30,6 +31,10 @@ export class UsersComponent implements OnInit {
 
   onUserNameClick(stringId: string) {
     this.router.navigate([stringId], { relativeTo: this.route });
+  }
+
+  onResultsFetched(response: PaginatedResponse<User>) {
+    this.results = response;
   }
 
 }

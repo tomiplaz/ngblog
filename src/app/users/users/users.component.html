@@ -1,6 +1,10 @@
 <div class="label margin-bottom-s">Users</div>
 <app-user-item
-  *ngFor="let user of users; trackBy: commonService.trackById"
+  *ngFor="let user of results.data; trackBy: commonService.trackById"
   [user]="user"
   [isNameClickable]="true">
 </app-user-item>
+<app-paginator
+  [results]="results"
+  (resultsFetched)="onResultsFetched($event)">
+</app-paginator>

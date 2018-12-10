@@ -22,7 +22,7 @@ export class PostsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe((data) => {
+    this.route.data.subscribe((data: { posts: PaginatedResponse<Post> }) => {
       this.results = data.posts;
     }, error => {
       this.messageService.error(error);

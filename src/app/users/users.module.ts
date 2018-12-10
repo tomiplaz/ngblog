@@ -7,11 +7,13 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
 import { UsersResolverService } from './users-resolver.service';
 import { UserResolverService } from './user-resolver.service';
 import { UserItemComponent } from './user-item/user-item.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     UsersRoutingModule,
+    SharedModule,
   ],
   declarations: [
     UsersComponent,
