@@ -16,10 +16,7 @@ interface RoutingItem {
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: [
-    '../../shared/shared.css',
-    './header.component.css',
-  ]
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 

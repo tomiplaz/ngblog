@@ -1,7 +1,0 @@
-:host(.light) .toggle.disabled {
-  color: var(--disabled-dark-color);
-}
-
-:host(.dark) .toggle.disabled {
-  color: var(--disabled-light-color);
-}

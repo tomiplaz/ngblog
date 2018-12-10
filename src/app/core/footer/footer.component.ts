@@ -8,10 +8,7 @@ import { ToggleFooter } from '../store/session/session.actions';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: [
-    '../../shared/shared.css',
-    './footer.component.css',
-  ]
+  styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit, OnDestroy {
 
