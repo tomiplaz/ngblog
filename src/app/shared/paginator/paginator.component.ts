@@ -1,0 +1,39 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PaginatedResponse } from './paginated-response';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-paginator',
+  templateUrl: './paginator.component.html',
+  styleUrls: ['./paginator.component.css']
+})
+export class PaginatorComponent implements OnInit {
+
+  @Input() results: PaginatedResponse;
+  @Output() resultsFetched: EventEmitter<any[]> = new EventEmitter<any[]>();
+
+  constructor(
+    private httpClient: HttpClient,
+  ) { }
+
+  ngOnInit() {
+    if (!this.results) {
+      throw new Error('PaginationComponent requires results: PaginatedResponse property!');
+    }
+  }
+
+  onPrevClick() {
+    this.fetchResults(this.results.prev_page_url);
+  }
+
+  onNextClick() {
+    this.fetchResults(this.results.next_page_url);
+  }
+
+  private fetchResults(url: string) {
+    this.httpClient.get(url).subscribe((response: PaginatedResponse) => {
+      this.resultsFetched.next(response.data);
+    });
+  }
+
+}
