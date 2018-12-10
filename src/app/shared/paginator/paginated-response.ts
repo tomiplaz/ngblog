@@ -1,5 +1,5 @@
-export interface PaginatedResponse {
-  data: any[],
+export interface PaginatedResponse<Resource> {
+  data: Resource[],
   current_page: number,
   last_page: number,
   per_page: number,
