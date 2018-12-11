@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HomeData, Stats } from './home-data.interface';
 import { Post } from '../posts/post.interface';
 import { CommonService } from '../core/common.service';
@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private commonService: CommonService,
   ) { }
 
@@ -27,14 +26,6 @@ export class HomeComponent implements OnInit {
       this.randomPosts = data.data.posts.random;
       this.stats = data.data.stats;
     });
-  }
-
-  onUsersClick() {
-    this.router.navigate(['users']);
-  }
-
-  onPostsClick() {
-    this.router.navigate(['posts']);
   }
 
 }

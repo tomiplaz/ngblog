@@ -3,7 +3,7 @@
 </h2>
 <div class="metadata">
   <span class="label">By</span>
-  <span class="clickable" (click)="onUserNameClick()">{{ post.user.name }}</span>
+  <span class="clickable" [routerLink]="['/users', post.user.string_id]">{{ post.user.name }}</span>
   <span class="label">On</span>
   <span>{{ post.created_at | date:'medium' }}</span>
 </div>
@@ -17,7 +17,7 @@
   <span class="label">Tags</span>
   <ng-container *ngIf="post.tags.length">
     <ng-container *ngFor="let tag of post.tags">
-      <span class="clickable" (click)="onTagClick(tag.key)">#{{ tag.key }}</span>
+      <span class="clickable" [routerLink]="['/posts']" [queryParams]="{ tag: tag.key }">#{{ tag.key }}</span>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="!post.tags.length">/</ng-container>

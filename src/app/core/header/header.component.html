@@ -1,5 +1,5 @@
 <div class="navigation">
-  <div class="title clickable" (click)="router.navigate(['home'])">BloggingApp</div>
+  <div class="title clickable" routerLink="/home">BloggingApp</div>
   <app-breadcrumbs></app-breadcrumbs>
 </div>
 <div class="navigation" [hidden]="isAuthUrl">
@@ -7,7 +7,7 @@
     <ng-container *ngIf="user">
       <li>{{ user.name }}</li>
       <li *ngFor="let item of loggedInRoutingItems">
-        <span class="label clickable" (click)="router.navigate(item.commands)">{{ item.text }}</span>
+        <span class="label clickable" [routerLink]="item.commands">{{ item.text }}</span>
       </li>
       <li>
         <span class="label clickable" (click)="onLogoutClick()">Logout</span>
@@ -15,7 +15,7 @@
     </ng-container>
     <ng-container *ngIf="!user">
       <li *ngFor="let item of loggedOutRoutingItems">
-        <span class="label clickable" (click)="router.navigate(item.commands)">{{ item.text }}</span>
+        <span class="label clickable" [routerLink]="item.commands">{{ item.text }}</span>
       </li>
     </ng-container>
   </ul>

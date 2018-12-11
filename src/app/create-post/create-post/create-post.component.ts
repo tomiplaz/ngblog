@@ -22,7 +22,7 @@ export class CreatePostComponent {
   submitHandler(post: Post) {
     this.postsService.createPost(post).subscribe(() => {
       this.messageService.createPostSuccess();
-      this.router.navigate(['posts']);
+      this.router.navigate(['/posts']);
     }, response => {
       this.messageService.error(response);
     });

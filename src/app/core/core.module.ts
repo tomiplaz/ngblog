@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
+import { ToastrModule } from 'ngx-toastr';
 import { ApiModule } from './api/api.module';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -23,6 +24,7 @@ import { store } from './store/store';
       positionClass: 'toast-center-center',
     }),
     StoreModule.forRoot(store),
+    RouterModule,
   ],
   declarations: [
     HeaderComponent,

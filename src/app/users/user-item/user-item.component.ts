@@ -22,12 +22,8 @@ export class UserItemComponent implements OnInit {
 
   onNameClick() {
     if (this.isNameClickable) {
-      this.router.navigate(['users', this.user.string_id]);
+      this.router.navigate(['/users', this.user.string_id]);
     }
-  }
-
-  onPostsClick() {
-    this.router.navigate(['posts'], { queryParams: { user: this.user.string_id } });
   }
 
 }

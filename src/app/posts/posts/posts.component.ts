@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Post } from '../post.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
@@ -16,7 +16,6 @@ export class PostsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private commonService: CommonService,
     private messageService: MessageService,
   ) { }
@@ -27,10 +26,6 @@ export class PostsComponent implements OnInit {
     }, error => {
       this.messageService.error(error);
     });
-  }
-
-  onPostTitleClick(stringId: string) {
-    this.router.navigate([stringId], { relativeTo: this.route });
   }
 
   onResultsFetched(response: PaginatedResponse<Post>) {

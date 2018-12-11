@@ -16,7 +16,6 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private commonService: CommonService,
     private messageService: MessageService,
   ) { }
@@ -27,10 +26,6 @@ export class UsersComponent implements OnInit {
     }, error => {
       this.messageService.error(error);
     });
-  }
-
-  onUserNameClick(stringId: string) {
-    this.router.navigate([stringId], { relativeTo: this.route });
   }
 
   onResultsFetched(response: PaginatedResponse<User>) {

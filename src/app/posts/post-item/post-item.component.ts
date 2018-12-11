@@ -28,16 +28,8 @@ export class PostItemComponent implements OnInit {
 
   onTitleClick() {
     if (this.isPreview) {
-      this.router.navigate(['posts', this.post.string_id]);
+      this.router.navigate(['/posts', this.post.string_id]);
     }
-  }
-
-  onUserNameClick() {
-    this.router.navigate(['users', this.post.user.string_id]);
-  }
-
-  onTagClick(tag) {
-    this.router.navigate(['posts'], { queryParams: { tag } });
   }
 
 }

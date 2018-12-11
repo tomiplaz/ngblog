@@ -14,10 +14,10 @@
 </app-post-item>
 <div class="label margin-bottom-s">Stats</div>
 <div class="metadata">
-    <span class="label clickable" (click)="onUsersClick()">Users</span>
+    <span class="label clickable" routerLink="/users">Users</span>
     <span>{{ stats.users_count }}</span>
     <span>&#x02022;</span>
-    <span class="label clickable" (click)="onPostsClick()">Posts</span>
+    <span class="label clickable" routerLink="/posts">Posts</span>
     <span>{{ stats.posts_count }}</span>
     <span>&#x02022;</span>
     <span class="label">Comments</span>
