@@ -1,6 +1,6 @@
 <div class="label margin-bottom-s">Posts</div>
 <app-post-item
-  *ngFor="let post of results.data; trackBy: commonService.trackById"
+  *ngFor="let post of results.data; trackBy: trackById"
   [post]="post"
   [isPreview]="true">
 </app-post-item>

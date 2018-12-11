@@ -13,12 +13,15 @@ import { MessageService } from '../../core/message.service';
 export class PostComponent implements OnInit {
 
   post: Post;
+  trackById: Function;
 
   constructor(
     private route: ActivatedRoute,
     private commonService: CommonService,
     private messageService: MessageService,
-  ) { }
+  ) {
+    this.trackById = this.commonService.trackById;
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data: { post: Post }) => {

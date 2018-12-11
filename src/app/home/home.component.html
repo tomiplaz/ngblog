@@ -2,13 +2,13 @@
 <p>Work in progress</p>
 <div class="label margin-bottom-s">Recent</div>
 <app-post-item
-  *ngFor="let post of recentPosts; trackBy: commonService.trackById"
+  *ngFor="let post of recentPosts; trackBy: trackById"
   [post]="post"
   [isPreview]="true">
 </app-post-item>
 <div class="label margin-bottom-s">Random</div>
 <app-post-item
-  *ngFor="let post of randomPosts; trackBy: commonService.trackById"
+  *ngFor="let post of randomPosts; trackBy: trackById"
   [post]="post"
   [isPreview]="true">
 </app-post-item>

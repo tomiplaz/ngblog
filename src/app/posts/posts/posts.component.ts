@@ -13,12 +13,15 @@ import { PaginatedResponse } from '../../shared/paginator/paginated-response.int
 export class PostsComponent implements OnInit {
 
   results: PaginatedResponse<Post>;
+  trackById: Function;
 
   constructor(
     private route: ActivatedRoute,
     private commonService: CommonService,
     private messageService: MessageService,
-  ) { }
+  ) {
+    this.trackById = this.commonService.trackById;
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data: { posts: PaginatedResponse<Post> }) => {

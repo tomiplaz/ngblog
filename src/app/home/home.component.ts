@@ -14,11 +14,14 @@ export class HomeComponent implements OnInit {
   recentPosts: Post[];
   randomPosts: Post[];
   stats: Stats;
+  trackById: Function;
 
   constructor(
     private route: ActivatedRoute,
     private commonService: CommonService,
-  ) { }
+  ) {
+    this.trackById = this.commonService.trackById;
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data: { data: HomeData }) => {

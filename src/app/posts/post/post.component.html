@@ -8,6 +8,6 @@
   <span class="label">Comments</span>
   <span>{{ post.comments.length }}</span>
 </div>
-<div *ngFor="let comment of post.comments; trackBy: commonService.trackById">
+<div *ngFor="let comment of post.comments; trackBy: trackById">
   <app-comment-item [comment]="comment"></app-comment-item>
 </div>
