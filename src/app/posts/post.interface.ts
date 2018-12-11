@@ -9,6 +9,7 @@ export interface Post {
     title: string,
     content: string,
     views_count?: number,
+    comments_count?: number,
     created_at?: string,
     updated_at?: string,
     user?: User,

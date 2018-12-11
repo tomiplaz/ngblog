@@ -29,5 +29,8 @@ import { SharedModule } from '../shared/shared.module';
     PostsResolverService,
     PostResolverService,
   ],
+  exports: [
+    PostItemComponent,
+  ],
 })
 export class PostsModule { }
