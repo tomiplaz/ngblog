@@ -1,5 +1,15 @@
+<div class="label margin-bottom-s">Work In Progress</div>
 <div class="label margin-bottom-s">yabla - yet another blogging app</div>
-<p>Work in progress</p>
+<div class="metadata margin-bottom-s">
+    <span class="label clickable" routerLink="/users">Users</span>
+    <span>{{ stats.users_count }}</span>
+    <span>&#x02022;</span>
+    <span class="label clickable" routerLink="/posts">Posts</span>
+    <span>{{ stats.posts_count }}</span>
+    <span>&#x02022;</span>
+    <span class="label">Comments</span>
+    <span>{{ stats.comments_count }}</span>
+</div>
 <div class="label margin-bottom-s">Recent</div>
 <app-post-item
   *ngFor="let post of recentPosts; trackBy: trackById"
@@ -12,14 +22,3 @@
   [post]="post"
   [isPreview]="true">
 </app-post-item>
-<div class="label margin-bottom-s">Stats</div>
-<div class="metadata">
-    <span class="label clickable" routerLink="/users">Users</span>
-    <span>{{ stats.users_count }}</span>
-    <span>&#x02022;</span>
-    <span class="label clickable" routerLink="/posts">Posts</span>
-    <span>{{ stats.posts_count }}</span>
-    <span>&#x02022;</span>
-    <span class="label">Comments</span>
-    <span>{{ stats.comments_count }}</span>
-</div>
