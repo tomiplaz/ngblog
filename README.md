@@ -2,7 +2,7 @@
 
 ## Description
 
-Simple blogging app. A way for me to learn Angular. Work in progress.
+Blogging app. A way for me to learn Angular. Work in progress.
 
 ## Credits
 
