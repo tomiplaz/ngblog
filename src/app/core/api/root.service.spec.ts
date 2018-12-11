@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { RootService } from './root.service';
 import { ApiModule } from './api.module';
 
-fdescribe('RootService', () => {
+describe('RootService', () => {
   let service: RootService;
 
   beforeEach(() => {
