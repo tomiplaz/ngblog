@@ -5,9 +5,11 @@ export interface User {
   email: string,
   about?: string,
   website?: string,
-  password?: string
+  password?: string,
+  posts_count: number,
+  comments_count: number,
   created_at?: string,
-  updated_at?: string
+  updated_at?: string,
 }
 
 export interface UpdateUser {
