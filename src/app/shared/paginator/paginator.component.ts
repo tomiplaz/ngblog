@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PaginatedResponse } from './paginated-response';
+import { PaginatedResponse } from './paginated-response.interface';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from '../../core/message.service';
 

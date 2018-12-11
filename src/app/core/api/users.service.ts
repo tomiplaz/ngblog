@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { User, UpdateUser, ChangePassword } from '../../users/user.interface';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response.interface';
 
 @Injectable()
 export class UsersService {
@@ -11,8 +12,8 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.BASE_URL);
+  getUsers(): Observable<PaginatedResponse<User>> {
+    return this.httpClient.get<PaginatedResponse<User>>(this.BASE_URL);
   }
   
   getUser(stringId: string): Observable<User> {

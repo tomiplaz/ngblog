@@ -3,13 +3,14 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 import { UsersService } from '../core/api/users.service';
 import { User } from './user.interface';
+import { PaginatedResponse } from '../shared/paginator/paginated-response.interface';
 
 @Injectable()
-export class UsersResolverService implements Resolve<User[]> {
+export class UsersResolverService implements Resolve<PaginatedResponse<User>> {
 
   constructor(private usersService: UsersService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User[]> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PaginatedResponse<User>> {
     return this.usersService.getUsers();
   }
 

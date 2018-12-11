@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { Post } from '../../posts/post.interface';
 import { Comment } from '../../posts/comment.interface';
-import { PaginatedResponse } from '../../shared/paginator/paginated-response';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response.interface';
 
 @Injectable()
 export class PostsService {

@@ -8,6 +8,7 @@ import { Post } from '../post.interface';
 import { MessageService } from '../../core/message.service';
 import { messageServiceStub } from '../../../tests/message-service.stub';
 import { CommonService } from '../../core/common.service';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response.interface';
 
 describe('PostsComponent', () => {
   let component: PostsComponent;
@@ -16,10 +17,21 @@ describe('PostsComponent', () => {
   const routerSpy: jasmine.SpyObj<Router> = jasmine.createSpyObj('Router', ['navigate']);
 
   describe('with successful route data subscription', () => {
-    const posts: Post[] = [{ user_id: 1, title: 'Foo', content: 'Lorem Ipsum' }];
+    const results: PaginatedResponse<Post> = {
+      data: [{ user_id: 1, title: 'Foo', content: 'Lorem Ipsum' }],
+      current_page: 1,
+      last_page: 1,
+      per_page: 1,
+      from: 1,
+      to: 1,
+      total: 1,
+      path: 'foo',
+      next_page_url: 'nextfoo',
+      prev_page_url: 'prevfoo',
+    };
 
     beforeEach(async(() => {
-      const routeStub = { data: of({ posts }) };
+      const routeStub = { data: of({ posts: results }) };
 
       TestBed.configureTestingModule({
         declarations: [ PostsComponent ],
@@ -44,8 +56,8 @@ describe('PostsComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should have posts property set', () => {
-      expect(component.posts).toEqual(posts);
+    it('should have results property set', () => {
+      expect(component.results).toEqual(results);
     });
 
     it('#onPostTitleClick should navigate to a single post', () => {
@@ -99,12 +111,12 @@ describe('PostsComponent', () => {
       }
     });
 
-    it('should have user property set to undefined', () => {
+    it('should have results property set to undefined', () => {
       try {
         fixture.detectChanges();
       } catch (e) { }
 
-      expect(component.posts).toBeUndefined();
+      expect(component.results).toBeUndefined();
     });
   });
 });

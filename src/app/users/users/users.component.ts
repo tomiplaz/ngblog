@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
-import { PaginatedResponse } from '../../shared/paginator/paginated-response';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response.interface';
 
 @Component({
   selector: 'app-users',

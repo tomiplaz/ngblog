@@ -8,6 +8,7 @@ import { User } from '../user.interface';
 import { MessageService } from '../../core/message.service';
 import { messageServiceStub } from '../../../tests/message-service.stub';
 import { CommonService } from '../../core/common.service';
+import { PaginatedResponse } from '../../shared/paginator/paginated-response.interface';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -16,10 +17,21 @@ describe('UsersComponent', () => {
   const routerSpy: jasmine.SpyObj<Router> = jasmine.createSpyObj('Router', ['navigate']);
 
   describe('with successful route data subscription', () => {
-    const users: User[] = [{ name: 'Foo', email: 'foo@bar.com' }];
+    const results: PaginatedResponse<User> = {
+      data: [{ name: 'Foo', email: 'foo@bar.com' }],
+      current_page: 1,
+      last_page: 1,
+      per_page: 1,
+      from: 1,
+      to: 1,
+      total: 1,
+      path: 'foo',
+      next_page_url: 'nextfoo',
+      prev_page_url: 'prevfoo',
+    };
 
     beforeEach(async(() => {
-      const routeStub = { data: of({ users }) };
+      const routeStub = { data: of({ users: results }) };
 
       TestBed.configureTestingModule({
         declarations: [ UsersComponent ],
@@ -44,8 +56,8 @@ describe('UsersComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should have users property set', () => {
-      expect(component.users).toEqual(users);
+    it('should have results property set', () => {
+      expect(component.results).toEqual(results);
     });
 
     it('#onUserNameClick should navigate to a single user', () => {
@@ -99,12 +111,12 @@ describe('UsersComponent', () => {
       }
     });
 
-    it('should have user property set to undefined', () => {
+    it('should have results property set to undefined', () => {
       try {
         fixture.detectChanges();
       } catch (e) { }
 
-      expect(component.users).toBeUndefined();
+      expect(component.results).toBeUndefined();
     });
   });
 });

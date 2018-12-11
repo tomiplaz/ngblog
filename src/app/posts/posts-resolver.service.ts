@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 import { PostsService } from '../core/api/posts.service';
 import { Post } from './post.interface';
-import { PaginatedResponse } from '../shared/paginator/paginated-response';
+import { PaginatedResponse } from '../shared/paginator/paginated-response.interface';
 
 @Injectable()
 export class PostsResolverService implements Resolve<PaginatedResponse<Post>> {
