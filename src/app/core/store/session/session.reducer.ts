@@ -18,10 +18,10 @@ export function sessionReducer(state: SessionState = initialState, action: Sessi
       return { ...state, isHeaderOpen: !state.isHeaderOpen };
     case SessionActionName.TOGGLE_FOOTER:
       return { ...state, isFooterOpen: !state.isFooterOpen };
-    case SessionActionName.DISABLE_HEADER_TOGGLE:
-      return { ...state, isHeaderToggleDisabled: true };
-    case SessionActionName.ENABLE_HEADER_TOGGLE:
-      return { ...state, isHeaderToggleDisabled: false };
+    case SessionActionName.FREEZE_OPEN_HEADER:
+      return { ...state, isHeaderOpen: true, isHeaderToggleDisabled: true};
+    case SessionActionName.THAW_CLOSE_HEADER:
+      return { ...state, isHeaderOpen: false, isHeaderToggleDisabled: false };
     default:
       return state;
   }

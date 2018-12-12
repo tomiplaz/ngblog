@@ -3,8 +3,8 @@ import { Action } from "@ngrx/store";
 export enum SessionActionName {
   TOGGLE_HEADER = '[Session] Toggle Header',
   TOGGLE_FOOTER = '[Session] Toggle Footer',
-  DISABLE_HEADER_TOGGLE = '[Session] Disable Header Toggle',
-  ENABLE_HEADER_TOGGLE = '[Session] Enable Header Toggle',
+  FREEZE_OPEN_HEADER = '[Session] Freeze Open Header',
+  THAW_CLOSE_HEADER = '[Session] Thaw Close Header',
 };
 
 export class ToggleHeader implements Action {
@@ -15,12 +15,12 @@ export class ToggleFooter implements Action {
   readonly type = SessionActionName.TOGGLE_FOOTER;
 };
 
-export class DisableHeaderToggle implements Action {
-  readonly type = SessionActionName.DISABLE_HEADER_TOGGLE;
+export class FreezeOpenHeader implements Action {
+  readonly type = SessionActionName.FREEZE_OPEN_HEADER;
 };
 
-export class EnableHeaderToggle implements Action {
-  readonly type = SessionActionName.ENABLE_HEADER_TOGGLE;
+export class ThawCloseHeader implements Action {
+  readonly type = SessionActionName.THAW_CLOSE_HEADER;
 };
 
-export type SessionAction = ToggleHeader | ToggleFooter | DisableHeaderToggle | EnableHeaderToggle;
+export type SessionAction = ToggleHeader | ToggleFooter | FreezeOpenHeader | ThawCloseHeader;

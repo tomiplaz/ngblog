@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import { AppState } from './core/store/store';
-import { ToggleHeader, EnableHeaderToggle, DisableHeaderToggle } from './core/store/session/session.actions';
+import { FreezeOpenHeader, ThawCloseHeader } from './core/store/session/session.actions';
 
 @Component({
   selector: 'app-root',
@@ -46,21 +46,11 @@ export class AppComponent implements OnInit, OnDestroy {
       const top = this.contentElementRef.nativeElement.getBoundingClientRect().top;
 
       if (top > this.TOP - this.TOP_EXTRA) {
-        this.freezeOpenHeader();
+        this.store.dispatch(new FreezeOpenHeader());
       } else {
-        this.store.dispatch(new EnableHeaderToggle());
-
-        if (top < this.TOP - this.TOP_EXTRA) {
-          if (this.isHeaderOpen) this.store.dispatch(new ToggleHeader());
-        }
+        this.store.dispatch(new ThawCloseHeader());
       }
     });
-  }
-
-  private freezeOpenHeader() {
-    this.store.dispatch(new DisableHeaderToggle());
-
-    if (!this.isHeaderOpen) this.store.dispatch(new ToggleHeader());
   }
 
   ngOnDestroy() {
