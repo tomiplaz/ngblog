@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MyProfileModule } from './my-profile/my-profile.module';
 import { CreatePostModule } from './create-post/create-post.module';
 import { ResetPasswordModule } from './reset-password/reset-password.module';
+import { ConfirmAccountModule } from './confirm-account/confirm-account.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ResetPasswordModule } from './reset-password/reset-password.module';
     HomeModule,
     LoginModule,
     CreateAccountModule,
+    ConfirmAccountModule,
     MyProfileModule,
     CreatePostModule,
     ResetPasswordModule,

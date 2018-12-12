@@ -5,7 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 export class MessageService {
 
   readonly MESSAGES = {
-    CREATE_ACCOUNT_SUCCESS: 'Account created. Please log in.',
+    CREATE_ACCOUNT_SUCCESS: 'Account created. Please check your email to confirm it.',
+    CONFIRM_ACCOUNT_SUCCESS: 'Account confirmed. Please log in.',
     LOGIN_SUCCESS: 'Welcome back!',
     CREATE_POST_SUCCESS: 'Post created.',
     CREATE_COMMENT_SUCCESS: 'Comment created.',
@@ -23,6 +24,10 @@ export class MessageService {
 
   createAccountSuccess() {
     this.toastrService.success(this.MESSAGES.CREATE_ACCOUNT_SUCCESS);
+  }
+
+  confirmAccountSuccess() {
+    this.toastrService.success(this.MESSAGES.CONFIRM_ACCOUNT_SUCCESS);
   }
 
   loginSuccess() {
