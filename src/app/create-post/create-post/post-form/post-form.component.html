@@ -41,5 +41,5 @@
     </ng-container>
     <ng-container *ngIf="!tags.length">/</ng-container>
   </div>
-  <button type="submit" [disabled]="postForm.invalid">Submit</button>
+  <button type="submit" [disabled]="postForm.invalid || isWaitingForResponse">Submit</button>
 </form>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
+import 'rxjs/add/operator/finally';
 import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';
 import { selectUser } from '../../../core/store/auth/auth.selectors';
@@ -17,6 +18,7 @@ import { SetToken } from '../../../core/store/auth/auth.actions';
 export class ChangePasswordFormComponent implements OnInit {
 
   changePasswordForm: FormGroup;
+  isWaitingForResponse: boolean = false;
 
   private userId: number;
 
@@ -48,14 +50,17 @@ export class ChangePasswordFormComponent implements OnInit {
       newPassword: this.changePasswordForm.controls.newPassword.value,
     };
 
-    this.usersService.changePassword(this.userId, data).subscribe(response => {
-      this.messageService.changePasswordSuccess();
-      this.store.dispatch(new SetToken(response.token));
-    }, response => {
-      this.messageService.error(response);
-    }, () => {
-      this.changePasswordForm.reset();
-    });
+    this.isWaitingForResponse = true;
+    this.usersService.changePassword(this.userId, data)
+      .finally(() => this.isWaitingForResponse = false)
+      .subscribe(response => {
+        this.messageService.changePasswordSuccess();
+        this.store.dispatch(new SetToken(response.token));
+      }, response => {
+        this.messageService.error(response);
+      }, () => {
+        this.changePasswordForm.reset();
+      });
   }
 
 }

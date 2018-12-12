@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
+import 'rxjs/add/operator/finally';
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
 import { Comment } from '../comment.interface';
@@ -17,6 +18,7 @@ import { User } from '../../users/user.interface';
 export class CommentFormComponent implements OnInit, OnDestroy {
 
   commentForm: FormGroup;
+  isWaitingForResponse: boolean = false;
   private userSubscription: Subscription;
   private userId: number;
   @Input() postId: number;
@@ -44,13 +46,16 @@ export class CommentFormComponent implements OnInit, OnDestroy {
       user_id: this.userId,
     };
 
-    this.postsService.createComment(this.postId, submitData).subscribe(response => {
-      this.messageService.createCommentSuccess();
-      this.commentForm.reset();
-      this.commentAdded.emit(response);
-    }, response => {
-      this.messageService.error(response);
-    });
+    this.isWaitingForResponse = true;
+    this.postsService.createComment(this.postId, submitData)
+      .finally(() => this.isWaitingForResponse = false)
+      .subscribe(response => {
+        this.messageService.createCommentSuccess();
+        this.commentForm.reset();
+        this.commentAdded.emit(response);
+      }, response => {
+        this.messageService.error(response);
+      });
   }
 
   ngOnDestroy() {

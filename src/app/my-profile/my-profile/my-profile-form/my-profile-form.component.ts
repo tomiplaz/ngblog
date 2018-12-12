@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
+import 'rxjs/add/operator/finally';
 import { MessageService } from '../../../core/message.service';
 import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';
@@ -16,6 +17,7 @@ import { SetUser } from '../../../core/store/auth/auth.actions';
 export class MyProfileFormComponent implements OnInit {
 
   myProfileForm: FormGroup;
+  isWaitingForResponse: boolean = false;
 
   private userId: number;
 
@@ -39,12 +41,15 @@ export class MyProfileFormComponent implements OnInit {
       about: this.myProfileForm.controls.about.value,
     };
 
-    this.usersService.updateUser(this.userId, data).subscribe((user: User) => {
-      this.messageService.updateMyProfileSuccess();
-      this.store.dispatch(new SetUser(user));
-    }, response => {
-      this.messageService.error(response);
-    });
+    this.isWaitingForResponse = true;
+    this.usersService.updateUser(this.userId, data)
+      .finally(() => this.isWaitingForResponse = false)
+      .subscribe((user: User) => {
+        this.messageService.updateMyProfileSuccess();
+        this.store.dispatch(new SetUser(user));
+      }, response => {
+        this.messageService.error(response);
+      });
   }
 
   private buildForm(user: User) {

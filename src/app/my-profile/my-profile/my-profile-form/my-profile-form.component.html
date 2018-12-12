@@ -19,5 +19,9 @@
     <textarea name="about" placeholder="Tell others about yourself" formControlName="about"></textarea>
     <app-error-messages [name]="'About'" [control]="myProfileForm.controls.about"></app-error-messages>
   </div>
-  <button type="submit" [disabled]="myProfileForm.invalid || myProfileForm.pristine">Update profile</button>
+  <button
+    type="submit"
+    [disabled]="myProfileForm.invalid || myProfileForm.pristine || isWaitingForResponse">
+    Update profile
+  </button>
 </form>

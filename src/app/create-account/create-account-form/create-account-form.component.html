@@ -23,5 +23,5 @@
       [group]="createAccountForm">
     </app-error-messages>
   </div>
-  <button type="submit" [disabled]="createAccountForm.invalid">Create account</button>
+  <button type="submit" [disabled]="createAccountForm.invalid || isWaitingForResponse">Create account</button>
 </form>

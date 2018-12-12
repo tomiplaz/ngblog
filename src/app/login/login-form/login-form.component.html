@@ -10,5 +10,5 @@
     <app-error-messages [name]="'Password'" [control]="loginForm.controls.password"></app-error-messages>
     <span class="clickable forgot-password" (click)="onForgotPasswordClick()">Forgot password?</span>
   </div>
-  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  <button type="submit" [disabled]="loginForm.invalid || isWaitingForResponse">Login</button>
 </form>

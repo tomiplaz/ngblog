@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/finally';
 import { AuthService } from '../../core/api/auth.service';
 import { MessageService } from '../../core/message.service';
 
@@ -12,6 +13,7 @@ import { MessageService } from '../../core/message.service';
 export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
+  isWaitingForResponse: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,12 +30,15 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.loginForm.value).subscribe(() => {
-      this.messageService.loginSuccess();
-      this.router.navigate(['/home']);
-    }, response => {
-      this.messageService.error(response);
-    });
+    this.isWaitingForResponse = true;
+    this.authService.login(this.loginForm.value)
+      .finally(() => this.isWaitingForResponse = false)
+      .subscribe(() => {
+        this.messageService.loginSuccess();
+        this.router.navigate(['/home']);
+      }, response => {
+        this.messageService.error(response);
+      });
   }
 
   onForgotPasswordClick() {

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { AppState } from '../../../core/store/store';
 import { Subscription } from 'rxjs/Subscription';
+import { AppState } from '../../../core/store/store';
 import { selectUser } from '../../../core/store/auth/auth.selectors';
 import { User } from '../../../users/user.interface';
 
@@ -17,7 +17,8 @@ export class PostFormComponent implements OnInit, OnDestroy {
   tags: String[] = [];
   private userSubscription: Subscription;
   private userId: number;
-  @Input() submit: any; 
+  @Input() submit: Function;
+  @Input() isWaitingForResponse: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
