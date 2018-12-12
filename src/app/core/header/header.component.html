@@ -1,21 +1,20 @@
 <div class="navigation">
-  <div class="title clickable" routerLink="/home">yabla</div>
+  <div class="title clickable" title="Yet Another Blogging App" routerLink="/home">Yabla</div>
   <app-breadcrumbs></app-breadcrumbs>
 </div>
 <div class="navigation" [hidden]="isAuthUrl">
   <ul>
-    <ng-container *ngIf="user">
-      <li>{{ user.name }}</li>
+    <ng-container *ngIf="isLoggedIn">
       <li *ngFor="let item of loggedInRoutingItems">
-        <fa-icon class="clickable" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
+        <fa-icon class="clickable" [title]="item.text" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
       </li>
       <li>
-        <fa-icon class="clickable" [icon]="faSignOutAlt" (click)="onLogoutClick()"></fa-icon>
+        <fa-icon class="clickable" title="Logout" [icon]="faSignOutAlt" (click)="onLogoutClick()"></fa-icon>
       </li>
     </ng-container>
-    <ng-container *ngIf="!user">
+    <ng-container *ngIf="!isLoggedIn">
       <li *ngFor="let item of loggedOutRoutingItems">
-        <fa-icon class="clickable" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
+        <fa-icon class="clickable" [title]="item.text" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
       </li>
     </ng-container>
   </ul>

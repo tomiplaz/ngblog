@@ -12,6 +12,7 @@ import { ToggleHeader } from '../store/session/session.actions';
 interface RoutingItem {
   commands: string[],
   icon: IconDefinition,
+  text: string,
 }
 
 @Component({
@@ -25,16 +26,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   faSignOutAlt: IconDefinition = faSignOutAlt;
 
-  user: User;
+  isLoggedIn: boolean;
   isToggleDisabled: boolean;
   isAuthUrl: boolean;
   loggedInRoutingItems: RoutingItem[] = [
-    { commands: ['/my-profile'], icon: faUser },
-    { commands: ['/create-post'], icon: faPen },
+    { commands: ['/my-profile'], icon: faUser, text: 'My Profile' },
+    { commands: ['/create-post'], icon: faPen, text: 'Create Post' },
   ];
   loggedOutRoutingItems: RoutingItem[] = [
-    { commands: ['/login'], icon: faSignInAlt },
-    { commands: ['/create-account'], icon: faUserPlus },
+    { commands: ['/login'], icon: faSignInAlt, text: 'Login' },
+    { commands: ['/create-account'], icon: faUserPlus, text: 'Create Account' },
   ];
 
   private navigationEndEventsSubscription: Subscription;
@@ -56,7 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           event.url.includes('reset-password');
       });
     this.store.subscribe(state => {
-      this.user = state.auth.user;
+      this.isLoggedIn = state.auth.isLoggedIn;
       this.isToggleDisabled = state.session.isHeaderToggleDisabled;
       this.classAttribute = [
         state.settings.theme,
