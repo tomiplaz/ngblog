@@ -59,17 +59,6 @@ describe('UsersComponent', () => {
     it('should have results property set', () => {
       expect(component.results).toEqual(results);
     });
-
-    it('#onUserNameClick should navigate to a single user', () => {
-      const route = TestBed.get(ActivatedRoute);
-      const router = TestBed.get(Router);
-      const stringId = '123456';
-
-      component.onUserNameClick(stringId);
-
-      expect(router.navigate).toHaveBeenCalledTimes(1);
-      expect(router.navigate).toHaveBeenCalledWith([stringId], { relativeTo: route });
-    });
   });
 
   describe('with unsuccessful route data subscription', () => {

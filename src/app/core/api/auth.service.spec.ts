@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { StoreModule, Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { AuthService, ResetPassword } from './auth.service';
 import { ApiModule } from './api.module';
 import { Credentials } from './auth.service';
@@ -8,7 +9,6 @@ import { User } from '../../users/user.interface';
 import { authReducer } from '../store/auth/auth.reducer';
 import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
-import { Observable } from 'rxjs';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -72,6 +72,7 @@ describe('AuthService', () => {
         const value = service.login(credentials);
 
         expect(value instanceof Observable).toBeTruthy();
+        httpTC.expectOne(service.LOGIN_URL);
       });
 
       it('should send a POST request with credentials', () => {
