@@ -22,7 +22,12 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   }
 
   private buildBreadcrumbs() {
-    this.breadcrumbs = this.router.url.split('/').slice(1);
+    const breadcrumbs = this.router.url.split('/').slice(1);
+    const lastIndex = breadcrumbs.length - 1;
+
+    breadcrumbs[lastIndex] = breadcrumbs[lastIndex].replace('?', ' ? ').replace('&', ' & ');
+
+    this.breadcrumbs = breadcrumbs;
   }
 
   onClick(index: number, isLast: boolean) {
