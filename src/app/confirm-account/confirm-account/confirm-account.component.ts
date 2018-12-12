@@ -18,10 +18,9 @@ export class ConfirmAccountComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(() => {
       this.messageService.confirmAccountSuccess();
+      this.router.navigate(['/login']);
     }, response => {
       this.messageService.error(response);
-    }, () => {
-      this.router.navigate(['/login']);
     });
   }
 

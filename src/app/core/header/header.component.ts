@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((event: NavigationEnd) => {
         this.isAuthUrl = event.url.includes('login') ||
           event.url.includes('create-account') ||
+          event.url.includes('confirm-account') ||
           event.url.includes('reset-password');
       });
     this.store.subscribe(state => {
