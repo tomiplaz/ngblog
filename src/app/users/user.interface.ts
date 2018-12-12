@@ -6,8 +6,8 @@ export interface User {
   about?: string,
   website?: string,
   password?: string,
-  posts_count: number,
-  comments_count: number,
+  posts_count?: number,
+  comments_count?: number,
   created_at?: string,
   updated_at?: string,
 }

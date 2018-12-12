@@ -21,11 +21,19 @@ export interface ResetPassword {
 export class AuthService {
 
   readonly BASE_URL = `${environment.apiUrl}/auth`;
+  readonly CONFIRM_ACCOUNT_URL = `${this.BASE_URL}/confirm-account`;
+  readonly LOGIN_URL = `${this.BASE_URL}/login`;
+  readonly FORGOT_PASSWORD_URL = `${this.BASE_URL}/forgot-password`;
+  readonly RESET_PASSWORD_URL = `${this.BASE_URL}/reset-password`;
 
   constructor(private httpClient: HttpClient, private store: Store<AppState>) { }
 
+  confirmAccount(token: string): Observable<any> {
+    return this.httpClient.post<any>(this.CONFIRM_ACCOUNT_URL, { token });
+  }
+
   login(credentials: Credentials): Observable<any> {
-    const observable = this.httpClient.post<any>(`${this.BASE_URL}/login`, credentials).share();
+    const observable = this.httpClient.post<any>(this.LOGIN_URL, credentials).share();
 
     observable.subscribe(response => {
       this.store.dispatch(new Login(response.token, response.user));
@@ -39,11 +47,11 @@ export class AuthService {
   }
 
   forgotPassword(email: string): Observable<any> {
-    return this.httpClient.post<any>(`${this.BASE_URL}/forgot-password`, { email });
+    return this.httpClient.post<any>(this.FORGOT_PASSWORD_URL, { email });
   }
 
   resetPassword(data: ResetPassword): Observable<any> {
-    return this.httpClient.post<any>(`${this.BASE_URL}/reset-password`, data);
+    return this.httpClient.post<any>(this.RESET_PASSWORD_URL, data);
   }
 
 }
