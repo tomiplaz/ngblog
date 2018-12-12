@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { ApiModule } from './api/api.module';
 import { HeaderComponent } from './header/header.component';
@@ -24,6 +25,7 @@ import { store } from './store/store';
       positionClass: 'toast-center-center',
     }),
     StoreModule.forRoot(store),
+    FontAwesomeModule,
     RouterModule,
   ],
   declarations: [

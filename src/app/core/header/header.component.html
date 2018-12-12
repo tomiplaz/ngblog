@@ -7,15 +7,15 @@
     <ng-container *ngIf="user">
       <li>{{ user.name }}</li>
       <li *ngFor="let item of loggedInRoutingItems">
-        <span class="label clickable" [routerLink]="item.commands">{{ item.text }}</span>
+        <fa-icon class="clickable" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
       </li>
       <li>
-        <span class="label clickable" (click)="onLogoutClick()">Logout</span>
+        <fa-icon class="clickable" [icon]="faSignOutAlt" (click)="onLogoutClick()"></fa-icon>
       </li>
     </ng-container>
     <ng-container *ngIf="!user">
       <li *ngFor="let item of loggedOutRoutingItems">
-        <span class="label clickable" [routerLink]="item.commands">{{ item.text }}</span>
+        <fa-icon class="clickable" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
       </li>
     </ng-container>
   </ul>

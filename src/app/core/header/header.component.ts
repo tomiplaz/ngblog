@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, NavigationEnd } from '@angular/router';
+import { IconDefinition, faUser, faPen, faSignInAlt, faSignOutAlt, faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { AuthService } from '../api/auth.service';
@@ -10,7 +11,7 @@ import { ToggleHeader } from '../store/session/session.actions';
 
 interface RoutingItem {
   commands: string[],
-  text: string,
+  icon: IconDefinition,
 }
 
 @Component({
@@ -22,16 +23,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') classAttribute: string;
 
+  faSignOutAlt: IconDefinition = faSignOutAlt;
+
   user: User;
   isToggleDisabled: boolean;
   isAuthUrl: boolean;
   loggedInRoutingItems: RoutingItem[] = [
-    { commands: ['my-profile'], text: 'Profile' },
-    { commands: ['create-post'], text: 'Post' },
+    { commands: ['/my-profile'], icon: faUser },
+    { commands: ['/create-post'], icon: faPen },
   ];
   loggedOutRoutingItems: RoutingItem[] = [
-    { commands: ['login'], text: 'Login' },
-    { commands: ['create-account'], text: 'Join!' },
+    { commands: ['/login'], icon: faSignInAlt },
+    { commands: ['/create-account'], icon: faUserPlus },
   ];
 
   private navigationEndEventsSubscription: Subscription;
