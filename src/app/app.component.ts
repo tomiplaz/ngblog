@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding, ViewChild, ElementRef, OnDestroy } from
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import { debounceTime } from 'rxjs/operators';
 import 'rxjs/add/observable/fromEvent';
 import { AppState } from './core/store/store';
 import { FreezeOpenHeader, ThawCloseHeader } from './core/store/session/session.actions';
@@ -20,9 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') classAttribute: string;
 
-  private isHeaderOpen: boolean;
-  private isLoggedIn: boolean;
-
   private scroll$ = Observable.fromEvent(window, 'scroll');
 
   private storeSubscription: Subscription;
@@ -37,12 +35,9 @@ export class AppComponent implements OnInit, OnDestroy {
         state.settings.size,
         ...state.session.isHeaderOpen ? [] : ['header-closed'],
       ].join(' ');
-
-      this.isHeaderOpen = state.session.isHeaderOpen;
-      this.isLoggedIn = state.auth.isLoggedIn;
     });
 
-    this.scrollSubscription = this.scroll$.subscribe(() => {
+    this.scrollSubscription = this.scroll$.pipe(debounceTime(100)).subscribe(() => {
       const top = this.contentElementRef.nativeElement.getBoundingClientRect().top;
 
       if (top > this.TOP - this.TOP_EXTRA) {
