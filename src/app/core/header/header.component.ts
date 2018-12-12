@@ -5,7 +5,6 @@ import { IconDefinition, faUser, faPen, faSignInAlt, faSignOutAlt, faUserPlus} f
 import { Subscription } from 'rxjs/Subscription';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { AuthService } from '../api/auth.service';
-import { User } from '../../users/user.interface';
 import { AppState } from '../store/store';
 import { ToggleHeader } from '../store/session/session.actions';
 
@@ -63,7 +62,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         state.settings.theme,
         state.settings.size,
         ...state.session.isHeaderOpen ? [] : ['closed'],
-        ...state.auth.isLoggedIn ? [] : ['list-horizontal'],
       ].join(' ');
     });
   }

@@ -13,8 +13,7 @@ import { ToggleHeader, EnableHeaderToggle, DisableHeaderToggle } from './core/st
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  readonly TOP_HORIZONTAL = 90;
-  readonly TOP_VERTICAL = 131;
+  readonly TOP = 90;
   readonly TOP_EXTRA = 50;
 
   @ViewChild('content') contentElementRef: ElementRef;
@@ -37,7 +36,6 @@ export class AppComponent implements OnInit, OnDestroy {
         state.settings.theme,
         state.settings.size,
         ...state.session.isHeaderOpen ? [] : ['header-closed'],
-        ...state.auth.isLoggedIn ? [] : ['header-list-horizontal'],
       ].join(' ');
 
       this.isHeaderOpen = state.session.isHeaderOpen;
@@ -46,21 +44,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.scrollSubscription = this.scroll$.subscribe(() => {
       const top = this.contentElementRef.nativeElement.getBoundingClientRect().top;
-      const width = window.innerWidth;
-      const isHeaderListVertical = width <= 600 && this.isLoggedIn;
 
-      if (
-        (isHeaderListVertical && top > this.TOP_VERTICAL - this.TOP_EXTRA) ||
-        (!isHeaderListVertical && top > this.TOP_HORIZONTAL - this.TOP_EXTRA)
-      ) {
+      if (top > this.TOP - this.TOP_EXTRA) {
         this.freezeOpenHeader();
       } else {
         this.store.dispatch(new EnableHeaderToggle());
 
-        if (
-          (isHeaderListVertical && top < this.TOP_VERTICAL - this.TOP_EXTRA) ||
-          (!isHeaderListVertical && top < this.TOP_HORIZONTAL - this.TOP_EXTRA)
-        ) {
+        if (top < this.TOP - this.TOP_EXTRA) {
           if (this.isHeaderOpen) this.store.dispatch(new ToggleHeader());
         }
       }
