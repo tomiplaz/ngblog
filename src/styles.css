@@ -9,7 +9,7 @@ body {
 .title {
   font-size: 1.2em;
   margin: 0;
-  display: inline;
+  display: inline-block;
 }
 
 .metadata {
