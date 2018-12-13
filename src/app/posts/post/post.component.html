@@ -5,8 +5,7 @@
   (commentAdded)="onCommentAdded($event)">
 </app-comment-form>
 <div>
-  <span class="label">Comments</span>
-  <span>{{ post.comments.length }}</span>
+  <span class="label">Comments</span> {{ post.comments.length }}
 </div>
 <div *ngFor="let comment of post.comments; trackBy: trackById">
   <app-comment-item [comment]="comment"></app-comment-item>
