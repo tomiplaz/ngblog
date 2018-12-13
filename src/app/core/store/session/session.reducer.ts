@@ -1,10 +1,10 @@
-import { SessionAction, SessionActionName } from "./session.actions";
+import { SessionAction, SessionActionName } from './session.actions';
 
 export interface SessionState {
-  isHeaderOpen: boolean,
-  isFooterOpen: boolean,
-  isHeaderToggleDisabled: boolean,
-};
+  isHeaderOpen: boolean;
+  isFooterOpen: boolean;
+  isHeaderToggleDisabled: boolean;
+}
 
 const initialState: SessionState = {
   isHeaderOpen: true,
@@ -25,4 +25,4 @@ export function sessionReducer(state: SessionState = initialState, action: Sessi
     default:
       return state;
   }
-};
+}

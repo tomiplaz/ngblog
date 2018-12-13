@@ -15,7 +15,7 @@ export class UsersService {
   getUsers(): Observable<PaginatedResponse<User>> {
     return this.httpClient.get<PaginatedResponse<User>>(this.BASE_URL);
   }
-  
+
   getUser(stringId: string): Observable<User> {
     return this.httpClient.get<User>(`${this.BASE_URL}/${stringId}`);
   }

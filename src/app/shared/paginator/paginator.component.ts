@@ -11,7 +11,7 @@ import { MessageService } from '../../core/message.service';
 export class PaginatorComponent implements OnInit {
 
   @Input() results: PaginatedResponse<any>;
-  @Input() scrollToTopOnFetch: boolean = true;
+  @Input() scrollToTopOnFetch = true;
   @Output() resultsFetched: EventEmitter<PaginatedResponse<any>> = new EventEmitter<PaginatedResponse<any>>();
 
   constructor(

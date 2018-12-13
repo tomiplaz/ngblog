@@ -67,16 +67,18 @@ export class MessageService {
       case 400:
         if (response.error && response.error.message) {
           this.toastrService.error(response.error.message);
-        } else try {
-          // Display validation error messages, if any
-          let errors = response.error.response.original;
-          for (let type in errors) {
-            errors[type].forEach(message => {
-              this.toastrService.error(message);
+        } else {
+          try {
+            const errors = response.error.response.original;
+            // Print each error message (if any)
+            Object.keys(errors).forEach((type: string) => {
+              errors[type].forEach(message => {
+                this.toastrService.error(message);
+              });
             });
+          } catch (e) {
+            this.toastrService.error(this.MESSAGES.BAD_REQUEST);
           }
-        } catch (e) {
-          this.toastrService.error(this.MESSAGES.BAD_REQUEST);
         }
         break;
       case 500:

@@ -9,9 +9,9 @@ import { AppState } from '../store/store';
 import { ToggleHeader } from '../store/session/session.actions';
 
 interface RoutingItem {
-  commands: string[],
-  icon: IconDefinition,
-  text: string,
+  commands: string[];
+  icon: IconDefinition;
+  text: string;
 }
 
 @Component({
@@ -72,7 +72,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onToggleClick() {
-    if (!this.isToggleDisabled) this.store.dispatch(new ToggleHeader());
+    if (!this.isToggleDisabled) {
+      this.store.dispatch(new ToggleHeader());
+    }
   }
 
   ngOnDestroy() {

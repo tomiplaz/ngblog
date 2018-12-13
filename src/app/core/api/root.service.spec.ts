@@ -34,13 +34,13 @@ describe('RootService', () => {
     describe('#getHomeData', () => {
       it('should return an Observable', () => {
         const value = service.getHomeData();
-  
+
         expect(value instanceof Observable).toBeTruthy();
       });
-  
+
       it('should send a request to get home data when subscribed', () => {
         service.getHomeData().subscribe();
-  
+
         const mockRequest = httpTC.expectOne(`${service.BASE_URL}/home`);
         expect(mockRequest.request.method).toBe('GET');
       });

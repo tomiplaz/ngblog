@@ -1,10 +1,10 @@
-import { TestBed } from "@angular/core/testing";
-import { StoreModule, Store } from "@ngrx/store";
-import { LoggedInGuard } from "./logged-in-guard.service";
-import { authReducer } from "./store/auth/auth.reducer";
-import { AppState } from "./store/store";
-import { Login } from "./store/auth/auth.actions";
-import { User } from "../users/user.interface";
+import { TestBed } from '@angular/core/testing';
+import { StoreModule, Store } from '@ngrx/store';
+import { LoggedInGuard } from './logged-in-guard.service';
+import { authReducer } from './store/auth/auth.reducer';
+import { AppState } from './store/store';
+import { Login } from './store/auth/auth.actions';
+import { User } from '../users/user.interface';
 
 describe('LoggedInGuard', () => {
   let service: LoggedInGuard;
@@ -31,7 +31,7 @@ describe('LoggedInGuard', () => {
   });
 
   it('#canActivate should return true if user is logged in', () => {
-    const token: string = 'foobar';
+    const token = 'foobar';
     const user: User = { name: 'Foo', email: 'foo@bar.com' };
 
     store.dispatch(new Login(token, user));

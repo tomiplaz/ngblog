@@ -1,14 +1,14 @@
-import { User } from "../../../users/user.interface";
-import { AuthAction, AuthActionName } from "./auth.actions";
+import { User } from '../../../users/user.interface';
+import { AuthAction, AuthActionName } from './auth.actions';
 
 export const JWT_KEY = 'blogs-jwt';
 export const USER_KEY = 'blogs-user';
 
 export interface AuthState {
-  token: string,
-  user: User,
-  isLoggedIn: boolean,
-};
+  token: string;
+  user: User;
+  isLoggedIn: boolean;
+}
 
 const initialState: AuthState = {
   token: localStorage.getItem(JWT_KEY),
@@ -51,4 +51,4 @@ export function authReducer(state: AuthState = initialState, action: AuthAction)
     default:
       return state;
   }
-};
+}

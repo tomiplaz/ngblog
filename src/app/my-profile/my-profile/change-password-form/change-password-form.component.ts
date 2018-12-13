@@ -18,7 +18,7 @@ import { SetToken } from '../../../core/store/auth/auth.actions';
 export class ChangePasswordFormComponent implements OnInit {
 
   changePasswordForm: FormGroup;
-  isWaitingForResponse: boolean = false;
+  isWaitingForResponse = false;
 
   private userId: number;
 

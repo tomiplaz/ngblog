@@ -32,7 +32,10 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
   onClick(index: number, isLast: boolean) {
     const commands = this.breadcrumbs.slice(0, index + 1);
-    if (!isLast) this.router.navigate(commands);
+
+    if (!isLast) {
+      this.router.navigate(commands);
+    }
   }
 
   ngOnDestroy() {

@@ -17,7 +17,7 @@ import { SetUser } from '../../../core/store/auth/auth.actions';
 export class MyProfileFormComponent implements OnInit {
 
   myProfileForm: FormGroup;
-  isWaitingForResponse: boolean = false;
+  isWaitingForResponse = false;
 
   private userId: number;
 

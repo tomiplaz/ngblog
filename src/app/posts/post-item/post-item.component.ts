@@ -11,7 +11,7 @@ import { Post } from '../post.interface';
 export class PostItemComponent implements OnInit {
 
   @Input() post: Post;
-  @Input() isPreview: boolean = false;
+  @Input() isPreview = false;
   sanitizedPostContent: string;
 
   constructor(

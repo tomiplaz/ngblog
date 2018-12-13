@@ -14,7 +14,7 @@ import { MessageService } from '../../../core/message.service';
 export class ResetPasswordFormComponent implements OnInit {
 
   resetPasswordForm: FormGroup;
-  isWaitingForResponse: boolean = false;
+  isWaitingForResponse = false;
 
   constructor(
     private formBuilder: FormBuilder,

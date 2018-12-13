@@ -17,7 +17,7 @@ describe('UserComponent', () => {
   describe('with successful route data subscription', () => {
     beforeEach(async(() => {
       const routeStub = { data: of({ user }) };
-  
+
       TestBed.configureTestingModule({
         declarations: [ UserComponent ],
         providers: [
@@ -28,7 +28,7 @@ describe('UserComponent', () => {
       })
       .compileComponents();
     }));
-  
+
     beforeEach(() => {
       fixture = TestBed.createComponent(UserComponent);
       component = fixture.componentInstance;
@@ -49,7 +49,7 @@ describe('UserComponent', () => {
 
     beforeEach(async(() => {
       const routeStub = { data: _throw(errorMessage) };
-  
+
       TestBed.configureTestingModule({
         declarations: [ UserComponent ],
         providers: [
@@ -69,7 +69,7 @@ describe('UserComponent', () => {
     it('should create', () => {
       expect(component).toBeTruthy();
     });
-  
+
     it('should show error message', () => {
       const errorSpy = spyOn(TestBed.get(MessageService), 'error');
 

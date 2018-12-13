@@ -61,7 +61,7 @@ describe('PostsService', () => {
     });
 
     describe('#getPost', () => {
-      const stringId: string = 'foo';
+      const stringId = 'foo';
 
       it('should return an Observable', () => {
         const value = service.getPost(stringId);
@@ -96,7 +96,7 @@ describe('PostsService', () => {
     });
 
     describe('#createComment', () => {
-      const postId: number = 1;
+      const postId = 1;
       const comment: Comment = { user_id: 1, text: 'foo' };
 
       it('should return an Observable', () => {

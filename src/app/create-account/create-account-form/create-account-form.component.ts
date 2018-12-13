@@ -14,7 +14,7 @@ import { CommonService } from '../../core/common.service';
 export class CreateAccountFormComponent implements OnInit {
 
   createAccountForm: FormGroup;
-  isWaitingForResponse: boolean = false;
+  isWaitingForResponse = false;
 
   constructor(
     private formBuilder: FormBuilder,

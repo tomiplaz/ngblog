@@ -12,7 +12,7 @@ import { Post } from '../../posts/post.interface';
 })
 export class CreatePostComponent {
 
-  isWaitingForResponse: boolean = false;
+  isWaitingForResponse = false;
 
   constructor(
     private router: Router,

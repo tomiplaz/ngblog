@@ -8,13 +8,13 @@ import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
 
 export interface Credentials {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
 
 export interface ResetPassword {
-  token: string,
-  newPassword: string,
+  token: string;
+  newPassword: string;
 }
 
 @Injectable()

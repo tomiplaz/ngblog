@@ -16,7 +16,7 @@ export class CommonService {
       const confirmPasswordValue = formGroup.get(confirmPasswordControlName).value;
 
       return passwordValue !== confirmPasswordValue ? { passwordMatch: true } : null;
-    }
+    };
   }
 
 }

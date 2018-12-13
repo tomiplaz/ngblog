@@ -1,14 +1,14 @@
-import { Theme, Size } from "./settings.values";
-import { SettingsActionName, SettingsAction } from "./settings.actions";
+import { Theme, Size } from './settings.values';
+import { SettingsActionName, SettingsAction } from './settings.actions';
 
 const SETTINGS_KEY = 'bloggging-settings';
 const DEFAULT_THEME = Theme.Dark;
 const DEFAULT_SIZE = Size.Medium;
 
 export interface SettingsState {
-  theme: Theme,
-  size: Size,
-};
+  theme: Theme;
+  size: Size;
+}
 
 const localStorageSettings: SettingsState = JSON.parse(localStorage.getItem(SETTINGS_KEY));
 
@@ -23,7 +23,7 @@ const initialState: SettingsState = localStorageSettings ? {
 export function settingsReducer(state: SettingsState = initialState, action: SettingsAction) {
   switch (action.type) {
     case SettingsActionName.TOGGLE_THEME: {
-      let newState: SettingsState = {
+      const newState: SettingsState = {
         ...state,
         theme: state.theme === Theme.Light ? Theme.Dark : Theme.Light,
       };
@@ -33,7 +33,7 @@ export function settingsReducer(state: SettingsState = initialState, action: Set
       return newState;
     }
     case SettingsActionName.TOGGLE_SIZE: {
-      let newState: SettingsState = {
+      const newState: SettingsState = {
         ...state,
         size: state.size === Size.Small ? Size.Medium :
           state.size === Size.Medium ? Size.Large :
@@ -47,4 +47,4 @@ export function settingsReducer(state: SettingsState = initialState, action: Set
     default:
       return state;
   }
-};
+}

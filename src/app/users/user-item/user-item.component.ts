@@ -10,7 +10,7 @@ import { User } from '../user.interface';
 export class UserItemComponent implements OnInit {
 
   @Input() user: User;
-  @Input() isNameClickable: boolean = false;
+  @Input() isNameClickable = false;
 
   constructor(private router: Router) { }
 

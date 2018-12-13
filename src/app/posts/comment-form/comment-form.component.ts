@@ -18,7 +18,7 @@ import { User } from '../../users/user.interface';
 export class CommentFormComponent implements OnInit, OnDestroy {
 
   commentForm: FormGroup;
-  isWaitingForResponse: boolean = false;
+  isWaitingForResponse = false;
   private userSubscription: Subscription;
   private userId: number;
   @Input() postId: number;

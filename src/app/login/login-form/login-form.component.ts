@@ -13,7 +13,7 @@ import { MessageService } from '../../core/message.service';
 export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
-  isWaitingForResponse: boolean = false;
+  isWaitingForResponse = false;
 
   constructor(
     private formBuilder: FormBuilder,
