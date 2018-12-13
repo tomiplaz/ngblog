@@ -1,8 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs/observable/of';
-import { _throw } from 'rxjs/observable/throw';
+import { of, throwError } from 'rxjs';
 import { PostComponent } from './post.component';
 import { Post } from '../post.interface';
 import { Comment } from '../comment.interface';
@@ -59,7 +58,7 @@ describe('PostComponent', () => {
     const errorMessage = 'foo';
 
     beforeEach(async(() => {
-      const routeStub = { data: _throw(errorMessage) };
+      const routeStub = { data: throwError(errorMessage) };
 
       TestBed.configureTestingModule({
         declarations: [ PostComponent ],
