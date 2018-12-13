@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { finalize } from 'rxjs/operators';
 import { AuthService } from '../../core/api/auth.service';
 import { MessageService } from '../../core/message.service';
 
@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     this.isWaitingForResponse = true;
     this.authService.login(this.loginForm.value)
-      .finally(() => this.isWaitingForResponse = false)
+      .pipe(finalize(() => this.isWaitingForResponse = false))
       .subscribe(() => {
         this.messageService.loginSuccess();
         this.router.navigate(['/home']);

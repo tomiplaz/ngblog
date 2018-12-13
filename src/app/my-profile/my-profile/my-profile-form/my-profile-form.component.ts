@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-
+import { finalize } from 'rxjs/operators';
 import { MessageService } from '../../../core/message.service';
 import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';
@@ -43,7 +43,7 @@ export class MyProfileFormComponent implements OnInit {
 
     this.isWaitingForResponse = true;
     this.usersService.updateUser(this.userId, data)
-      .finally(() => this.isWaitingForResponse = false)
+      .pipe(finalize(() => this.isWaitingForResponse = false))
       .subscribe((user: User) => {
         this.messageService.updateMyProfileSuccess();
         this.store.dispatch(new SetUser(user));

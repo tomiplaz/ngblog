@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { finalize } from 'rxjs/operators';
 import { UsersService } from '../../core/api/users.service';
 import { MessageService } from '../../core/message.service';
 import { CommonService } from '../../core/common.service';
@@ -38,7 +38,7 @@ export class CreateAccountFormComponent implements OnInit {
   onSubmit() {
     this.isWaitingForResponse = true;
     this.usersService.createUser(this.createAccountForm.value)
-      .finally(() => this.isWaitingForResponse = false)
+      .pipe(finalize(() => this.isWaitingForResponse = false))
       .subscribe(() => {
         this.messageService.createAccountSuccess();
         this.router.navigate(['/login']);

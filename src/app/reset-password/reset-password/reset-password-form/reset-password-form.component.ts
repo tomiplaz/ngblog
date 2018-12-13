@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { finalize } from 'rxjs/operators';
 import { CommonService } from '../../../core/common.service';
 import { AuthService, ResetPassword } from '../../../core/api/auth.service';
 import { MessageService } from '../../../core/message.service';
@@ -42,7 +42,7 @@ export class ResetPasswordFormComponent implements OnInit {
 
     this.isWaitingForResponse = true;
     this.authService.resetPassword(data)
-      .finally(() => this.isWaitingForResponse = false)
+      .pipe(finalize(() => this.isWaitingForResponse = false))
       .subscribe(() => {
         this.messageService.resetPasswordSuccess();
         this.router.navigate(['/login']);

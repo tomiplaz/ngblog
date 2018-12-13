@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-
+import { finalize } from 'rxjs/operators';
 import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';
 import { selectUser } from '../../../core/store/auth/auth.selectors';
@@ -52,7 +52,7 @@ export class ChangePasswordFormComponent implements OnInit {
 
     this.isWaitingForResponse = true;
     this.usersService.changePassword(this.userId, data)
-      .finally(() => this.isWaitingForResponse = false)
+      .pipe(finalize(() => this.isWaitingForResponse = false))
       .subscribe(response => {
         this.messageService.changePasswordSuccess();
         this.store.dispatch(new SetToken(response.token));

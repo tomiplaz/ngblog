@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { finalize } from 'rxjs/operators';
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
 import { Post } from '../../posts/post.interface';
@@ -25,7 +25,7 @@ export class CreatePostComponent {
   submitHandler(post: Post) {
     this.isWaitingForResponse = true;
     this.postsService.createPost(post)
-      .finally(() => this.isWaitingForResponse = false)
+      .pipe(finalize(() => this.isWaitingForResponse = false))
       .subscribe(() => {
         this.messageService.createPostSuccess();
         this.router.navigate(['/posts']);

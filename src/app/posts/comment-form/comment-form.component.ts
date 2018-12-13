@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-
+import { finalize } from 'rxjs/operators';
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
 import { Comment } from '../comment.interface';
@@ -48,7 +48,7 @@ export class CommentFormComponent implements OnInit, OnDestroy {
 
     this.isWaitingForResponse = true;
     this.postsService.createComment(this.postId, submitData)
-      .finally(() => this.isWaitingForResponse = false)
+      .pipe(finalize(() => this.isWaitingForResponse = false))
       .subscribe(response => {
         this.messageService.createCommentSuccess();
         this.commentForm.reset();

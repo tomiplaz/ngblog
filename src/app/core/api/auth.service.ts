@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-
+import { share } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AppState } from '../store/store';
 import { Login, Logout } from '../store/auth/auth.actions';
@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   login(credentials: Credentials): Observable<any> {
-    const observable = this.httpClient.post<any>(this.LOGIN_URL, credentials).share();
+    const observable = this.httpClient.post<any>(this.LOGIN_URL, credentials).pipe(share());
 
     observable.subscribe(response => {
       this.store.dispatch(new Login(response.token, response.user));

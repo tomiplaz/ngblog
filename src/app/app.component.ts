@@ -1,8 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-
 import { AppState } from './core/store/store';
 import { FreezeOpenHeader, ThawCloseHeader } from './core/store/session/session.actions';
 
@@ -20,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') classAttribute: string;
 
-  private scroll$ = Observable.fromEvent(window, 'scroll');
+  private scroll$ = fromEvent(window, 'scroll');
 
   private storeSubscription: Subscription;
   private scrollSubscription: Subscription;
