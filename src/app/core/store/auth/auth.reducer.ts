@@ -1,8 +1,8 @@
 import { User } from "../../../users/user.interface";
 import { AuthAction, AuthActionName } from "./auth.actions";
 
-export const JWT_KEY = 'yabla-jwt';
-export const USER_KEY = 'yabla-user';
+export const JWT_KEY = 'blogs-jwt';
+export const USER_KEY = 'blogs-user';
 
 export interface AuthState {
   token: string,
