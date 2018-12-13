@@ -48,6 +48,7 @@ textarea {
 
 .disabled {
   opacity: 0.42;
+  cursor: default;
 }
 
 .form-control {
@@ -70,10 +71,6 @@ textarea {
 
 .clickable:hover, .toggle:hover {
   cursor: pointer;
-}
-
-.disabled:hover {
-  cursor: default;
 }
 
 .ql-toolbar, .ql-container {
