@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/finally';
+
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
 import { Post } from '../../posts/post.interface';

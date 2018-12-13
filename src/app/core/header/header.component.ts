@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, NavigationEnd } from '@angular/router';
 import { IconDefinition, faUser, faPen, faSignInAlt, faSignOutAlt, faUserPlus} from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { AuthService } from '../api/auth.service';
 import { AppState } from '../store/store';

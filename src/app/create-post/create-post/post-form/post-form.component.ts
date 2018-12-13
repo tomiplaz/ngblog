@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { AppState } from '../../../core/store/store';
 import { selectUser } from '../../../core/store/auth/auth.selectors';
 import { User } from '../../../users/user.interface';

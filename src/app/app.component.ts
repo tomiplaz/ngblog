@@ -1,9 +1,8 @@
 import { Component, OnInit, HostBinding, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { Subscription, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import 'rxjs/add/observable/fromEvent';
+
 import { AppState } from './core/store/store';
 import { FreezeOpenHeader, ThawCloseHeader } from './core/store/session/session.actions';
 

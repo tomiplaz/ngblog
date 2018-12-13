@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import 'rxjs/add/operator/finally';
+
 import { PostsService } from '../../core/api/posts.service';
 import { MessageService } from '../../core/message.service';
 import { Comment } from '../comment.interface';
 import { AppState } from '../../core/store/store';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { selectUser } from '../../core/store/auth/auth.selectors';
 import { User } from '../../users/user.interface';
 

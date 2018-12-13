@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import 'rxjs/add/operator/finally';
+
 import { MessageService } from '../../../core/message.service';
 import { UsersService } from '../../../core/api/users.service';
 import { AppState } from '../../../core/store/store';

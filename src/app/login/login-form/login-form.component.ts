@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/finally';
+
 import { AuthService } from '../../core/api/auth.service';
 import { MessageService } from '../../core/message.service';
 

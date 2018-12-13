@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/store';
 import { ToggleTheme, ToggleSize } from '../store/settings/settings.actions';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ToggleFooter } from '../store/session/session.actions';
 
 @Component({
