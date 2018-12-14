@@ -4,7 +4,6 @@
   left: 0;
   width: 100%;
   border-bottom: 1px solid;
-  text-align: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;

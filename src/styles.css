@@ -47,6 +47,7 @@ textarea {
 
 .toggle {
   flex: 1 100%;
+  text-align: center;
 }
 
 .form-control {
