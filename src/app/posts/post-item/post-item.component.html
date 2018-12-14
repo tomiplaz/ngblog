@@ -19,9 +19,7 @@
     class="clickable"
     *ngFor="let tag of post.tags"
     [routerLink]="['/posts']"
-    [queryParams]="{ tag: tag.key }">
-    #{{ tag.key }}
-  </span>
+    [queryParams]="{ tag: tag.key }">#{{ tag.key }}</span>
   <span *ngIf="!post.tags.length">/</span>
 </div>
 <div *ngIf="!isPreview" [innerHTML]="sanitizedPostContent"></div>

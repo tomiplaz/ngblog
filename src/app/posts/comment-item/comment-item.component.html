@@ -3,9 +3,7 @@
   <span
     class="clickable"
     *ngIf="comment.user"
-    [routerLink]="['/users', comment.user.string_id]">
-    {{ comment.user.name }}
-  </span>
+    [routerLink]="['/users', comment.user.string_id]">{{ comment.user.name }}</span>
   <span *ngIf="!comment.user">anonymous</span>
   <span class="label">On</span>
   <span>{{ comment.created_at | date:'medium' }}</span>
