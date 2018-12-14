@@ -1,4 +1,4 @@
-<h2 class="title" [ngClass]="{ 'clickable': isNameClickable }" (click)="onNameClick()">
+<h2 class="title" [ngClass]="{ 'clickable': isPreview }" (click)="onNameClick()">
   {{ user.name }}
 </h2>
 <div class="metadata">
@@ -11,4 +11,16 @@
   <span>&#x02022;</span>
   <span class="label">comments</span>
   <span>{{ user.comments_count }}</span>
+</div>
+<div class="metadata" *ngIf="!isPreview">
+  <span class="label">Account Confirmed</span>
+  <span>{{ user.is_confirmed ? 'Yes' : 'No' }}</span>
+</div>
+<div class="metadata" *ngIf="!isPreview">
+  <span class="label">Website</span>
+  <span>{{ user.website || '/' }}</span>
+</div>
+<div class="metadata" *ngIf="!isPreview">
+  <span class="label">About</span>
+  <span>{{ user.about || '/' }}</span>
 </div>

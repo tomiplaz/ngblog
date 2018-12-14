@@ -10,7 +10,7 @@ import { User } from '../user.interface';
 export class UserItemComponent implements OnInit {
 
   @Input() user: User;
-  @Input() isNameClickable = false;
+  @Input() isPreview = true;
 
   constructor(private router: Router) { }
 
@@ -21,7 +21,7 @@ export class UserItemComponent implements OnInit {
   }
 
   onNameClick() {
-    if (this.isNameClickable) {
+    if (this.isPreview) {
       this.router.navigate(['/users', this.user.string_id]);
     }
   }

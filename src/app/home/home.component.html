@@ -11,14 +11,6 @@
     <span>{{ stats.comments_count }}</span>
 </div>
 <div class="label margin-bottom-s">Recent</div>
-<app-post-item
-  *ngFor="let post of recentPosts; trackBy: trackById"
-  [post]="post"
-  [isPreview]="true">
-</app-post-item>
+<app-post-item *ngFor="let post of recentPosts; trackBy: trackById" [post]="post"></app-post-item>
 <div class="label margin-bottom-s">Random</div>
-<app-post-item
-  *ngFor="let post of randomPosts; trackBy: trackById"
-  [post]="post"
-  [isPreview]="true">
-</app-post-item>
+<app-post-item *ngFor="let post of randomPosts; trackBy: trackById" [post]="post"></app-post-item>

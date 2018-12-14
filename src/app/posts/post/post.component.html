@@ -1,5 +1,5 @@
 <div class="label margin-bottom-s">Post</div>
-<app-post-item [post]="post"></app-post-item>
+<app-post-item [post]="post" [isPreview]="false"></app-post-item>
 <app-comment-form
   [postId]="post.id"
   (commentAdded)="onCommentAdded($event)">
