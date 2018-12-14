@@ -1,8 +1,5 @@
-<div class="navigation">
-  <div class="title clickable" title="blogs: a blogging app" routerLink="/home">blogs</div>
-  <app-breadcrumbs></app-breadcrumbs>
-</div>
-<div class="navigation" [hidden]="isAuthUrl">
+<div class="app-title clickable" title="blogs: a blogging app" routerLink="/home">blogs</div>
+<div [hidden]="isAuthUrl">
   <ul>
     <ng-container *ngIf="isLoggedIn">
       <li *ngFor="let item of loggedInRoutingItems">
@@ -19,6 +16,7 @@
     </ng-container>
   </ul>
 </div>
+<app-breadcrumbs></app-breadcrumbs>
 <div class="toggle" [ngClass]="{ 'disabled': isToggleDisabled }" (click)="onToggleClick()">
   &#x022EF;&#x022EF;
 </div>

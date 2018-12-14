@@ -7,7 +7,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  align-items: center;
+  padding-top: 10px;
   transition-property: color, border-color, background-color, top;
   transition-duration: var(--transition-duration);
 }
@@ -36,34 +36,24 @@
   top: -61px;
 }
 
+.app-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-ul li {
+.app-title, ul li {
   display: inline;
   margin: 0 10px;
 }
 
-.navigation {
-  padding: 5px 10px;
-}
-
-.title {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-@media only screen and (min-width: 600px) {
-  :host {
-    justify-content: space-around;
-  }
-}
-
 @media only screen and (min-width: 992px) {
   :host {
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 }
