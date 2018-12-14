@@ -7,7 +7,8 @@ export class MessageService {
   readonly MESSAGES = {
     CREATE_ACCOUNT_SUCCESS: 'Account created. Please check your email to confirm it.',
     CONFIRM_ACCOUNT_SUCCESS: 'Account confirmed. Please log in.',
-    LOGIN_SUCCESS: 'Welcome back!',
+    LOGIN_SUCCESS: 'Logged in!',
+    LOGOUT_SUCCESS: 'Logged out!',
     CREATE_POST_SUCCESS: 'Post created.',
     CREATE_COMMENT_SUCCESS: 'Comment created.',
     UPDATE_MY_PROFILE_SUCCESS: 'Profile updated.',
@@ -32,6 +33,10 @@ export class MessageService {
 
   loginSuccess() {
     this.toastrService.info(this.MESSAGES.LOGIN_SUCCESS);
+  }
+
+  logoutSuccess() {
+    this.toastrService.info(this.MESSAGES.LOGOUT_SUCCESS);
   }
 
   createPostSuccess() {

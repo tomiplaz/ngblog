@@ -7,6 +7,7 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { AuthService } from '../api/auth.service';
 import { AppState } from '../store/store';
 import { ToggleHeader } from '../store/session/session.actions';
+import { MessageService } from '../message.service';
 
 interface RoutingItem {
   commands: string[];
@@ -44,6 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private store: Store<AppState>,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
@@ -68,6 +70,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogoutClick() {
     this.authService.logout();
+    this.messageService.logoutSuccess();
     this.router.navigate(['/home']);
   }
 

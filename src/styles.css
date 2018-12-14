@@ -1,5 +1,6 @@
-@import './app/shared/variables.css';
 @import '../node_modules/quill/dist/quill.snow.css';
+@import '../node_modules/ngx-toastr/toastr.css';
+@import './app/shared/variables.css';
 
 body {
   margin: 0;
@@ -77,4 +78,8 @@ textarea {
 .ql-toolbar, .ql-container {
   background-color: white;
   color: black;
+}
+
+.toast {
+  margin-top: 5px !important;
 }

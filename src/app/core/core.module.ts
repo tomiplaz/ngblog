@@ -22,7 +22,7 @@ import { store } from './store/store';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 1500,
-      positionClass: 'toast-center-center',
+      positionClass: 'toast-top-center',
     }),
     StoreModule.forRoot(store),
     FontAwesomeModule,
