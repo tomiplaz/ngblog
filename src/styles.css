@@ -9,7 +9,7 @@ body {
 .title {
   font-size: 1.2em;
   margin: 0;
-  display: inline-block;
+  display: inline;
 }
 
 .metadata {
@@ -76,4 +76,5 @@ textarea {
 
 .ql-toolbar, .ql-container {
   background-color: white;
+  color: black;
 }
