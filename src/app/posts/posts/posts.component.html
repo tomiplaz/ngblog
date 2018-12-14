@@ -1,3 +1,2 @@
-<div class="label margin-bottom-s">Posts</div>
 <app-post-item *ngFor="let post of results.data; trackBy: trackById" [post]="post"></app-post-item>
 <app-paginator [results]="results" (resultsFetched)="onResultsFetched($event)"></app-paginator>

@@ -1,3 +1,2 @@
-<div class="label margin-bottom-s">Users</div>
 <app-user-item *ngFor="let user of results.data; trackBy: trackById" [user]="user"></app-user-item>
 <app-paginator [results]="results" (resultsFetched)="onResultsFetched($event)"></app-paginator>
