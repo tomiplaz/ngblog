@@ -15,7 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly TOP = 90;
   readonly TOP_EXTRA = 50;
 
-  @ViewChild('content') contentElementRef: ElementRef;
+  @ViewChild('main') mainElementRef: ElementRef;
 
   @HostBinding('class') classAttribute: string;
 
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.scrollSubscription = this.scroll$.pipe(debounceTime(100)).subscribe(() => {
-      const top = this.contentElementRef.nativeElement.getBoundingClientRect().top;
+      const top = this.mainElementRef.nativeElement.getBoundingClientRect().top;
 
       if (top > this.TOP - this.TOP_EXTRA) {
         this.store.dispatch(new FreezeOpenHeader());

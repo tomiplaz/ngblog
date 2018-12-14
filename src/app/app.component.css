@@ -1,10 +1,7 @@
 :host {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: left;
+  display: block;
   min-height: 100vh;
-  transition-property: color, border-color, background-color, padding-top, font-size;
+  transition-property: color, border-color, background-color, height, font-size;
   transition-duration: var(--transition-duration);
 }
 
@@ -22,23 +19,34 @@
 
 :host(.small) {
   font-size: var(--small-font);
-  padding-top: 74px;
 }
 
 :host(.medium) {
   font-size: var(--medium-font);
-  padding-top: 83px;
 }
 
 :host(.large) {
   font-size: var(--large-font);
-  padding-top: 90px;
 }
 
-.content {
-  width: var(--width);
+:host(.small) .empty {
+  height: 74px;
+}
+
+:host(.medium) .empty {
+  height: 83px;
+}
+
+:host(.large) .empty {
+  height: 90px;
 }
 
 .main {
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: var(--width);
+  padding: 0 10px 25px;
+  margin: auto;
 }
