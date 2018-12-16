@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
       ].join(' ');
     });
 
-    this.scrollSubscription = this.scroll$.pipe(debounceTime(100)).subscribe(() => {
+    this.scrollSubscription = this.scroll$.pipe(debounceTime(50)).subscribe(() => {
       const top = this.mainElementRef.nativeElement.getBoundingClientRect().top;
 
       if (top > this.TOP - this.TOP_EXTRA) {
