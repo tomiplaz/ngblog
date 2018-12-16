@@ -14,6 +14,7 @@ import { LoggedInGuard } from './logged-in-guard.service';
 import { BreadcrumbsComponent } from './header/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './footer/footer.component';
 import { store } from './store/store';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { store } from './store/store';
     StoreModule.forRoot(store),
     FontAwesomeModule,
     RouterModule,
+    SharedModule,
   ],
   declarations: [
     HeaderComponent,

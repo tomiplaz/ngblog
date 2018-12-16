@@ -18,7 +18,10 @@
       </div>
     </ng-container>
   </div>
-  <div class="toggle" [ngClass]="{ 'disabled': isToggleDisabled }" (click)="onToggleClick()">
-    &#x022EF;&#x022EF;
-  </div>
+  <app-toggle
+    [isUp]="isHeaderOpen"
+    [isOpen]="isHeaderOpen"
+    [isDisabled]="isToggleDisabled"
+    [onClick]="onToggleClick.bind(this)">
+  </app-toggle>
 </div>

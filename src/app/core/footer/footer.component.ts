@@ -13,13 +13,14 @@ import { ToggleFooter } from '../store/session/session.actions';
 export class FooterComponent implements OnInit, OnDestroy {
 
   private storeSubscription: Subscription;
-
+  isFooterOpen: boolean;
   @HostBinding('class') classAttribute: string;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.storeSubscription = this.store.subscribe(state => {
+      this.isFooterOpen = state.session.isFooterOpen;
       this.classAttribute = [
         state.settings.theme,
         state.settings.size,

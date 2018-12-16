@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faSignOutAlt: IconDefinition = faSignOutAlt;
 
   isLoggedIn: boolean;
+  isHeaderOpen: boolean;
   isToggleDisabled: boolean;
   isAuthUrl: boolean;
   loggedInRoutingItems: RoutingItem[] = [
@@ -59,6 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
     this.store.subscribe(state => {
       this.isLoggedIn = state.auth.isLoggedIn;
+      this.isHeaderOpen = state.session.isHeaderOpen;
       this.isToggleDisabled = state.session.isHeaderToggleDisabled;
       this.classAttribute = [
         state.settings.theme,

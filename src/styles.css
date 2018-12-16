@@ -45,11 +45,6 @@ textarea {
   margin-bottom: var(--margin-s)
 }
 
-.toggle {
-  flex: 1 100%;
-  text-align: center;
-}
-
 .form-control {
   text-align: left;
   margin-bottom: var(--margin-s);
@@ -65,11 +60,8 @@ textarea {
 }
 
 .clickable {
-  text-decoration: underline;
-}
-
-.clickable, .toggle {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .disabled {
