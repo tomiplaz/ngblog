@@ -1,22 +1,24 @@
-<div class="app-title clickable" title="blogs: a blogging app" routerLink="/home">blogs</div>
-<div [hidden]="isAuthUrl">
-  <ul>
+<div class="container">
+  <div>
+    <div class="app-title clickable" title="blogs: a blogging app" routerLink="/home">blogs</div>
+    <app-breadcrumbs></app-breadcrumbs>
+  </div>
+  <div class="icons" [hidden]="isAuthUrl">
     <ng-container *ngIf="isLoggedIn">
-      <li *ngFor="let item of loggedInRoutingItems">
+      <div *ngFor="let item of loggedInRoutingItems">
         <fa-icon class="clickable" [title]="item.text" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
-      </li>
-      <li>
+      </div>
+      <div>
         <fa-icon class="clickable" title="Logout" [icon]="faSignOutAlt" (click)="onLogoutClick()"></fa-icon>
-      </li>
+      </div>
     </ng-container>
     <ng-container *ngIf="!isLoggedIn">
-      <li *ngFor="let item of loggedOutRoutingItems">
+      <div *ngFor="let item of loggedOutRoutingItems">
         <fa-icon class="clickable" [title]="item.text" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>
-      </li>
+      </div>
     </ng-container>
-  </ul>
-</div>
-<app-breadcrumbs></app-breadcrumbs>
-<div class="toggle" [ngClass]="{ 'disabled': isToggleDisabled }" (click)="onToggleClick()">
-  &#x022EF;&#x022EF;
+  </div>
+  <div class="toggle" [ngClass]="{ 'disabled': isToggleDisabled }" (click)="onToggleClick()">
+    &#x022EF;&#x022EF;
+  </div>
 </div>
