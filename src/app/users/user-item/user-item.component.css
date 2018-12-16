@@ -1,4 +1,4 @@
 :host {
   display: block;
-  margin: var(--margin-s) auto;
+  margin-bottom: var(--margin-s);
 }

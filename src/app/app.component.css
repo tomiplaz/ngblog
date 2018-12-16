@@ -30,15 +30,15 @@
 }
 
 :host(.small) .empty {
-  height: 74px;
+  height: 94px;
 }
 
 :host(.medium) .empty {
-  height: 83px;
+  height: 103px;
 }
 
 :host(.large) .empty {
-  height: 90px;
+  height: 110px;
 }
 
 .main {
