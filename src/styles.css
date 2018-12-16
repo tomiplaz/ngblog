@@ -18,7 +18,7 @@ body {
   font-size: 0.8em;
 }
 
-.metadata span{
+.metadata span {
   margin: 0 2px;
   display: inline-block;
 }
@@ -76,4 +76,16 @@ textarea {
 
 .toast {
   margin-top: 5px !important;
+}
+
+.form-route-component {
+  display: block;
+  width: 75%;
+  text-align: center;
+}
+
+@media only screen and (orientation: landscape) {
+  .form-route-component {
+    width: 50%;
+  }
 }
