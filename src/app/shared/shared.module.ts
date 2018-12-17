@@ -5,6 +5,7 @@ import { ErrorMessagesComponent } from './error-messages/error-messages.componen
 import { PaginatorComponent } from './paginator/paginator.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { HrefPipe } from './href.pipe';
+import { HeadPipe } from './head.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { HrefPipe } from './href.pipe';
     PaginatorComponent,
     ToggleComponent,
     HrefPipe,
+    HeadPipe,
   ]
 })
 export class SharedModule { }

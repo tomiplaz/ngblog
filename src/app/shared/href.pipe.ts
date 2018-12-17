@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class HrefPipe implements PipeTransform {
 
-  transform(value: string, args?: any): string {
+  transform(value: string): string {
     if (value.startsWith('http://') || value.startsWith('https://')) {
       return value;
     }
