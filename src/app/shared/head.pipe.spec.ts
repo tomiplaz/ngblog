@@ -1,6 +1,6 @@
 import { HeadPipe } from './head.pipe';
 
-fdescribe('HeadPipe', () => {
+describe('HeadPipe', () => {
   let pipe: HeadPipe;
 
   beforeEach(() => {

@@ -27,7 +27,7 @@ export class PostFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.postForm = this.formBuilder.group({
-      title: [null, Validators.required],
+      title: [null, Validators.required, Validators.maxLength(245)],
       content: [null, Validators.required],
       tag: [null, [Validators.pattern(/^[a-zA-Z0-9]+$/), Validators.maxLength(20)]],
     });
