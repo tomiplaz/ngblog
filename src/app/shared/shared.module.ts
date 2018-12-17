@@ -17,6 +17,7 @@ import { HeadPipe } from './head.pipe';
     PaginatorComponent,
     ToggleComponent,
     HrefPipe,
+    HeadPipe,
   ],
   declarations: [
     ErrorMessagesComponent,
