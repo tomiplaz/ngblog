@@ -18,7 +18,8 @@
 </div>
 <div class="metadata" *ngIf="!isPreview">
   <span class="label">Website</span>
-  <span>{{ user.website || '/' }}</span>
+  <a *ngIf="user.website" [href]="user.website | href" target="_blank">{{ user.website }}</a>
+  <span *ngIf="!user.website">/</span>
 </div>
 <div class="metadata" *ngIf="!isPreview">
   <span class="label">About</span>

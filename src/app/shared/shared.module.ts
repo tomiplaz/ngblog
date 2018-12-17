@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ErrorMessagesComponent } from './error-messages/error-messages.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { ToggleComponent } from './toggle/toggle.component';
+import { HrefPipe } from './href.pipe';
 
 @NgModule({
   imports: [
@@ -14,11 +15,13 @@ import { ToggleComponent } from './toggle/toggle.component';
     ErrorMessagesComponent,
     PaginatorComponent,
     ToggleComponent,
+    HrefPipe,
   ],
   declarations: [
     ErrorMessagesComponent,
     PaginatorComponent,
     ToggleComponent,
+    HrefPipe,
   ]
 })
 export class SharedModule { }
