@@ -23,8 +23,8 @@ export class PostsService {
     return this.httpClient.get<PaginatedResponse<Post>>(this.BASE_URL, options);
   }
 
-  getPost(stringId: string): Observable<Post> {
-    const url = `${this.BASE_URL}/${stringId}`;
+  getPost(key: string): Observable<Post> {
+    const url = `${this.BASE_URL}/${key}`;
     return this.httpClient.get<Post>(url);
   }
 

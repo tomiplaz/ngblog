@@ -3,7 +3,7 @@
 </h2>
 <div class="metadata">
   <span class="label">By</span>
-  <span class="clickable" [routerLink]="['/users', post.user.string_id]">{{ post.user.name }}</span>
+  <span class="clickable" [routerLink]="['/users', post.user.name]">{{ post.user.name }}</span>
   <span class="label">On</span>
   <span>{{ post.created_at | date:'medium' }}</span>
 </div>

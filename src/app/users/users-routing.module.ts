@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'users',
     children: [
       {
-        path: ':stringId',
+        path: ':name',
         children: [
           {
             path: 'posts',

@@ -48,18 +48,18 @@ describe('UsersService', () => {
     });
 
     describe('#getUser', () => {
-      const stringId = 'foo';
+      const name = 'foo';
 
       it('should return an Observable', () => {
-        const value = service.getUser(stringId);
+        const value = service.getUser(name);
 
         expect(value instanceof Observable).toBeTruthy();
       });
 
       it('should send a request to get a user when subscribed', () => {
-        service.getUser(stringId).subscribe();
+        service.getUser(name).subscribe();
 
-        const mockRequest = httpTC.expectOne(`${service.BASE_URL}/${stringId}`);
+        const mockRequest = httpTC.expectOne(`${service.BASE_URL}/${name}`);
         expect(mockRequest.request.method).toBe('GET');
       });
     });

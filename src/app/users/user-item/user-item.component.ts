@@ -22,7 +22,7 @@ export class UserItemComponent implements OnInit {
 
   onNameClick() {
     if (this.isPreview) {
-      this.router.navigate(['/users', this.user.string_id]);
+      this.router.navigate(['/users', this.user.name]);
     }
   }
 

@@ -10,7 +10,7 @@ export class PostResolverService implements Resolve<Post> {
   constructor(private postsService: PostsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post> {
-    return this.postsService.getPost(route.params.stringId);
+    return this.postsService.getPost(route.params.key);
   }
 
 }

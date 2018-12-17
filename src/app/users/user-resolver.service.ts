@@ -10,7 +10,7 @@ export class UserResolverService implements Resolve<User> {
   constructor(private usersService: UsersService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
-    return this.usersService.getUser(route.params.stringId);
+    return this.usersService.getUser(route.params.name);
   }
 
 }

@@ -28,7 +28,7 @@ export class PostItemComponent implements OnInit {
 
   onTitleClick() {
     if (this.isPreview) {
-      this.router.navigate(['/posts', this.post.string_id]);
+      this.router.navigate(['/posts', this.post.key]);
     }
   }
 

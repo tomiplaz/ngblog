@@ -4,7 +4,7 @@ import { Tag } from './tag.interface';
 
 export interface Post {
   id?: number;
-  string_id?: string;
+  key?: string;
   user_id: number;
   title: string;
   content: string;

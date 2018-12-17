@@ -16,8 +16,8 @@ export class UsersService {
     return this.httpClient.get<PaginatedResponse<User>>(this.BASE_URL);
   }
 
-  getUser(stringId: string): Observable<User> {
-    return this.httpClient.get<User>(`${this.BASE_URL}/${stringId}`);
+  getUser(name: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.BASE_URL}/${name}`);
   }
 
   createUser(user: User): Observable<User> {

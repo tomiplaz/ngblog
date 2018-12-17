@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'posts',
     children: [
       {
-        path: ':stringId',
+        path: ':key',
         component: PostComponent,
         resolve: {
           post: PostResolverService

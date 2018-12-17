@@ -1,6 +1,6 @@
 import { HrefPipe } from './href.pipe';
 
-fdescribe('HrefPipe', () => {
+describe('HrefPipe', () => {
   let pipe: HrefPipe;
 
   beforeEach(() => {

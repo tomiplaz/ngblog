@@ -61,18 +61,18 @@ describe('PostsService', () => {
     });
 
     describe('#getPost', () => {
-      const stringId = 'foo';
+      const key = 'foo';
 
       it('should return an Observable', () => {
-        const value = service.getPost(stringId);
+        const value = service.getPost(key);
 
         expect(value instanceof Observable).toBeTruthy();
       });
 
       it('should send a request to get a post when subscribed', () => {
-        service.getPost(stringId).subscribe();
+        service.getPost(key).subscribe();
 
-        const mockRequest = httpTC.expectOne(`${service.BASE_URL}/${stringId}`);
+        const mockRequest = httpTC.expectOne(`${service.BASE_URL}/${key}`);
         expect(mockRequest.request.method).toBe('GET');
       });
     });
