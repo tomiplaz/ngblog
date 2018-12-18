@@ -10,7 +10,11 @@
         <fa-icon title="Comments" [icon]="faComments"></fa-icon> {{ stats.comments_count }}
     </div>
 </div>
-<div class="label margin-bottom-s">Recent</div>
-<app-post-item *ngFor="let post of recentPosts; trackBy: trackById" [post]="post"></app-post-item>
-<div class="label margin-bottom-s">Random</div>
-<app-post-item *ngFor="let post of randomPosts; trackBy: trackById" [post]="post"></app-post-item>
+<div class="margin-bottom-m">
+    <div class="label margin-bottom-s">Random Post</div>
+    <app-post-item *ngFor="let post of randomPosts; trackBy: trackById" [post]="post"></app-post-item>
+</div>
+<div class="margin-bottom-m">
+    <div class="label margin-bottom-s">Recent Posts</div>
+    <app-post-item *ngFor="let post of recentPosts; trackBy: trackById" [post]="post"></app-post-item>
+</div>
