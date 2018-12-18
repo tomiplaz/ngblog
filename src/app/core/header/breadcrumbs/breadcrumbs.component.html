@@ -1,4 +1,4 @@
 <ng-container *ngFor="let breadcrumb of breadcrumbs; index as i; last as isLast">
   <span>/</span>
-  <span [ngClass]="{ 'clickable': !isLast }" (click)="onClick(i, isLast)">{{ breadcrumb | head : 18 }}</span>
+  <span [ngClass]="{ 'clickable': !isLast }" (click)="onClick(i, isLast)">{{ breadcrumb }}</span>
 </ng-container>

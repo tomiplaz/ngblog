@@ -3,7 +3,7 @@
     <div class="app-title clickable" title="blogs: a blogging app" routerLink="/home">blogs</div>
     <app-breadcrumbs></app-breadcrumbs>
   </div>
-  <div class="icons" [hidden]="isAuthUrl">
+  <div [hidden]="isAuthUrl">
     <ng-container *ngIf="isLoggedIn">
       <div *ngFor="let item of loggedInRoutingItems">
         <fa-icon class="clickable" [title]="item.text" [icon]="item.icon" [routerLink]="item.commands"></fa-icon>

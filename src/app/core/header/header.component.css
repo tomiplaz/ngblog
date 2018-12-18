@@ -45,12 +45,12 @@
   margin: 0 10px;
 }
 
-.app-title {
-  font-size: 1.2em;
-  font-weight: bold;
+.container > div:nth-child(1) {
+  flex: 2;
+  min-width: 30%;
 }
 
-.icons {
+.container > div:nth-child(2) {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
@@ -58,7 +58,12 @@
   font-size: 1.2em;
 }
 
-.icons > div:not(:last-child) {
+.app-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.container > div:nth-child(2) > div:not(:last-child) {
   margin-right: 20px;
 }
 
