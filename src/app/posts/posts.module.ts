@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     PostsRoutingModule,
     SharedModule,
+    FontAwesomeModule,
   ],
   declarations: [
     PostsComponent,

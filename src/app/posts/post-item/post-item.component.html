@@ -1,18 +1,13 @@
 <h2 class="title" [ngClass]="{ 'clickable': isPreview }" (click)="onTitleClick()">{{ post.title }}</h2>
 <div class="metadata">
-  <span class="label">By</span>
+  <fa-icon [icon]="faUser" title="Posted By"></fa-icon>
   <span class="clickable" [routerLink]="['/users', post.user.name]">{{ post.user.name }}</span>
-  <span class="label">On</span>
-  <span>{{ post.created_at | date:'medium' }}</span>
+  <fa-icon [icon]="faCalendarAlt" title="Posted On"></fa-icon> {{ post.created_at | date:'medium' }}
 </div>
 <div class="metadata">
-  <span class="label">Views</span>
-  <span>{{ post.views_count }}</span>
-  <span>&#x02022;</span>
-  <span class="label">Comments</span>
-  <span>{{ post.comments_count }}</span>
-  <span>&#x02022;</span>
-  <span class="label">Tags</span>
+  <fa-icon [icon]="faEye" title="Views"></fa-icon> {{ post.views_count }}
+  <fa-icon [icon]="faComments" title="Comments"></fa-icon> {{ post.comments_count }}
+  <fa-icon [icon]="faTags" title="Tags"></fa-icon>
   <span
     class="clickable"
     *ngFor="let tag of post.tags"
@@ -20,5 +15,5 @@
     [queryParams]="{ tag: tag.key }">#{{ tag.key }}</span>
   <span *ngIf="!post.tags.length">/</span>
 </div>
-<div *ngIf="isPreview" [innerHTML]="sanitizedPostContent | head : 70"></div>
+<div *ngIf="isPreview" [innerHTML]="sanitizedPostContent | head : 100"></div>
 <div *ngIf="!isPreview" [innerHTML]="sanitizedPostContent"></div>
