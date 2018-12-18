@@ -1,6 +1,4 @@
-<h2 class="title" [ngClass]="{ 'clickable': isPreview }" (click)="onTitleClick()">
-  {{ post.title }}
-</h2>
+<h2 class="title" [ngClass]="{ 'clickable': isPreview }" (click)="onTitleClick()">{{ post.title }}</h2>
 <div class="metadata">
   <span class="label">By</span>
   <span class="clickable" [routerLink]="['/users', post.user.name]">{{ post.user.name }}</span>
@@ -22,4 +20,5 @@
     [queryParams]="{ tag: tag.key }">#{{ tag.key }}</span>
   <span *ngIf="!post.tags.length">/</span>
 </div>
+<div *ngIf="isPreview" [innerHTML]="sanitizedPostContent | head : 70"></div>
 <div *ngIf="!isPreview" [innerHTML]="sanitizedPostContent"></div>
