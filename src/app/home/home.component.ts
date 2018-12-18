@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faUsers, faFileSignature, faComments } from '@fortawesome/free-solid-svg-icons';
 import { HomeData, Stats } from './home-data.interface';
 import { Post } from '../posts/post.interface';
 import { CommonService } from '../core/common.service';
@@ -15,6 +16,10 @@ export class HomeComponent implements OnInit {
   randomPosts: Post[];
   stats: Stats;
   trackById: Function;
+
+  faUsers = faUsers;
+  faFileSignature = faFileSignature;
+  faComments = faComments;
 
   constructor(
     private route: ActivatedRoute,

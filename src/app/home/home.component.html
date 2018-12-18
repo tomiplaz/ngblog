@@ -1,14 +1,14 @@
 <div class="label margin-bottom-s">Work In Progress</div>
-<div class="label margin-bottom-s">blogs: a blogging app</div>
-<div class="metadata margin-bottom-s">
-    <span class="label clickable" routerLink="/users">Users</span>
-    <span>{{ stats.users_count }}</span>
-    <span>&#x02022;</span>
-    <span class="label clickable" routerLink="/posts">Posts</span>
-    <span>{{ stats.posts_count }}</span>
-    <span>&#x02022;</span>
-    <span class="label">Comments</span>
-    <span>{{ stats.comments_count }}</span>
+<div class="stats margin-bottom-m">
+    <div class="pointer" routerLink="/users">
+        <fa-icon title="Users" [icon]="faUsers"></fa-icon> {{ stats.users_count }}
+    </div>
+    <div class="pointer" routerLink="/posts">
+        <fa-icon title="Posts" [icon]="faFileSignature"></fa-icon> {{ stats.posts_count }}
+    </div>
+    <div class="default-cursor">
+        <fa-icon title="Comments" [icon]="faComments"></fa-icon> {{ stats.comments_count }}
+    </div>
 </div>
 <div class="label margin-bottom-s">Recent</div>
 <app-post-item *ngFor="let post of recentPosts; trackBy: trackById" [post]="post"></app-post-item>

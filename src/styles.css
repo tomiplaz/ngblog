@@ -46,7 +46,11 @@ textarea {
 }
 
 .margin-bottom-s {
-  margin-bottom: var(--margin-s)
+  margin-bottom: var(--margin-s);
+}
+
+.margin-bottom-m {
+  margin-bottom: var(--margin-m);
 }
 
 .form-control {
@@ -61,6 +65,10 @@ textarea {
 
 .pointer {
   cursor: pointer;
+}
+
+.default-cursor {
+  cursor: default;
 }
 
 .clickable {
