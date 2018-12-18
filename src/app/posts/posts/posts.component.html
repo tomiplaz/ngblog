@@ -1,2 +1,7 @@
-<app-post-item *ngFor="let post of results.data; trackBy: trackById" [post]="post"></app-post-item>
-<app-paginator [results]="results" (resultsFetched)="onResultsFetched($event)"></app-paginator>
+<ng-container *ngIf="results.data.length">
+  <app-post-item *ngFor="let post of results.data; trackBy: trackById" [post]="post"></app-post-item>
+  <app-paginator [results]="results" (resultsFetched)="onResultsFetched($event)"></app-paginator>
+</ng-container>
+<ng-container *ngIf="!results.data.length">
+  <span class="label">No posts found!</span>
+</ng-container>
