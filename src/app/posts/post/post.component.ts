@@ -33,6 +33,7 @@ export class PostComponent implements OnInit {
 
   onCommentAdded(comment: Comment) {
     this.post.comments = [ comment, ...this.post.comments ];
+    this.post.comments_count++;
   }
 
 }
