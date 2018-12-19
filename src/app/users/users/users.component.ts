@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
 import { PaginatedResponse } from '../../shared/paginator/paginated-response.interface';
+import { UsersService } from '../../core/api/users.service';
 
 @Component({
   selector: 'app-users',
@@ -19,6 +20,7 @@ export class UsersComponent implements OnInit {
     private route: ActivatedRoute,
     private commonService: CommonService,
     private messageService: MessageService,
+    private usersService: UsersService,
   ) {
     this.trackById = this.commonService.trackById;
   }
@@ -33,6 +35,14 @@ export class UsersComponent implements OnInit {
 
   onResultsFetched(response: PaginatedResponse<User>) {
     this.results = response;
+  }
+
+  onSearchChanged(value: string) {
+    this.usersService.getUsers(value).subscribe((users: PaginatedResponse<User>) => {
+      this.results = users;
+    }, error => {
+      this.messageService.error(error);
+    })
   }
 
 }

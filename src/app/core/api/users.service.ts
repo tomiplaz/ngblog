@@ -12,8 +12,13 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(): Observable<PaginatedResponse<User>> {
-    return this.httpClient.get<PaginatedResponse<User>>(this.BASE_URL);
+  getUsers(search?: string): Observable<PaginatedResponse<User>> {
+    const options = {
+      params: {
+        ...search && { search },
+      },
+    };
+    return this.httpClient.get<PaginatedResponse<User>>(this.BASE_URL, options);
   }
 
   getUser(name: string): Observable<User> {
