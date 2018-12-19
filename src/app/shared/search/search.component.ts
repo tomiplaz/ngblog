@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     this.valueSubscription = this.search.valueChanges
-      .pipe(debounceTime(100), distinctUntilChanged())
+      .pipe(debounceTime(250), distinctUntilChanged())
       .subscribe(value => {
         if (this.search.status === 'VALID') {
           this.changed(value);
