@@ -58,11 +58,6 @@
   font-size: 1.2em;
 }
 
-.app-title {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
 .container > div:nth-child(2) > div:not(:last-child) {
   margin-right: 20px;
 }
