@@ -13,11 +13,12 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(tag: string, user: string): Observable<PaginatedResponse<Post>> {
+  getPosts(tag?: string, user?: string, search?: string): Observable<PaginatedResponse<Post>> {
     const options = {
       params: {
         ...tag && { tag },
         ...user && { user },
+        ...search && { search },
       },
     };
     return this.httpClient.get<PaginatedResponse<Post>>(this.BASE_URL, options);

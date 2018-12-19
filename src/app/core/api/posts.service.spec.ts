@@ -36,13 +36,13 @@ describe('PostsService', () => {
     describe('#getPosts', () => {
 
       it('should return an Observable', () => {
-        const value = service.getPosts(null, null);
+        const value = service.getPosts();
 
         expect(value instanceof Observable).toBeTruthy();
       });
 
       it('should send a request with no params to get posts when subscribed', () => {
-        service.getPosts(null, null).subscribe();
+        service.getPosts().subscribe();
 
         const mockRequest = httpTC.expectOne(service.BASE_URL);
         expect(mockRequest.request.method).toBe('GET');
