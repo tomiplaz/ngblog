@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './error-messages.component.html',
   styleUrls: ['./error-messages.component.css']
 })
-export class ErrorMessagesComponent implements OnInit {
+export class ErrorMessagesComponent {
 
   @Input() name: string;
   @Input() control: FormControl;
@@ -15,8 +15,5 @@ export class ErrorMessagesComponent implements OnInit {
   @Input() confirmPasswordControlName: string;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
