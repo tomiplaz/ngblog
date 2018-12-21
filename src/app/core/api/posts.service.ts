@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Post } from '../../posts/post.interface';
@@ -13,7 +14,7 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(params?: { [param: string]: string }): Observable<PaginatedResponse<Post>> {
+  getPosts(params?: Params): Observable<PaginatedResponse<Post>> {
     const options = {
       params: params || {},
     };
