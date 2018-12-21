@@ -8,6 +8,7 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { HrefPipe } from './href.pipe';
 import { HeadPipe } from './head.pipe';
 import { SearchComponent } from './search/search.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { SearchComponent } from './search/search.component';
     HrefPipe,
     HeadPipe,
     SearchComponent,
+    OrderComponent,
   ],
   declarations: [
     ErrorMessagesComponent,
@@ -30,6 +32,7 @@ import { SearchComponent } from './search/search.component';
     HrefPipe,
     HeadPipe,
     SearchComponent,
+    OrderComponent,
   ]
 })
 export class SharedModule { }
