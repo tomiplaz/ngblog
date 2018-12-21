@@ -37,8 +37,8 @@ export class PostsComponent implements OnInit {
     this.results = response;
   }
 
-  onSearchChanged(value: string) {
-    this.postsService.getPosts(null, null, value).subscribe((posts: PaginatedResponse<Post>) => {
+  onSearchChanged(search: string) {
+    this.postsService.getPosts({ search }).subscribe((posts: PaginatedResponse<Post>) => {
       this.results = posts;
     }, error => {
       this.messageService.error(error);

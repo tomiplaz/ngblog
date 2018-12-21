@@ -11,10 +11,7 @@ export class PostsResolverService implements Resolve<PaginatedResponse<Post>> {
   constructor(private postsService: PostsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PaginatedResponse<Post>> {
-    return this.postsService.getPosts(
-      route.queryParamMap.get('tag'),
-      route.queryParamMap.get('user'),
-    );
+    return this.postsService.getPosts(route.queryParams);
   }
 
 }

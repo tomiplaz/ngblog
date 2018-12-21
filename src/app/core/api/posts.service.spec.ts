@@ -50,7 +50,7 @@ describe('PostsService', () => {
 
       it('should send a request with params to get posts when subscribed', () => {
         const params = { tag: 'foo', user: 'bar' };
-        service.getPosts(params.tag, params.user).subscribe();
+        service.getPosts(params).subscribe();
 
         const mockRequest = httpTC.expectOne(`${service.BASE_URL}?tag=foo&user=bar`);
         expect(mockRequest.request.method).toBe('GET');
