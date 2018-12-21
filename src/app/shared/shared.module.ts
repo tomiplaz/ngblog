@@ -9,6 +9,7 @@ import { HrefPipe } from './href.pipe';
 import { HeadPipe } from './head.pipe';
 import { SearchComponent } from './search/search.component';
 import { OrderComponent } from './order/order.component';
+import { SortComponent } from './sort/sort.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { OrderComponent } from './order/order.component';
     HeadPipe,
     SearchComponent,
     OrderComponent,
+    SortComponent,
   ],
   declarations: [
     ErrorMessagesComponent,
@@ -33,6 +35,7 @@ import { OrderComponent } from './order/order.component';
     HeadPipe,
     SearchComponent,
     OrderComponent,
+    SortComponent,
   ]
 })
 export class SharedModule { }

@@ -14,6 +14,12 @@ export class PostsComponent implements OnInit {
 
   results: PaginatedResponse<Post>;
   trackById: Function;
+  sortOptions = [
+    { value: 'created_at', text: 'Created At' },
+    { value: 'title', text: 'Title' },
+    { value: 'views_count', text: 'Views Count' },
+    { value: 'comments_count', text: 'Comments Count' },
+  ];
 
   constructor(
     private route: ActivatedRoute,

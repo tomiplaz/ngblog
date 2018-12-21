@@ -1,4 +1,5 @@
 <app-search (changed)="onParamChanged($event)"></app-search>
+<app-sort (changed)="onParamChanged($event)" [options]="sortOptions"></app-sort>
 <app-order (changed)="onParamChanged($event)"></app-order>
 <ng-container *ngIf="results.data.length">
   <app-post-item *ngFor="let post of results.data; trackBy: trackById" [post]="post"></app-post-item>
