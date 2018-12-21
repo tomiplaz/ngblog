@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { User } from '../user.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
 import { PaginatedResponse } from '../../shared/paginator/paginated-response.interface';
-import { UsersService } from '../../core/api/users.service';
 
 @Component({
   selector: 'app-users',
@@ -18,9 +17,9 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private commonService: CommonService,
     private messageService: MessageService,
-    private usersService: UsersService,
   ) {
     this.trackById = this.commonService.trackById;
   }
@@ -37,12 +36,12 @@ export class UsersComponent implements OnInit {
     this.results = response;
   }
 
-  onSearchChanged(value: string) {
-    this.usersService.getUsers(value).subscribe((users: PaginatedResponse<User>) => {
-      this.results = users;
-    }, error => {
-      this.messageService.error(error);
-    })
+  onParamChanged(param: Params) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { ...param },
+      queryParamsHandling: 'merge',
+    });
   }
 
 }

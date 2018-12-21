@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -10,24 +10,22 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-  @Input() changed: Function;
-
   search = new FormControl('', [Validators.maxLength(50)]);
-
+  @Output() changed = new EventEmitter<{ search: string }>();
   private valueSubscription: Subscription;
 
   constructor() { }
 
   ngOnInit() {
     if (!this.changed) {
-      throw new Error('SearchComponent requires changed attribute!');
+      throw new Error('SearchComponent requires changed event handler!');
     }
 
     this.valueSubscription = this.search.valueChanges
       .pipe(debounceTime(250), distinctUntilChanged())
       .subscribe(value => {
         if (this.search.status === 'VALID') {
-          this.changed(value);
+          this.changed.emit({ search: value });
         }
       });
   }
