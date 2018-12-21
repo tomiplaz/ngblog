@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Post } from '../post.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
@@ -18,6 +18,7 @@ export class PostsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private commonService: CommonService,
     private messageService: MessageService,
     private postsService: PostsService,
@@ -43,6 +44,14 @@ export class PostsComponent implements OnInit {
     }, error => {
       this.messageService.error(error);
     })
+  }
+
+  onParamChanged(param: Params) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { ...param },
+      queryParamsHandling: 'merge',
+    });
   }
 
 }
