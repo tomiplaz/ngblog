@@ -31,7 +31,8 @@ const routes: Routes = [
         component: UsersComponent,
         resolve: {
           users: UsersResolverService
-        }
+        },
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
       }
     ],
   }

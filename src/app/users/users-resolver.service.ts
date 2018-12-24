@@ -11,7 +11,7 @@ export class UsersResolverService implements Resolve<PaginatedResponse<User>> {
   constructor(private usersService: UsersService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PaginatedResponse<User>> {
-    return this.usersService.getUsers();
+    return this.usersService.getUsers(route.queryParams);
   }
 
 }

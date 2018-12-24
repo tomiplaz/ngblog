@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { User, UpdateUser, ChangePassword } from '../../users/user.interface';
@@ -12,11 +13,9 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(search?: string): Observable<PaginatedResponse<User>> {
+  getUsers(params?: Params): Observable<PaginatedResponse<User>> {
     const options = {
-      params: {
-        ...search && { search },
-      },
+      params: params || {},
     };
     return this.httpClient.get<PaginatedResponse<User>>(this.BASE_URL, options);
   }

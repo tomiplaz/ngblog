@@ -14,6 +14,12 @@ export class UsersComponent implements OnInit {
 
   results: PaginatedResponse<User>;
   trackById: Function;
+  sortOptions = [
+    { value: 'created_at', text: 'Created At' },
+    { value: 'name', text: 'Name' },
+    { value: 'posts_count', text: 'Posts Count' },
+    { value: 'comments_count', text: 'Comments Count' },
+  ];
 
   constructor(
     private route: ActivatedRoute,
