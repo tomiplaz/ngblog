@@ -24,9 +24,6 @@ import { ParamsInputsComponent } from './params-inputs/params-inputs.component';
     ToggleComponent,
     HrefPipe,
     HeadPipe,
-    SearchComponent,
-    OrderComponent,
-    SortComponent,
     ParamsInputsComponent,
   ],
   declarations: [
