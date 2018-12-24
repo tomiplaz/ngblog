@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.interface';
 import { CommonService } from '../../core/common.service';
 import { MessageService } from '../../core/message.service';
@@ -23,7 +23,6 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private commonService: CommonService,
     private messageService: MessageService,
   ) {
@@ -40,14 +39,6 @@ export class UsersComponent implements OnInit {
 
   onResultsFetched(response: PaginatedResponse<User>) {
     this.results = response;
-  }
-
-  onParamChanged(param: Params) {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { ...param },
-      queryParamsHandling: 'merge',
-    });
   }
 
 }

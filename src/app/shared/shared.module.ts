@@ -10,6 +10,7 @@ import { HeadPipe } from './head.pipe';
 import { SearchComponent } from './search/search.component';
 import { OrderComponent } from './order/order.component';
 import { SortComponent } from './sort/sort.component';
+import { ParamsInputsComponent } from './params-inputs/params-inputs.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { SortComponent } from './sort/sort.component';
     SearchComponent,
     OrderComponent,
     SortComponent,
+    ParamsInputsComponent,
   ],
   declarations: [
     ErrorMessagesComponent,
@@ -36,6 +38,7 @@ import { SortComponent } from './sort/sort.component';
     SearchComponent,
     OrderComponent,
     SortComponent,
+    ParamsInputsComponent,
   ]
 })
 export class SharedModule { }
