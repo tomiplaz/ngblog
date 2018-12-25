@@ -25,7 +25,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     const breadcrumbs = this.router.url.split('/').slice(1);
     const lastIndex = breadcrumbs.length - 1;
 
-    breadcrumbs[lastIndex] = breadcrumbs[lastIndex].replace('?', ' ? ').replace('&', ' & ');
+    breadcrumbs[lastIndex] = breadcrumbs[lastIndex].replace(/[?|&]/g, (match) => ` ${match} `);
 
     this.breadcrumbs = breadcrumbs;
   }
