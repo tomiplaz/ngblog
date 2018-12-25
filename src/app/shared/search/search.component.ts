@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, OnDestroy, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -22,12 +22,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     this.valueSubscription = this.search.valueChanges
-      .pipe(debounceTime(250), distinctUntilChanged())
-      .subscribe(value => {
-        if (this.search.status === 'VALID') {
-          this.changed.emit({ search: value });
-        }
-      });
+      .pipe(debounceTime(250), distinctUntilChanged(), filter(() => this.search.status === 'VALID'))
+      .subscribe(value => this.changed.emit({ search: value ? value : undefined }));
   }
 
   ngOnDestroy() {
