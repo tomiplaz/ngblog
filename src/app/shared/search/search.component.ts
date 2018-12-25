@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, OnDestroy, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 
@@ -10,16 +11,21 @@ import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-  search = new FormControl('', [Validators.maxLength(50)]);
+  search: FormControl;
   @Output() changed = new EventEmitter<{ search: string }>();
   private valueSubscription: Subscription;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     if (!this.changed) {
       throw new Error('SearchComponent requires changed event handler!');
     }
+
+    this.search = new FormControl(
+      this.route.snapshot.queryParamMap.get('search') || '',
+      [Validators.maxLength(50)]
+    );
 
     this.valueSubscription = this.search.valueChanges
       .pipe(debounceTime(250), distinctUntilChanged(), filter(() => this.search.status === 'VALID'))

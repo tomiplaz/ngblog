@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, OnDestroy, EventEmitter, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,12 +10,12 @@ import { Subscription } from 'rxjs';
 })
 export class SortComponent implements OnInit, OnDestroy {
 
-  sort = new FormControl('created_at');
+  sort: FormControl;
   @Output() changed = new EventEmitter<{ sort: string }>();
   @Input() options: { value: string, text: string }[];
   private valueSubscription: Subscription;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     if (!this.changed) {
@@ -24,6 +25,8 @@ export class SortComponent implements OnInit, OnDestroy {
     if (!this.options) {
       throw new Error('OrderComponent requires options attribute!');
     }
+
+    this.sort = new FormControl(this.route.snapshot.queryParamMap.get('sort') || 'created_at');
 
     this.valueSubscription = this.sort.valueChanges.subscribe(value => {
       this.changed.emit({ sort: value });

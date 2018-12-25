@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,16 +10,18 @@ import { Subscription } from 'rxjs';
 })
 export class OrderComponent implements OnInit, OnDestroy {
 
-  order = new FormControl('desc');
+  order: FormControl;
   @Output() changed = new EventEmitter<{ order: string }>();
   private valueSubscription: Subscription;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     if (!this.changed) {
       throw new Error('OrderComponent requires changed event handler!');
     }
+
+    this.order = new FormControl(this.route.snapshot.queryParamMap.get('order') || 'desc');
 
     this.valueSubscription = this.order.valueChanges.subscribe(value => {
       this.changed.emit({ order: value });
