@@ -1,4 +1,3 @@
 <select [formControl]="sort">
-  <option value="created_at" selected>Sort</option>
   <option *ngFor="let option of options" [value]="option.value">{{ option.text }}</option>
 </select>
