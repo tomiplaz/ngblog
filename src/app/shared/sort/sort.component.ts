@@ -18,10 +18,6 @@ export class SortComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if (!this.changed) {
-      throw new Error('OrderComponent requires changed event handler!');
-    }
-
     if (!this.options) {
       throw new Error('OrderComponent requires options attribute!');
     }

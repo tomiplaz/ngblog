@@ -18,10 +18,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if (!this.changed) {
-      throw new Error('SearchComponent requires changed event handler!');
-    }
-
     this.search = new FormControl(
       this.route.snapshot.queryParamMap.get('search') || '',
       [Validators.maxLength(50)]

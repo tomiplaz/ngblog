@@ -17,10 +17,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if (!this.changed) {
-      throw new Error('OrderComponent requires changed event handler!');
-    }
-
     this.order = new FormControl(this.route.snapshot.queryParamMap.get('order') || 'desc');
 
     this.valueSubscription = this.order.valueChanges.subscribe(value => {
