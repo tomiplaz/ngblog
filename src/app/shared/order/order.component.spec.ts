@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { OrderComponent } from './order.component';
 
@@ -64,7 +64,7 @@ fdescribe('OrderComponent', () => {
   });
 
   it('should subscribe to value change', () => {
-    const subscribeSpy = spyOn(component.order.valueChanges, 'subscribe');
+    const subscribeSpy = spyOn(component.order.valueChanges, 'subscribe').and.callThrough();
 
     fixture.detectChanges();
 
