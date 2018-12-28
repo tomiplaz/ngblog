@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { OrderComponent } from './order.component';
 
-fdescribe('OrderComponent', () => {
+describe('OrderComponent', () => {
   let component: OrderComponent;
   let fixture: ComponentFixture<OrderComponent>;
 
@@ -49,7 +49,7 @@ fdescribe('OrderComponent', () => {
   it('should set form control value to default value when order query param is not present', () => {
     fixture.detectChanges();
 
-    expect(component.order.value).toEqual('desc');
+    expect(component.order.value).toEqual(component.defaultValue);
   });
 
   it('should set form control value to order query param when it is present', () => {
@@ -72,7 +72,7 @@ fdescribe('OrderComponent', () => {
   });
 
   it('should emit Params object with order key value pair on value change', () => {
-    const order = 'asc';
+    const order = 'foo';
     const emitSpy = spyOn(component.changed, 'emit');
 
     fixture.detectChanges();
