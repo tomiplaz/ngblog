@@ -10,7 +10,9 @@ import { Subscription } from 'rxjs';
 })
 export class SortComponent implements OnInit, OnDestroy {
 
-  sort: FormControl;
+  readonly defaultValue = 'created_at';
+
+  sort = new FormControl(this.defaultValue);
   @Output() changed = new EventEmitter<{ sort: string }>();
   @Input() options: { value: string, text: string }[];
   private valueSubscription: Subscription;
@@ -22,7 +24,9 @@ export class SortComponent implements OnInit, OnDestroy {
       throw new Error('OrderComponent requires options attribute!');
     }
 
-    this.sort = new FormControl(this.route.snapshot.queryParamMap.get('sort') || 'created_at');
+    const initialValue = this.route.snapshot.queryParamMap.get('sort') || this.defaultValue;
+
+    this.sort.setValue(initialValue);
 
     this.valueSubscription = this.sort.valueChanges.subscribe(value => {
       this.changed.emit({ sort: value });
