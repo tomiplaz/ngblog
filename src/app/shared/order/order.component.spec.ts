@@ -2,25 +2,18 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { OrderComponent } from './order.component';
+import { activatedRouteStub } from 'src/tests/activated-route.stub';
 
 describe('OrderComponent', () => {
   let component: OrderComponent;
   let fixture: ComponentFixture<OrderComponent>;
 
   beforeEach(async(() => {
-    const routeStub = {
-      snapshot: {
-        queryParamMap: {
-          get: () => null,
-        }
-      }
-    };
-
     TestBed.configureTestingModule({
       imports: [ ReactiveFormsModule ],
       declarations: [ OrderComponent ],
       providers: [
-        { provide: ActivatedRoute, useValue: routeStub },
+        { provide: ActivatedRoute, useValue: activatedRouteStub },
       ],
     })
     .compileComponents();

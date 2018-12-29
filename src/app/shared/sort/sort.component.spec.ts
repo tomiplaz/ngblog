@@ -2,25 +2,18 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SortComponent } from './sort.component';
+import { activatedRouteStub } from 'src/tests/activated-route.stub';
 
-fdescribe('SortComponent', () => {
+describe('SortComponent', () => {
   let component: SortComponent;
   let fixture: ComponentFixture<SortComponent>;
 
   beforeEach(async(() => {
-    const routeStub = {
-      snapshot: {
-        queryParamMap: {
-          get: () => null,
-        }
-      }
-    };
-
     TestBed.configureTestingModule({
       imports: [ ReactiveFormsModule ],
       declarations: [ SortComponent ],
       providers: [
-        { provide: ActivatedRoute, useValue: routeStub },
+        { provide: ActivatedRoute, useValue: activatedRouteStub },
       ],
     })
     .compileComponents();
@@ -31,71 +24,55 @@ fdescribe('SortComponent', () => {
     component = fixture.componentInstance;
   });
 
-  describe('with options attribute not present', () => {
-    it('should throw error', () => {
-      try {
-        fixture.detectChanges();
-      } catch (e) {
-        expect((e as Error).message).toBe(component.OPTIONS_REQUIRED);
-      }
-    })
+  it('should create', () => {
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 
-  describe('with options attribute present', () => {
-    beforeEach(() => {
-      component.options = [];
-    });
+  it('should get sort query param value', () => {
+    const route = TestBed.get(ActivatedRoute);
+    const getSpy = spyOn(route.snapshot.queryParamMap, 'get');
 
-    it('should create', () => {
-      fixture.detectChanges();
-      expect(component).toBeTruthy();
-    });
+    fixture.detectChanges();
 
-    it('should get sort query param value', () => {
-      const route = TestBed.get(ActivatedRoute);
-      const getSpy = spyOn(route.snapshot.queryParamMap, 'get');
+    expect(getSpy).toHaveBeenCalledTimes(1);
+    expect(getSpy).toHaveBeenCalledWith('sort');
+  });
 
-      fixture.detectChanges();
+  it('should set form control value to default value when sort query param is not present', () => {
+    fixture.detectChanges();
 
-      expect(getSpy).toHaveBeenCalledTimes(1);
-      expect(getSpy).toHaveBeenCalledWith('sort');
-    });
+    expect(component.sort.value).toEqual(component.DEFAULT_VALUE);
+  });
 
-    it('should set form control value to default value when sort query param is not present', () => {
-      fixture.detectChanges();
+  it('should set form control value to sort query param when it is present', () => {
+    const sortQueryParam = 'foo';
+    const route = TestBed.get(ActivatedRoute);
 
-      expect(component.sort.value).toEqual(component.DEFAULT_VALUE);
-    });
+    spyOn(route.snapshot.queryParamMap, 'get').and.returnValue(sortQueryParam);
 
-    it('should set form control value to sort query param when it is present', () => {
-      const sortQueryParam = 'foo';
-      const route = TestBed.get(ActivatedRoute);
+    fixture.detectChanges();
 
-      spyOn(route.snapshot.queryParamMap, 'get').and.returnValue(sortQueryParam);
+    expect(component.sort.value).toEqual(sortQueryParam);
+  });
 
-      fixture.detectChanges();
+  it('should subscribe to value change', () => {
+    const subscribeSpy = spyOn(component.sort.valueChanges, 'subscribe').and.callThrough();
 
-      expect(component.sort.value).toEqual(sortQueryParam);
-    });
+    fixture.detectChanges();
 
-    it('should subscribe to value change', () => {
-      const subscribeSpy = spyOn(component.sort.valueChanges, 'subscribe').and.callThrough();
+    expect(subscribeSpy).toHaveBeenCalledTimes(1);
+  });
 
-      fixture.detectChanges();
+  it('should emit Params object with sort key value pair on value change', () => {
+    const sort = 'foo';
+    const emitSpy = spyOn(component.changed, 'emit');
 
-      expect(subscribeSpy).toHaveBeenCalledTimes(1);
-    });
+    fixture.detectChanges();
 
-    it('should emit Params object with sort key value pair on value change', () => {
-      const sort = 'foo';
-      const emitSpy = spyOn(component.changed, 'emit');
+    component.sort.setValue(sort);
 
-      fixture.detectChanges();
-
-      component.sort.setValue(sort);
-
-      expect(emitSpy).toHaveBeenCalledTimes(1);
-      expect(emitSpy).toHaveBeenCalledWith({ sort });
-    });
+    expect(emitSpy).toHaveBeenCalledTimes(1);
+    expect(emitSpy).toHaveBeenCalledWith({ sort });
   });
 });
