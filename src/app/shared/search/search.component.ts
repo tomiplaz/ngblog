@@ -11,20 +11,26 @@ import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-  search: FormControl;
+  readonly DEFAULT_VALUE = '';
+  readonly DEBOUNCE_TIME = 250;
+
+  search = new FormControl(this.DEFAULT_VALUE, [Validators.maxLength(50)]);
   @Output() changed = new EventEmitter<{ search: string }>();
   private valueSubscription: Subscription;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.search = new FormControl(
-      this.route.snapshot.queryParamMap.get('search') || '',
-      [Validators.maxLength(50)]
-    );
+    const initialValue = this.route.snapshot.queryParamMap.get('search') || this.DEFAULT_VALUE;
+
+    this.search.setValue(initialValue);
 
     this.valueSubscription = this.search.valueChanges
-      .pipe(debounceTime(250), distinctUntilChanged(), filter(() => this.search.status === 'VALID'))
+      .pipe(
+        debounceTime(this.DEBOUNCE_TIME),
+        distinctUntilChanged(),
+        filter(() => this.search.status === 'VALID')
+      )
       .subscribe(value => this.changed.emit({ search: value ? value : undefined }));
   }
 
