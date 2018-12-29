@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { OrderComponent } from './order.component';
-import { activatedRouteStub } from 'src/tests/activated-route.stub';
+import { activatedRouteStub } from '../../../tests/activated-route.stub';
 
 describe('OrderComponent', () => {
   let component: OrderComponent;
