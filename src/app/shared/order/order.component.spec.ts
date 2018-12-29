@@ -49,7 +49,7 @@ describe('OrderComponent', () => {
   it('should set form control value to default value when order query param is not present', () => {
     fixture.detectChanges();
 
-    expect(component.order.value).toEqual(component.defaultValue);
+    expect(component.order.value).toEqual(component.DEFAULT_VALUE);
   });
 
   it('should set form control value to order query param when it is present', () => {

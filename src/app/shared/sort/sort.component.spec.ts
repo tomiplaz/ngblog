@@ -29,58 +29,73 @@ fdescribe('SortComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SortComponent);
     component = fixture.componentInstance;
-    component.options = [];
   });
 
-  it('should create', () => {
-    fixture.detectChanges();
-    expect(component).toBeTruthy();
+  describe('with options attribute not present', () => {
+    it('should throw error', () => {
+      try {
+        fixture.detectChanges();
+      } catch (e) {
+        expect((e as Error).message).toBe(component.OPTIONS_REQUIRED);
+      }
+    })
   });
 
-  it('should get sort query param value', () => {
-    const route = TestBed.get(ActivatedRoute);
-    const getSpy = spyOn(route.snapshot.queryParamMap, 'get');
+  describe('with options attribute present', () => {
+    beforeEach(() => {
+      component.options = [];
+    });
 
-    fixture.detectChanges();
+    it('should create', () => {
+      fixture.detectChanges();
+      expect(component).toBeTruthy();
+    });
 
-    expect(getSpy).toHaveBeenCalledTimes(1);
-    expect(getSpy).toHaveBeenCalledWith('sort');
-  });
+    it('should get sort query param value', () => {
+      const route = TestBed.get(ActivatedRoute);
+      const getSpy = spyOn(route.snapshot.queryParamMap, 'get');
 
-  it('should set form control value to default value when sort query param is not present', () => {
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    expect(component.sort.value).toEqual(component.defaultValue);
-  });
+      expect(getSpy).toHaveBeenCalledTimes(1);
+      expect(getSpy).toHaveBeenCalledWith('sort');
+    });
 
-  it('should set form control value to sort query param when it is present', () => {
-    const sortQueryParam = 'foo';
-    const route = TestBed.get(ActivatedRoute);
+    it('should set form control value to default value when sort query param is not present', () => {
+      fixture.detectChanges();
 
-    spyOn(route.snapshot.queryParamMap, 'get').and.returnValue(sortQueryParam);
+      expect(component.sort.value).toEqual(component.DEFAULT_VALUE);
+    });
 
-    fixture.detectChanges();
+    it('should set form control value to sort query param when it is present', () => {
+      const sortQueryParam = 'foo';
+      const route = TestBed.get(ActivatedRoute);
 
-    expect(component.sort.value).toEqual(sortQueryParam);
-  });
+      spyOn(route.snapshot.queryParamMap, 'get').and.returnValue(sortQueryParam);
 
-  it('should subscribe to value change', () => {
-    const subscribeSpy = spyOn(component.sort.valueChanges, 'subscribe').and.callThrough();
+      fixture.detectChanges();
 
-    fixture.detectChanges();
+      expect(component.sort.value).toEqual(sortQueryParam);
+    });
 
-    expect(subscribeSpy).toHaveBeenCalledTimes(1);
-  });
+    it('should subscribe to value change', () => {
+      const subscribeSpy = spyOn(component.sort.valueChanges, 'subscribe').and.callThrough();
 
-  it('should emit Params object with sort key value pair on value change', () => {
-    const sort = 'foo';
-    const emitSpy = spyOn(component.changed, 'emit');
+      fixture.detectChanges();
 
-    fixture.detectChanges();
+      expect(subscribeSpy).toHaveBeenCalledTimes(1);
+    });
 
-    component.sort.setValue(sort);
+    it('should emit Params object with sort key value pair on value change', () => {
+      const sort = 'foo';
+      const emitSpy = spyOn(component.changed, 'emit');
 
-    expect(emitSpy).toHaveBeenCalledTimes(1);
-    expect(emitSpy).toHaveBeenCalledWith({ sort });
+      fixture.detectChanges();
+
+      component.sort.setValue(sort);
+
+      expect(emitSpy).toHaveBeenCalledTimes(1);
+      expect(emitSpy).toHaveBeenCalledWith({ sort });
+    });
   });
 });

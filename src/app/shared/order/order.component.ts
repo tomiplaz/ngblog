@@ -10,16 +10,16 @@ import { Subscription } from 'rxjs';
 })
 export class OrderComponent implements OnInit, OnDestroy {
 
-  readonly defaultValue = 'desc';
+  readonly DEFAULT_VALUE = 'desc';
 
-  order = new FormControl(this.defaultValue);
+  order = new FormControl(this.DEFAULT_VALUE);
   @Output() changed = new EventEmitter<{ order: string }>();
   private valueSubscription: Subscription;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const initialValue = this.route.snapshot.queryParamMap.get('order') || this.defaultValue;
+    const initialValue = this.route.snapshot.queryParamMap.get('order') || this.DEFAULT_VALUE;
 
     this.order.setValue(initialValue);
 
