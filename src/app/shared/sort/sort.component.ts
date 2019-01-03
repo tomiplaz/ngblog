@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class SortComponent implements OnInit, OnDestroy {
 
   readonly DEFAULT_VALUE = 'created_at';
-  readonly OPTIONS_REQUIRED = 'OrderComponent requires options attribute!';
+  readonly OPTIONS_REQUIRED = 'SortComponent requires options attribute!';
 
   sort = new FormControl(this.DEFAULT_VALUE);
   @Output() changed = new EventEmitter<{ sort: string }>();
