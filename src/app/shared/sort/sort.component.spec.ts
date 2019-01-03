@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SortComponent } from './sort.component';
 import { activatedRouteStub } from '../../../tests/activated-route.stub';
 
-fdescribe('SortComponent', () => {
+describe('SortComponent', () => {
   let component: SortComponent;
   let fixture: ComponentFixture<SortComponent>;
 
