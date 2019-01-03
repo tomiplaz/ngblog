@@ -5,7 +5,7 @@ import { ConfirmAccountComponent } from 'app/confirm-account/confirm-account/con
 import { MessageService } from 'app/core/message.service';
 import { messageServiceStub } from 'tests/message-service.stub';
 
-fdescribe('ConfirmAccountComponent', () => {
+describe('ConfirmAccountComponent', () => {
   let component: ConfirmAccountComponent;
   let fixture: ComponentFixture<ConfirmAccountComponent>;
 
