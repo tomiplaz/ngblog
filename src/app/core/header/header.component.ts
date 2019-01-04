@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           event.url.includes('confirm-account') ||
           event.url.includes('reset-password');
       });
-    this.store.subscribe(state => {
+    this.storeSubscription = this.store.subscribe(state => {
       this.isLoggedIn = state.auth.isLoggedIn;
       this.isHeaderOpen = state.session.isHeaderOpen;
       this.isToggleDisabled = state.session.isHeaderToggleDisabled;
