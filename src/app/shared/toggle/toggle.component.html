@@ -1,5 +1,5 @@
 <fa-icon
-  (click)="onClick()"
+  (click)="clickHandler()"
   [icon]="isUp ? faChevronUp : faChevronDown"
   [title]="isDisabled ? '' : isOpen ? 'Close' : 'Open'"
   [ngClass]="{ 'pointer': !isDisabled, 'disabled': isDisabled }">

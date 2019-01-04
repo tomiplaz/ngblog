@@ -1,7 +1,7 @@
 <app-toggle
   [isUp]="!isFooterOpen"
   [isOpen]="isFooterOpen"
-  [onClick]="onToggleClick.bind(this)">
+  [clickHandler]="onToggleClick.bind(this)">
 </app-toggle>
 <div class="character size" (click)="onSizeClick()">a</div>
 <div class="character theme" (click)="onThemeClick()">&#x025FB;</div>

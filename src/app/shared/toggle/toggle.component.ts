@@ -10,7 +10,7 @@ export class ToggleComponent {
 
   @Input() isUp: boolean;
   @Input() isOpen: boolean;
-  @Input() onClick: Function;
+  @Input() clickHandler: Function;
   @Input() isDisabled = false;
 
   faChevronDown: IconDefinition = faChevronDown;
