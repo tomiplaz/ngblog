@@ -12,6 +12,7 @@ import { ToggleHeader } from '../store/session/session.actions';
 import { AuthService } from '../api/auth.service';
 import { MessageService } from '../message.service';
 import { messageServiceStub } from 'tests/message-service.stub';
+import { authServiceStub } from 'tests/auth-service.stub';
 
 class RouterStub {
   navigate() { }
@@ -22,10 +23,13 @@ class RouterStub {
   }
 }
 
-fdescribe('HeaderComponent', () => {
+describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let store: Store<AppState>;
+  let router: Router;
+  let authService: AuthService;
+  let messageService: MessageService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -39,7 +43,7 @@ fdescribe('HeaderComponent', () => {
       declarations: [ HeaderComponent ],
       providers: [
         { provide: Router, useValue: new RouterStub() },
-        { provide: AuthService, useValue: {} },
+        { provide: AuthService, useValue: authServiceStub },
         { provide: MessageService, useValue: messageServiceStub },
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
@@ -49,6 +53,9 @@ fdescribe('HeaderComponent', () => {
 
   beforeEach(() => {
     store = TestBed.get(Store);
+    router = TestBed.get(Router);
+    authService = TestBed.get(AuthService);
+    messageService = TestBed.get(MessageService);
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
   });
@@ -60,7 +67,6 @@ fdescribe('HeaderComponent', () => {
   });
 
   it('should pipe and subscribe to router events on init', () => {
-    const router = TestBed.get(Router);
     const routerEventsPipeSpy = spyOn(router.events, 'pipe').and.callThrough();
     const routerEventsSubscribeSpy = spyOn(router.events, 'subscribe').and.callThrough();
 
@@ -108,5 +114,64 @@ fdescribe('HeaderComponent', () => {
     fixture.detectChanges();
 
     expect(component.classAttribute).toBe('dark medium closed');
+  });
+
+  describe('#onLogoutClick', () => {
+    function insideEach() {
+      fixture.detectChanges();
+      component.onLogoutClick();
+    }
+
+    it('should perform logout', () => {
+      const logoutSpy = spyOn(authService, 'logout');
+
+      insideEach();
+
+      expect(logoutSpy).toHaveBeenCalledTimes(1);
+    });
+  
+    it('should display logout message', () => {
+      const messageSpy = spyOn(messageService, 'logoutSuccess');
+
+      insideEach();
+
+      expect(messageSpy).toHaveBeenCalledTimes(1);
+    });
+  
+    it('should navigate to home route', () => {
+      const navigateSpy = spyOn(router, 'navigate');
+
+      insideEach();
+
+      expect(navigateSpy).toHaveBeenCalledTimes(1);
+      expect(navigateSpy).toHaveBeenCalledWith(['/home']);
+    });
+  });
+
+  describe('#onToggleClick', () => {
+    let dispatchSpy: jasmine.Spy;
+
+    function insideEach(isToggleDisabled: boolean) {
+      fixture.detectChanges();
+      component.isToggleDisabled = isToggleDisabled;
+      component.onToggleClick();
+    }
+
+    beforeEach(() => {
+      dispatchSpy = spyOn(store, 'dispatch');
+    });
+
+    it('should not dispatch action if toggle is disabled', () => {
+      insideEach(true);
+
+      expect(dispatchSpy).not.toHaveBeenCalled();
+    });
+
+    it('should dispatch ToggleHeader action if toggle is not disabled', () => {
+      insideEach(false);
+
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(new ToggleHeader());
+    });
   });
 });
