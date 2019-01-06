@@ -1,6 +1,6 @@
 import { HeadPipe } from './head.pipe';
 
-describe('HeadPipe', () => {
+fdescribe('HeadPipe', () => {
   let pipe: HeadPipe;
 
   beforeEach(() => {
@@ -9,6 +9,13 @@ describe('HeadPipe', () => {
 
   it('should be created', () => {
     expect(pipe).toBeTruthy();
+  });
+
+  it('should not transform value if it is undefined', () => {
+    const value = undefined;
+    const piped = pipe.transform(value);
+
+    expect(piped).toBeUndefined();
   });
 
   it('should not transform value if it is not too long (no arguments)', () => {

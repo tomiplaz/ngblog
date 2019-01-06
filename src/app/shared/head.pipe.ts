@@ -9,7 +9,7 @@ export class HeadPipe implements PipeTransform {
     n = n || 10;
     extra = extra || 3;
 
-    if (value.length > n + extra) {
+    if (value && value.length > n + extra) {
       return `${value.slice(0, n)}...`;
     }
 
