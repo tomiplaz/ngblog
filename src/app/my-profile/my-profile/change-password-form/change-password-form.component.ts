@@ -32,7 +32,7 @@ export class ChangePasswordFormComponent implements OnInit {
 
   ngOnInit() {
     this.store.pipe(select(selectUser)).subscribe((user: User) => {
-      this.userId = user.id;
+      this.userId = user ? user.id : null;
     }).unsubscribe();
 
     this.changePasswordForm = this.formBuilder.group({
