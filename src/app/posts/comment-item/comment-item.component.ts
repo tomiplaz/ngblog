@@ -8,13 +8,15 @@ import { Comment } from '../comment.interface';
 })
 export class CommentItemComponent implements OnInit {
 
+  readonly COMMENT_REQUIRED = 'CommentItemComponent requires comment attribute!';
+
   @Input() comment: Comment;
 
   constructor() { }
 
   ngOnInit() {
     if (!this.comment) {
-      throw new Error('CommentItemComponent requires comment attribute!');
+      throw new Error(this.COMMENT_REQUIRED);
     }
   }
 
