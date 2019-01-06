@@ -39,7 +39,7 @@ describe('UserItemComponent', () => {
     });
   });
 
-  describe('with options input provided', () => {
+  describe('with user input provided', () => {
     const user = { name: 'foo', email: 'foo@foo.foo'};
 
     beforeEach(() => {

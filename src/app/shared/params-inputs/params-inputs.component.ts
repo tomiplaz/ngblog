@@ -8,6 +8,8 @@ import { Params, Router, ActivatedRoute } from '@angular/router';
 })
 export class ParamsInputsComponent implements OnInit {
 
+  readonly SORT_OPTIONS_REQUIRED = 'ParamsInputsComponent requires sortOptions attribute!';
+
   @Input() sortOptions: { value: string, text: string }[];
 
   constructor(
@@ -17,7 +19,7 @@ export class ParamsInputsComponent implements OnInit {
 
   ngOnInit() {
     if (!this.sortOptions) {
-      throw new Error('ParamsInputsComponent requires sortOptions attribute!');
+      throw new Error(this.SORT_OPTIONS_REQUIRED);
     }
   }
 
