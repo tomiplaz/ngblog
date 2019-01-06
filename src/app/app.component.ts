@@ -16,11 +16,9 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly TOP_EXTRA = 50;
 
   @ViewChild('main') mainElementRef: ElementRef;
-
   @HostBinding('class') classAttribute: string;
 
-  private scroll$ = fromEvent(window, 'scroll');
-
+  scroll$ = fromEvent(window, 'scroll');
   private storeSubscription: Subscription;
   private scrollSubscription: Subscription;
 
