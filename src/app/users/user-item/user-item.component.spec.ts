@@ -65,17 +65,17 @@ describe('UserItemComponent', () => {
         component.onNameClick();
       }
 
-      it('#onNameClick should navigate to user route if it is preview', () => {
+      it('shouldn\'t navigate if it isn\'t preview', () => {
+        insideEach(false);
+
+        expect(navigateSpy).not.toHaveBeenCalled();
+      });
+
+      it('should navigate to user route if it is preview', () => {
         insideEach(true);
 
         expect(navigateSpy).toHaveBeenCalledTimes(1);
         expect(navigateSpy).toHaveBeenCalledWith(['/users', user.name]);
-      });
-
-      it('#onNameClick shouldn\'t navigate if it isn\'t preview', () => {
-        insideEach(false);
-
-        expect(navigateSpy).not.toHaveBeenCalled();
       });
     });
   });

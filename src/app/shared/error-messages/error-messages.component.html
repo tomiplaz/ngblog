@@ -1,4 +1,4 @@
-<div *ngIf="control.invalid && control.dirty">
+<div *ngIf="control && control.invalid && control.dirty">
   <p *ngIf="control.errors.required">
     {{ name }} is required.
   </p>
