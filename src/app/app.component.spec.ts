@@ -1,23 +1,34 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { AppRoutingModule } from './app-routing.module';
+import { sessionReducer } from './core/store/session/session.reducer';
+import { settingsReducer } from './core/store/settings/settings.reducer';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        CoreModule,
-        AppRoutingModule,
+        StoreModule.forRoot({
+          session: sessionReducer,
+          settings: settingsReducer,
+        }),
       ],
-      declarations: [
-        AppComponent,
-      ],
+      declarations: [ AppComponent],
+      schemas: [ NO_ERRORS_SCHEMA ],
     }).compileComponents();
   }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', async(() => {
+    expect(component).toBeTruthy();
   }));
 });
