@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { StoreModule, Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { HeaderComponent } from './header.component';
 import { AppState } from '../store/store';
 import { authReducer } from '../store/auth/auth.reducer';
@@ -14,15 +14,6 @@ import { MessageService } from '../message.service';
 import { messageServiceStub } from 'tests/message-service.stub';
 import { authServiceStub } from 'tests/auth-service.stub';
 
-class RouterStub {
-  navigate() { }
-
-  events = {
-    pipe: () => this.events,
-    subscribe: () => new Subscription(),
-  }
-}
-
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
@@ -30,6 +21,11 @@ describe('HeaderComponent', () => {
   let router: Router;
   let authService: AuthService;
   let messageService: MessageService;
+
+  const routerStub = {
+    navigate: () => {},
+    events: new Subject<Event>(),
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,7 +38,7 @@ describe('HeaderComponent', () => {
       ],
       declarations: [ HeaderComponent ],
       providers: [
-        { provide: Router, useValue: new RouterStub() },
+        { provide: Router, useValue: routerStub },
         { provide: AuthService, useValue: authServiceStub },
         { provide: MessageService, useValue: messageServiceStub },
       ],
@@ -74,6 +70,22 @@ describe('HeaderComponent', () => {
 
     expect(routerEventsPipeSpy).toHaveBeenCalledTimes(1);
     expect(routerEventsSubscribeSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should have isAuthUrl prop initialized to false if route is not auth', () => {
+    fixture.detectChanges();
+
+    routerStub.events.next(new NavigationEnd(1, 'foo', 'bar'));
+
+    expect(component.isAuthUrl).toBe(false);
+  });
+
+  it('should have isAuthUrl prop initialized to true if route is auth', () => {
+    fixture.detectChanges();
+
+    routerStub.events.next(new NavigationEnd(1, 'login', 'bar'));
+
+    expect(component.isAuthUrl).toBe(true);
   });
 
   it('should subscribe to store on init', () => {
