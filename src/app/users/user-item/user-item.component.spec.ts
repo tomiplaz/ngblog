@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { UserItemComponent } from './user-item.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { User } from '../user.interface';
 
 describe('UserItemComponent', () => {
   let component: UserItemComponent;
@@ -40,7 +41,7 @@ describe('UserItemComponent', () => {
   });
 
   describe('with user input provided', () => {
-    const user = { name: 'foo', email: 'foo@foo.foo'};
+    const user: User = { name: 'foo', email: 'foo@foo.foo'};
 
     beforeEach(() => {
       component.user = user;

@@ -11,6 +11,8 @@ import { Post } from '../post.interface';
 })
 export class PostItemComponent implements OnInit {
 
+  readonly POST_REQUIRED = 'PostItemComponent requires post attribute!';
+
   @Input() post: Post;
   @Input() isPreview = true;
   sanitizedPostContent: string;
@@ -28,7 +30,7 @@ export class PostItemComponent implements OnInit {
 
   ngOnInit() {
     if (!this.post) {
-      throw new Error('PostItemComponent requires post attribute!');
+      throw new Error(this.POST_REQUIRED);
     }
     this.sanitizedPostContent = this.domSanitizer.sanitize(SecurityContext.HTML, this.post.content);
   }
