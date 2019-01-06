@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ToggleComponent } from './toggle.component';
 
 describe('ToggleComponent', () => {
@@ -8,7 +8,8 @@ describe('ToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToggleComponent ]
+      declarations: [ ToggleComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
   }));
