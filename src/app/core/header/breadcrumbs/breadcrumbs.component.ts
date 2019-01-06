@@ -16,7 +16,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.events
+    this.navigationEndEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
       .subscribe(() => this.buildBreadcrumbs());
   }
