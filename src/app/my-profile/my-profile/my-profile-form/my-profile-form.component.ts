@@ -31,7 +31,7 @@ export class MyProfileFormComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(select(selectUser)).subscribe((user: User) => {
       this.buildForm(user);
-      this.userId = user.id;
+      this.userId = user ? user.id : null;
     }).unsubscribe();
   }
 
@@ -54,10 +54,10 @@ export class MyProfileFormComponent implements OnInit {
 
   private buildForm(user: User) {
     this.myProfileForm = this.formBuilder.group({
-      name: [{ value: user.name, disabled: true }],
-      email: [{ value: user.email, disabled: true }],
-      website: [user.website, [Validators.maxLength(255)]],
-      about: [user.about, [Validators.maxLength(1000)]],
+      name: [{ value: user ? user.name : null, disabled: true }],
+      email: [{ value: user ? user.email : null, disabled: true }],
+      website: [user ? user.website : null, [Validators.maxLength(255)]],
+      about: [user ? user.about : null, [Validators.maxLength(1000)]],
     });
   }
 

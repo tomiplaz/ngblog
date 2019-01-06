@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 import { MyProfileFormComponent } from './my-profile-form.component';
+import { authReducer } from 'app/core/store/auth/auth.reducer';
+import { UsersService } from 'app/core/api/users.service';
+import { MessageService } from 'app/core/message.service';
+import { messageServiceStub } from 'tests/message-service.stub';
 
 describe('MyProfileFormComponent', () => {
   let component: MyProfileFormComponent;
@@ -8,7 +14,18 @@ describe('MyProfileFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyProfileFormComponent ]
+      imports: [
+        ReactiveFormsModule,
+        StoreModule.forRoot({
+          auth: authReducer,
+        }),
+      ],
+      declarations: [ MyProfileFormComponent ],
+      providers: [
+        { provide: UsersService, useValue: {} },
+        { provide: MessageService, useValue: messageServiceStub },
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
   }));

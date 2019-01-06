@@ -9,7 +9,7 @@ import { UsersService } from 'app/core/api/users.service';
 import { MessageService } from 'app/core/message.service';
 import { messageServiceStub } from 'tests/message-service.stub';
 
-fdescribe('ChangePasswordFormComponent', () => {
+describe('ChangePasswordFormComponent', () => {
   let component: ChangePasswordFormComponent;
   let fixture: ComponentFixture<ChangePasswordFormComponent>;
 
