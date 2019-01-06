@@ -9,6 +9,8 @@ import { User } from '../user.interface';
 })
 export class UserItemComponent implements OnInit {
 
+  readonly USER_REQUIRED = 'UserItemComponent requires user attribute!';
+
   @Input() user: User;
   @Input() isPreview = true;
 
@@ -16,7 +18,7 @@ export class UserItemComponent implements OnInit {
 
   ngOnInit() {
     if (!this.user) {
-      throw new Error('UserItemComponent requires user attribute!');
+      throw new Error(this.USER_REQUIRED);
     }
   }
 
