@@ -10,6 +10,8 @@ import { MessageService } from '../../core/message.service';
 })
 export class PaginatorComponent implements OnInit {
 
+  RESULTS_REQUIRED = 'PaginationComponent requires results: PaginatedResponse property!';
+
   @Input() results: PaginatedResponse<any>;
   @Input() scrollToTopOnFetch = true;
   @Output() resultsFetched: EventEmitter<PaginatedResponse<any>> = new EventEmitter<PaginatedResponse<any>>();
@@ -21,7 +23,7 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit() {
     if (!this.results) {
-      throw new Error('PaginationComponent requires results: PaginatedResponse property!');
+      throw new Error(this.RESULTS_REQUIRED);
     }
   }
 
