@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MessageService } from './message.service';
 import { CoreModule } from './core.module';
 
-describe('CommonService', () => {
+fdescribe('CommonService', () => {
   let service: MessageService;
   let toastrServiceSpy: jasmine.SpyObj<ToastrService>;
 
@@ -33,11 +33,25 @@ describe('CommonService', () => {
     expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.CREATE_ACCOUNT_SUCCESS);
   });
 
+  it('#confirmAccountSuccess should show toastr with confirm account success message', () => {
+    service.confirmAccountSuccess();
+
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.CONFIRM_ACCOUNT_SUCCESS);
+  });
+
   it('#loginSuccess should show toastr with login info message', () => {
     service.loginSuccess();
 
     expect(toastrServiceSpy.info).toHaveBeenCalledTimes(1);
     expect(toastrServiceSpy.info).toHaveBeenCalledWith(service.MESSAGES.LOGIN_SUCCESS);
+  });
+
+  it('#logoutSuccess should show toastr with logout info message', () => {
+    service.logoutSuccess();
+
+    expect(toastrServiceSpy.info).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.info).toHaveBeenCalledWith(service.MESSAGES.LOGOUT_SUCCESS);
   });
 
   it('#createPostSuccess should show toastr with create post success message', () => {
@@ -52,6 +66,41 @@ describe('CommonService', () => {
 
     expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
     expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.CREATE_COMMENT_SUCCESS);
+  });
+
+  it('#updateMyProfileSuccess should show toastr with update my profile success message', () => {
+    service.updateMyProfileSuccess();
+
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.UPDATE_MY_PROFILE_SUCCESS);
+  });
+
+  it('#changePasswordSuccess should show toastr with change password success message', () => {
+    service.changePasswordSuccess();
+
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.CHANGE_PASSWORD_SUCCESS);
+  });
+
+  it('#forgotPasswordEmailSent should show toastr with forgot password email sent message', () => {
+    service.forgotPasswordEmailSent();
+
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.FORGOT_PASSWORD_EMAIL_SENT);
+  });
+
+  it('#forgotPasswordEmailRequired should show toastr with forgot password email required message', () => {
+    service.forgotPasswordEmailRequired();
+
+    expect(toastrServiceSpy.error).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.error).toHaveBeenCalledWith(service.MESSAGES.FORGOT_PASSWORD_EMAIL_REQUIRED);
+  });
+
+  it('#resetPasswordSuccess should show toastr with reset password success message', () => {
+    service.resetPasswordSuccess();
+
+    expect(toastrServiceSpy.success).toHaveBeenCalledTimes(1);
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith(service.MESSAGES.RESET_PASSWORD_SUCCESS);
   });
 
   describe('#error', () => {
