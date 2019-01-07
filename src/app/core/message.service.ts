@@ -75,11 +75,9 @@ export class MessageService {
         } else {
           try {
             const errors = response.error.response.original;
-            // Print each error message (if any)
+
             Object.keys(errors).forEach((type: string) => {
-              errors[type].forEach(message => {
-                this.toastrService.error(message);
-              });
+              errors[type].forEach((text: string) => this.toastrService.error(text));
             });
           } catch (e) {
             this.toastrService.error(this.MESSAGES.BAD_REQUEST);

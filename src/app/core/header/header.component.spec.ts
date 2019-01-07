@@ -141,7 +141,7 @@ describe('HeaderComponent', () => {
 
       expect(logoutSpy).toHaveBeenCalledTimes(1);
     });
-  
+
     it('should display logout message', () => {
       const messageSpy = spyOn(messageService, 'logoutSuccess');
 
@@ -149,7 +149,7 @@ describe('HeaderComponent', () => {
 
       expect(messageSpy).toHaveBeenCalledTimes(1);
     });
-  
+
     it('should navigate to home route', () => {
       const navigateSpy = spyOn(router, 'navigate');
 
