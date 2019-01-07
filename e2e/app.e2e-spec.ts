@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ngblog App', () => {
+describe('blogs app', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('ngblog App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('blogs');
   });
 });
