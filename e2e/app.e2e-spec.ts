@@ -1,14 +1,14 @@
 import { AppPage } from './app.po';
 
-describe('blogs app', () => {
+describe('app page', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display app title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('blogs');
+    expect(page.getTitle()).toEqual('blogs');
   });
 });
