@@ -6,7 +6,7 @@
   </div>
   <div class="form-control">
     <label for="password">Password</label>
-    <input type="password"name="password" placeholder="Enter your password" formControlName="password">
+    <input type="password" name="password" placeholder="Enter your password" formControlName="password">
     <app-error-messages [name]="'Password'" [control]="loginForm.controls.password"></app-error-messages>
     <span class="clickable forgot-password" (click)="onForgotPasswordClick()">Forgot password?</span>
   </div>
