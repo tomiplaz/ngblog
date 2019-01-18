@@ -63,12 +63,35 @@ fdescribe('login page', () => {
     });
   });
 
-  it('should have a password input', () => {
-    const element = page.getPasswordInput();
+  describe('password input', () => {
+    let passwordInput: ElementFinder;
 
-    expect(element).toBeTruthy();
-    expect(element.getText()).toBe('');
-    expect(element.getAttribute('type')).toBe('password');
-    expect(element.getAttribute('placeholder')).toBe('Enter your password');
+    beforeAll(() => {
+      passwordInput = page.getPasswordInput();
+    });
+
+    it('should be present', () => {
+      expect(passwordInput).toBeTruthy();
+    });
+
+    it('should have empty value', () => {
+      expect(passwordInput.getText()).toBe('');
+    });
+
+    it('should be password type', () => {
+      expect(passwordInput.getAttribute('type')).toBe('password');
+    });
+
+    it('should have a correct placeholder', () => {
+      expect(passwordInput.getAttribute('placeholder')).toBe('Enter your password');
+    });
+
+    it('should show required validation message for dirty empty value', () => {
+      passwordInput.sendKeys('x', Key.BACK_SPACE);
+
+      const errorMessages = page.getErrorMessages('Password');
+
+      expect(errorMessages.getText()).toBe('Password is required.');
+    });
   });
 });
