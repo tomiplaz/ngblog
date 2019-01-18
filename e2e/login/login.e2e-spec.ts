@@ -1,7 +1,7 @@
 import { LoginPage } from './login.po';
 import { ElementFinder, Key } from 'protractor';
 
-fdescribe('login page', () => {
+describe('login page', () => {
   let page: LoginPage;
 
   beforeAll(() => {
