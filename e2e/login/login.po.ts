@@ -31,4 +31,8 @@ export class LoginPage {
   getInput(nameAttr: string) {
     return element(by.css(`input[name="${nameAttr}"]`));
   }
+
+  getErrorMessages(nameAttr: string) {
+    return element(by.css(`app-error-messages[ng-reflect-name="${nameAttr}"] p`));
+  }
 }
