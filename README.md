@@ -1,6 +1,6 @@
 # ngblog
 
-![alt text][build]
+[![Build Image](https://api.travis-ci.org/tomiplaz/ngblog.svg?branch=master "Latest push build on master branch")](https://travis-ci.org/tomiplaz/ngblog)
 
 ## Description
 
@@ -13,5 +13,3 @@ I initially started this project to learn Angular.
 2018
 Tomislav Plazonic
 https://tomiplaz.xyz
-
-[build]: https://api.travis-ci.org/tomiplaz/ngblog.svg?branch=master "Latest push build on master branch"
